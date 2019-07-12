@@ -1,40 +1,68 @@
 const todoListModel = require('../models/todoListModel')
 
 class todoListController {
-    static getOne(req, res, next) {}
-    static getAll(req, res, next) {}
+    static getOne(req, res, next) {
+        let listId = req.params.listId
+        console.log(listId)
 
-    static create(req, res, next) {
-        console.log(req.body,'<== ini isi req,body?')
-        console.log(req.body.name, ',++ ini kan name/')
-        console.log(req.body.todoId, ',++ ini kan todoId/')
-        console.log(req.body.projectId, ',++ ini kan projectId/')
-        let { name, todoId, projectId } = req.body
-        // let newList = { name, todoId, projectId }
-        // console.log(newList, 'newList')
-        // console.log(req.decode,'<== ini decode')
-        // console.log(req.logedUser,'<== ini user')
-        // res.status(201).json('success')
-
-        let newList = new todoListModel({
-            name, todoId
-        })
-
-        newList.save()
-            .then(success => {
-                res.status(201).json(success)
-            }).catch(next)
-
-        // todoListModel
-        //     .create(newList)
-        //     .then((created)=> {
-        //         // console.log(created,'<== berhasil di created todo listnya')
-        //         res.status(201).json(created)
-        //     })
-        //     .catch(next)
+        todoListModel
+            .findById(listId)
+            .then((task)=>{
+                console.log(task)
+                res.status(200).json(task)
+            })
+            .catch(next)
     }
-    static update(req, res, next) {}
-    static delete(req, res, next) {}
+    static getAll(req, res, next) {
+        todoListModel
+            .find()
+            .populate('Task')
+            .then((allData)=> {
+                console.log(allData)
+                res.status(200).json(allData)
+            })
+            .catch(next)
+    }
+    static create(req, res, next) {
+        let { name, projectId } = req.body
+        let newList
+        let creator = req.logedUser._id
+
+        if(!projectId){
+            newList = { name, creator }
+        }
+        else {
+            newList = { name, creator, projectId: projectId || null }
+        }
+
+        todoListModel
+            .create(newList)
+            .then((created)=> {
+                console.log('Success Create List')
+                res.status(201).json(created)
+            })
+            .catch(next)
+    }
+    static update(req, res, next) {
+        let taskId = req.params.taskId
+        let update = {}
+        // todoListModel
+        //     .findByIdAndUpdate(taskId,update,{new: true})
+    }
+    static delete(req, res, next) {
+        let taskId = req.params.taskId
+
+        todoListModel
+            .findByIdAndDelete(taskId)
+            .then((success)=>{
+                console.log(success)
+                res.status(200).json({
+                    message: `success delete task with id ${taskId}`,
+                    success
+                })
+            })
+            .catch(next)
+    }
 }
 
 module.exports = todoListController

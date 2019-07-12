@@ -12,7 +12,8 @@ let listSchema = new Schema ({
     },
     projectId: {
         type: Schema.Types.ObjectId,
-        ref: 'Project'
+        ref: 'Project',
+        default: null
     },
     taskId: [{
         type: Schema.Types.ObjectId,

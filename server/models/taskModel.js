@@ -22,15 +22,6 @@ let taskSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: true
-    },
-    projectId: {
-        type: Schema.Types.ObjectId,
-        ref: 'Project'
-    },
-    listId: {
-        type: Schema.Types.ObjectId,
-        ref: 'List',
-        require: true
     }
 }, {
     timestamps: true
