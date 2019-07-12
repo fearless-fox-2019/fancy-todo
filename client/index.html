@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="google-signin-client_id" content="9452940206-9dk3rul1mga5m8nnurb7oputiurqbkae.apps.googleusercontent.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <link rel="shortcut icon" type="image/svg" href="https://cdn3.iconfinder.com/data/icons/business-office/256/To-do_List-512.png" />
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <title>Trail Work</title>
+    <style>
+        .g-signin2{
+          width: 100%;
+        }
+        .g-signin2 > div{
+          margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Start Landing Page -->
+    <div id="landingPage">
+        <center>
+            <h2 class="indigo-text text-darken-4">Work Trail</h2>
+        </center>
+        <div class="container white z-depth-5"style="width: 500px">
+            <ul class="tabs indigo">
+                <li class="tab col s3"><a class="white-text active" href="" id="toLogin">Login</a></li>
+                <li class="tab col s3"><a class="white-text" href="" id="toRegister">Register</a></li>
+            </ul>
+
+            <!-- Login Section -->
+            <div id="loginPage" class="col s12" style="width: 400px; height: 500px; margin-left: 10%">
+                <form class="col s12" id="formLogin">
+                    <div class="form-container" >
+                        <center>
+                            <h4 class="blue-text text-darken-4">Hello</h4>
+                        </center>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="email" type="email" class="validate" name="email">
+                                <label for="email">Email</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="password" type="password" class="validate" name="password">
+                                <label for="password">Password</label>
+                            </div>
+                        </div>
+                        <br>
+                        <center>
+                            <button class="btn waves-effect waves-light blue" type="submit" name="action">Login</button>
+                        </center>
+                    </div>
+                    <div class='row'>
+                        <center>
+                            <br><a href="" class="indigo-text text-darken-4">Log In with Another Account:</a>
+                        </center>
+                        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Register Section -->
+            <div id="registerPage" class="col s12" style="width: 400px; height: 500px; margin-left: 10%">
+                <form class="col s12" id="formRegister">
+                    <div class="form-container">
+                        <center>
+                            <h4 class="blue-text text-darken-4">Welcome</h4>
+                        </center>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="nameRegis" type="text" class="validate" name="name">
+                                <label for="name">Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="emailRegis" type="email" class="validate" name="email" required="">
+                                <label for="email">Email</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="passwordRegis" type="password" class="validate" name="password" required="">
+                                <label for="password">Password</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label>
+                                    <input type="checkbox" class="filled-in" checked="checked" required="">
+                                    <span>by registering you agree to <a href="#" class="red-text">the terms and conditions</a></span>
+                                </label><br />
+                            </div>
+                        </div>
+                        <center>
+                            <button class="btn waves-effect waves-light blue" type="submit" name="action">Register</button>
+                        </center>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- End Landing Page -->
+
+    <!-- Start Content Section -->
+    <div id="contentPage">
+        <!-- Navbar -->
+        <nav>
+            <div class="nav-wrapper indigo" style="height: 110%">
+                <a href="#" class="brand-logo"><img src="https://cdn3.iconfinder.com/data/icons/business-office/256/To-do_List-512.png" style="width: 50px; height: 50px; margin-top:12px;"/></a>
+                <div style="margin-left: 50px">
+                    <h4 class="left" style="margin-left: 20px; margin-top: 15px">Trail Work</h4>
+                    <h6 class="left" style="margin-left: 20px; margin-top: 30px" id="today">Date</h6>
+                </div>
+
+                <div class="right" style="margin-right:20px" >
+                    <a style="margin-right: 20px" id="loggedName">Hi, </a>
+                    <a id="logout">
+                        <img src="https://cdn2.iconfinder.com/data/icons/weby-flat-vol-1/512/1_power-off-on-shutdown-512.png" alt="Logout" style="height:40px; margin-bottom:-10px">
+                    </a>
+                </div>
+            </div>
+        </nav><br />
+
+        <!-- Button Add -->
+        <div class="row" id="btnTask">
+            <div class="col s6">
+                <center>
+                    <button href="#addProjectModal" id="toAddProject-btn" class="waves-effect waves-light btn-small teal modal-trigger" style="width: 150px">
+                        <i class="fas fa-plus" style="font-size: 15px"></i> Project
+                    </button>
+                </center>
+            </div>
+            <div class="col s6" id="addTask=btn">
+                <center>
+                    <button href="#addTodo" class="waves-effect waves-light btn-small teal modal-trigger" style="width: 100px">
+                        <i class="fas fa-plus" style="font-size: 15px"></i> Task
+                    </button>
+                </center>
+            </div>
+        </div>
+
+        <!-- Modal Add Project -->
+        <div id="addProjectModal" class="modal">
+            <div class="modal-content">
+                <h4>Add New Project</h4><br>
+                <div class="row" id="formAddProject">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="nameProject" type="text" class="validate">
+                                <label for="nameProject">Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="descProject" type="text" class="validate">
+                                <label for="descProject">Description</label>
+                            </div>
+                        </div>
+                        <div id="inviteMember" style="height: 200px; overflow:scroll">
+                            <h6>Project Members:</h6>
+                            <div id="userList" class="row"></div>
+                        </div>
+                    </form>
+                </div>
+              
+            </div>
+            <div class="modal-footer">
+                <button id="addProject-btn" class="btn waves-effect waves-light" type="submit" name="action">Save</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- End Content Section -->
+ 
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+</html>
