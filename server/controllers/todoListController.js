@@ -16,7 +16,7 @@ class todoListController {
     static getAll(req, res, next) {
         todoListModel
             .find()
-            .populate('Task')
+            .populate('taskId')
             .then((allData)=> {
                 console.log(allData)
                 res.status(200).json(allData)
@@ -44,10 +44,21 @@ class todoListController {
             .catch(next)
     }
     static update(req, res, next) {
-        let taskId = req.params.taskId
-        let update = {}
-        // todoListModel
-        //     .findByIdAndUpdate(taskId,update,{new: true})
+        let listId = req.params.listId
+        let taskId = req.body.taskId
+        todoListModel
+            .findById(listId)
+            .then((found)=>{
+                console.log(found)
+                found.taskId.push(taskId)
+                let updatetaskId = new todoListModel(found)
+                return updatetaskId.save()
+            })
+            .then((result)=>{
+                console.log(result)
+                res.status(200).json(result)
+            })
+            .catch(next)
     }
     static delete(req, res, next) {
         let taskId = req.params.taskId

@@ -6,7 +6,7 @@ let taskSchema = new Schema({
         type: String,
         required: true
     },
-    desctription: {
+    description: {
         type: String,
     },
     status: {

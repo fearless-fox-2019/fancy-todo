@@ -1,11 +1,11 @@
 const router = require('express').Router()
 const userRouter = require('./userRoute')
-const todoRouter = require('./todoRoute')
+const taskRouter = require('./taskRoute')
 const projectRouter = require('./projectRoute')
 const todoList = require('./todoListRoute')
 
 router.use('/users',userRouter)
-router.use('/todos',todoRouter)
+router.use('/tasks',taskRouter)
 router.use('/todolists',todoList)
 // router.use('/projects',projectRouter)
 
