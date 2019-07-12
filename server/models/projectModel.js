@@ -5,7 +5,7 @@ let projectSchema = new Schema ({
     name: {
         type: String,
         required: true,
-        minlength: [2, 'Project ame too short']
+        minlength: [2, 'Project name too short']
     },
     creator: {
         type: Schema.Types.ObjectId,
