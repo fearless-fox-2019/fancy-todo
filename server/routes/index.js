@@ -7,6 +7,6 @@ const todoList = require('./todoListRoute')
 router.use('/users',userRouter)
 router.use('/tasks',taskRouter)
 router.use('/todolists',todoList)
-// router.use('/projects',projectRouter)
+router.use('/projects',projectRouter)
 
 module.exports = router

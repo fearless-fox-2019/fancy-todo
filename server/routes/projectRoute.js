@@ -1,10 +1,15 @@
 const router  = require('express').Router()
 const projectController = require('../controllers/projectsController')
+const { authentication, authorization } = require('../middleware/auth')
 
-// router.get('/', projectController.getAll)
-// router.get('/:id', projectController.getOne)
-// router.post('/', projectController.create)
-// router.patch('/:id', projectController.update)
-// router.delete('/:id', projectController.delete)
+router.use('/',authentication)
+
+router.get('/', projectController.getAll)
+router.get('/include', projectController.getIncluded)
+router.post('/', projectController.create)
+router.patch('/addMember/:projectId',projectController.addMember)
+router.patch('/removeMember/:projectId',projectController.removeMember)
+router.patch('/:projectId', projectController.update)
+router.delete('/:projectId', projectController.delete)
 
 module.exports = router

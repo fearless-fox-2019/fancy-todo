@@ -1,11 +1,14 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-let projectSchema = new Schema ({
+let projectSchema = new Schema({
     name: {
         type: String,
         required: true,
         minlength: [2, 'Project name too short']
+    },
+    description: {
+        type: String,
     },
     creator: {
         type: Schema.Types.ObjectId,
@@ -13,14 +16,18 @@ let projectSchema = new Schema ({
     },
     members: [{
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        default: []
     }],
     list: [{
         type: Schema.Types.ObjectId,
-        ref: 'List'
+        ref: 'List',
+        default: []
     }]
+},{
+    timestamps: true
 })
 
-let Project = mongoose.model ('Project', projectSchema)
+let Project = mongoose.model('Project', projectSchema)
 
 module.exports = Project
