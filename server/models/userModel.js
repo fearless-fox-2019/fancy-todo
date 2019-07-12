@@ -42,11 +42,7 @@ let userSchema = new Schema({
         type : String,
         required : [true, `Input Password. `],
         minlength: [5,`Password length too short`]
-    },
-    defaultTodo: [{
-        type: Schema.Types.ObjectId,
-        default: []
-    }]
+    }
 },{
     timestamps: true
 })
