@@ -1,7 +1,3 @@
-const Url = axios.create({
-  baseUrl : 'http://localhost:3000',
-})
-
 $(document).ready(function(){
   $('.tabs').tabs();
 });
@@ -16,6 +12,59 @@ $('#signin-form').toggle(function() {
   $('#register-form').hide()
 })
 ////////////////
+
+function renderButton() {
+  gapi.signin2.render('my-signin2', {
+    'scope': 'profile email',
+    'width': 240,
+    'height': 50,
+    'longtitle': true,
+    'theme': 'dark',
+    'onsuccess': onSuccess,
+    'onfailure': onFailure
+  });
+}
+
+function onSuccess(googleUser) {
+  console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+  gapi.auth2.getAuthInstance().signOut()
+  const profile = googleUser.getBasicProfile();
+  const id_token = googleUser.getAuthResponse().id_token;
+  $.post('http://localhost:3000/users/signin-google', {
+    token : id_token
+  })
+  .done((token) => {
+    console.log(token);
+    localStorage.setItem('token', token)
+    $('#start').hide()
+    $('#dashboard').show()
+    getInfo()
+  })
+  .fail((err) => {
+    if (err.status == 404) {
+      Swal.fire({
+        type: 'error',
+        title: 'Email Not Found',
+        text: 'Perhaps you want to register ?',
+      })
+    } else {
+      Swal.fire({
+        type: 'error',
+        title: 'Something Bad Happened...',
+        text: err.statusText,
+      })
+    }
+    console.log(err);
+  })
+}
+
+function onFailure(error) {
+  Swal.fire({
+    type: 'error',
+    title: 'Something Bad Happened...',
+    text: err.statusText,
+  })
+}
 
 // Sign In 
 function onSignIn() {
@@ -36,7 +85,11 @@ function onSignIn() {
     getInfo()
   })
   .fail((err) => {
-    console.log(err);
+    Swal.fire({
+      type: 'error',
+      title: 'You Shall Not Pass !',
+      text: err.responseJSON.message,
+    })
   })
 }
 
@@ -59,6 +112,10 @@ function onRegister() {
   })
   .fail((err) => {
     let errorMsg = err.responseJSON.message.split(':').slice(2)
-    console.log(errorMsg);
+    Swal.fire({
+      type: 'error',
+      title: 'Error x_x',
+      text: errorMsg,
+    })
   })
 }

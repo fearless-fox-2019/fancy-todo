@@ -10,13 +10,12 @@ function getInfo() {
     token : localStorage.token
   })
   .done((data) => {
-    console.log('test done');
-    console.log(data);
     if (data.picture) {
-
+      console.log(data.picture);
+      $('#user-ava').attr('src', data.picture)
     }
     $('#user-profile-info').append(
-      `<h2>Hello, ${data.name}</h2>
+      `<h2><span>Hello,</span><br> ${data.name}</h2>
       <h5>@${data.username}<h5>`
     )
   })
@@ -25,3 +24,11 @@ function getInfo() {
   })
 }
 
+function createTask() {
+  
+}
+
+$('#create-todo').click(function() {
+  $('#all-task').hide()
+  $('#create-task').show()
+})

@@ -1,3 +1,7 @@
+body {
+  overflow: hidden;
+}
+
 .todo-bg {
   height: 100vh;
   background-position: bottom right;
@@ -18,4 +22,45 @@
 .info-profile img {
   border-radius: 50%;
   height: 150px;
+}
+
+#user-profile-info {
+  text-align: center;
+}
+
+.info-profile {
+  margin-top: 10%;
+}
+
+#user-profile-info h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+#user-profile-info span {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+#user-profile-info h5 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.wrapper {
+  margin-left: 2.5vw;
+  margin-top: 5vh;
+}
+
+.todo {
+  height: 250px;
+  width: 200px;
+  background-color: #fff;;
+  border-radius: 5%;
+  -webkit-box-shadow: 5px 7.5px 20px -5px rgba(0,0,0,0.2);
+  -moz-box-shadow: 5px 7.5px 20px -5px rgba(0,0,0,0.2);
+  box-shadow: 5px 7.5px 20px -5px rgba(0,0,0,0.2)
 }

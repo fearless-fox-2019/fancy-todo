@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="google-signin-client_id" content="704750363286-ec339084bbcmufd6glr342n7976illqf.apps.googleusercontent.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/main.css">
   <title>Todo's</title>
 </head>
@@ -20,8 +22,8 @@
           <div class="row">
             <div class="col s12">
               <ul class="tabs">
-                <li class="tab col s3"><a class="active" href="#signin-form">Sign In</a></li>
-                <li class="tab col s3"><a href="#register-form">Register</a></li>
+                <li class="tab col s6"><a class="active" href="#signin-form">Sign In</a></li>
+                <li class="tab col s6"><a href="#register-form">Register</a></li>
               </ul>
             </div>
           </div>
@@ -47,7 +49,7 @@
               <a class="btn waves-effect waves-light" name="action" onclick="onSignIn()">Submit
                 <i class="material-icons right">send</i>
               </a>
-  
+              <div id="my-signin2"></div>
             </form>
           </div>
           <!-- Register -->
@@ -94,24 +96,74 @@
   <!-- Login / Register Page End -->
   <div id="dashboard">
     <!-- Navbar goes here -->
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo">ToDo</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <a class="waves-effect waves-light btn" onclick="onSignOut()">Sign Out</a>
+        </ul>
+      </div>
+    </nav>
+          
 
     <!-- Page Layout here -->
     <div class="row">
 
       <div class="col s3 profile">
         <!-- Grey navigation panel -->
-        <div class="info-profile row">
-          <img src="./images/default.jpg" alt="">
+        <div class="row">
+          <div  class="info-profile center-align">
+            <img src="./images/default.jpg" alt="" id="user-ava">
+          </div>
           <div class="text-center" id="user-profile-info">
+          </div>
+          <div class="container center-align">
+            <a class="waves-effect waves-light btn" id="create-todo">Create To Do's</a>
+          </div>
 
+          <div class="container collection">
+            <a href="#!" class="collection-item"><span class="badge">1</span>All Todo</a>
+            <a href="#!" class="collection-item"><span class="new badge">4</span>To Do's</a>
+            <a href="#!" class="collection-item">Completed</a>
           </div>
         </div>
-        <a class="waves-effect waves-light btn" onclick="onSignOut()">Sign Out</a>
-
+        <span class="new badge" data-badge-caption="custom caption">4</span>
       </div>
 
-      <div class="col s9">
+      <div class="col s9 offset-s3">
         <!-- Teal page content  -->
+        <div class="wrapper" id="all-task">
+          <div class="todo">
+            <p>
+              hahahahahahahahahahahahahahahahahahaha
+            </p>
+          </div>
+        </div>
+
+        <div class="wrapper" id="create-task" style="display: none">
+          <h3>Create Todo</h3>
+          <div class="row">
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s6">
+                  <input name="name" placeholder="Task Name" id="task-name" type="text" class="validate">
+                  <label for="task-name">Task Name</label>
+                </div>
+                <div class="input-field col s6">
+                  <input id="due-date" type="date" class="validate">
+                  <label for="due-date">Due Date</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <textarea name="description" id="description" class="materialize-textarea"></textarea>
+                  <label for="description">Decription</label>
+                </div>
+              </div>
+              <a class="waves-effect waves-light btn" onclick="createTodo()">Create Task</a>
+            </form>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -125,5 +177,6 @@
 <script src="./js/register-signin.js"></script>
 <script src="./js/main.js"></script>
 <script src="./js/signout.js"></script>
+<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 
 </html>
