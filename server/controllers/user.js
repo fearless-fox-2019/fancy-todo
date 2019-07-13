@@ -4,6 +4,8 @@ if (process.env.NODE_ENV === 'development') {
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const { compareHash } = require('../helpers/bcrypt');
+const {OAuth2Client} = require('google-auth-library');
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 class ControllerUser {
 
@@ -43,6 +45,39 @@ class ControllerUser {
       }
     })
     .catch(next)
+  }
+
+  static googleSignIn(req, res, next) {
+    client.verifyIdToken({
+      idToken: req.body.token,
+      audience: process.env.GOOGLE_CLIENT_ID
+    })
+    .then((result) => {
+      const {name, email, picture} = result.getPayload();
+      const payload = {name, email, picture}
+      return Promise.all([
+        payload,
+        User.findOne({
+          email : payload.email
+        })
+      ])
+    })
+    .then((found) => {
+      if (found[1] === null) {
+        res.status(404).json(null)
+      } else {
+        console.log(found[0]);
+        let token = jwt.sign({
+          name : found[1].fullname,
+          username : found[1].username,
+          email : found[0].email,
+          picture : found[0].picture
+        }, process.env.JWT_SECRET)
+        res.status(200).json(token)
+      }
+    })
+    .catch(next)
+
   }
 
   static getInfo(req, res, next) {

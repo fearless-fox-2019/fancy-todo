@@ -27,7 +27,11 @@ const userSchema = new Schema({
     required : [true, 'Please Provide Password for Your Account'],
     minlength : [8, `Password Must be 8 Characters or More`],
     match : [/^[a-zA-Z0-9]*$/ , 'Password can Only Contain Alpha Numeric']
-  }
+  },
+  todos : [{
+    type : Schema.Types.ObjectId,
+    ref: 'todo'
+  }]
 });
 
 userSchema.pre('save', function(next) {
