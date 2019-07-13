@@ -7,7 +7,7 @@ const userModel = require('../models/userModel')
 module.exports = {
     authentication: function (req, res, next) {
         let token = req.headers.token
-
+        
         if (!token) {
             throw ({
                 code: 400,

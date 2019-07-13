@@ -5,6 +5,7 @@ if (process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) {
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
+const morgan = require('morgan')
 const router = require('./routes')
 const errHandler = require('./middleware/errHandler')
 const port = process.env.PORT
@@ -22,6 +23,7 @@ app.use(express.json())
 app.use(express.urlencoded({
     extended: false
 }))
+app.use(morgan('tiny'))
 
 app.use('/', router)
 app.use('/', errHandler)

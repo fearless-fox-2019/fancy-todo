@@ -11,6 +11,17 @@ class TaskController {
             })
             .catch(next)
     }
+
+    static async getIncluded (req,res,next) {
+        let creator = req.logedUser._id
+        try {
+            let userTask = await taskModel.find({ creator })
+            res.json({userTask})
+        } catch (error) {
+            next(error)
+        }
+    }
+
     static create(req, res, next) {
         let creator = req.logedUser._id
         let {

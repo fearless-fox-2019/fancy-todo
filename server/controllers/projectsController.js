@@ -16,7 +16,6 @@ class projectController {
                         }
                     })
                 })
-
                 res.status(200).json({
                     memberOf
                 })
@@ -86,6 +85,7 @@ class projectController {
         projectModel
             .findById(projectId)
             .then((foundProject) => {
+                //kasih validasi kalo member tersebut udah menjadi member maka tak bisa di invite lagi
                 console.log(foundProject)
                 foundProject.members.push(newMember)
                 console.log(foundProject)

@@ -13,11 +13,12 @@ class todoListController {
             .catch(next)
     }
     static getAll(req, res, next) {
+        let creator = req.logedUser._id
         todoListModel
-            .find()
+            .find({creator})
             .populate('taskId')
             .then((allData) => {
-                res.status(200).json(allData)
+                res.status(200).json({userList: allData})
             })
             .catch(next)
     }
