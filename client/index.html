@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="google-signin-client_id"
+    content="75694869298-omql16sc8pv92937th5m2js65m6f925t.apps.googleusercontent.com">
+  <title>Fancy Todo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo">Logo</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a onclick="signOut()" id="signout">Sign Out</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container sign">
+    <div id="register">
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="username1" type="text" class="validate">
+              <label for="username1">Username</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="password1" type="password" class="validate">
+              <label for="password1">Password</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="email1" type="email" class="validate">
+              <label for="email1">Email</label>
+            </div>
+          </div>
+          <div class="flex-box">
+            <button style="margin-right: 10px" class="btn waves-effect waves-light" type="submit" name="action"
+              id="register-btn">Register
+              <i class="material-icons right">send</i>
+            </button>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+          </div>
+          <a onclick="getSignin()">already have an account?</a>
+        </form>
+      </div>
+    </div>
+    <div id="signIn">
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="username" type="text" class="validate">
+              <label for="username">Username</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="password" type="password" class="validate">
+              <label for="password">Password</label>
+            </div>
+          </div>
+          <div class="flex-box">
+            <button style="margin-right: 10px" class="btn waves-effect waves-light" type="submit" name="action"
+              id="sign-in-btn">Sign In
+              <i class="material-icons right">send</i>
+            </button>
+          </div>
+          <a onclick="getRegister()">Register new account</a>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="./js/googleSign.js"></script>
+<script src="./js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+</html>
