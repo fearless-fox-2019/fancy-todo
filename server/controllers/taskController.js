@@ -1,5 +1,4 @@
 const taskModel = require('../models/taskModel')
-const tasklistModel = require('../models/todoListModel')
 
 class TaskController {
     static getOne(req, res, next) {
@@ -8,30 +7,29 @@ class TaskController {
         taskModel
             .findById(taskId)
             .then((task) => {
-                console.log(task)
                 res.status(200).json(task)
             })
             .catch(next)
     }
     static create(req, res, next) {
-        console.log(req.logedUser)
         let creator = req.logedUser._id
         let {
             name,
-            description
+            description,
+            listId,
+            duedate
         } = req.body
         let newTask = {
             name,
             description,
-            duedate: new Date(),
-            creator
+            duedate: new Date(duedate),
+            creator,
+            listId
         }
-        console.log(newTask)
 
         taskModel
             .create(newTask)
             .then((created) => {
-                console.log(created)
                 res.status(200).json(created)
             })
             .catch(next)
@@ -44,12 +42,11 @@ class TaskController {
             name,
             description
         } = req.body
-        
+
         taskModel
             .findById(taskId)
             .then((found) => {
                 if (status) {
-                    console.log(found,'<=== ini before')
                     found.status = status
                 }
                 if (name) {
@@ -59,10 +56,10 @@ class TaskController {
                     found.description = description
                 }
                 let updated = new taskModel(found)
-                
+
                 return updated.save()
             })
-            .then((done)=> {
+            .then((done) => {
                 console.log(done)
                 res.status(200).json(done)
             })
@@ -70,25 +67,10 @@ class TaskController {
     }
     static delete(req, res, next) {
         let taskId = req.params.taskId
-        let listId = req.body.listId
 
-        // console.log(taskId)
         taskModel
             .findByIdAndDelete(taskId)
-            .then(() => {
-                return tasklistModel
-                    .findById(listId)
-            })
-            .then((taskList) => {
-                taskList.taskId = taskList.taskId.filter(id => {
-                    id !== taskId
-                })
-                let updatedTaskList = new tasklistModel(taskList)
-
-                return updatedTaskList.save()
-            })
-            .then((finalResult) => {
-                console.log(finalResult)
+            .then((deleted) => {
                 res.status(200).json(finalResult)
             })
             .catch(next)

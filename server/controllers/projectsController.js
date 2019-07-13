@@ -1,4 +1,6 @@
 const projectModel = require('../models/projectModel')
+const todoListModel = require('../models/todoListModel')
+const taskModel = require('../models/taskModel')
 
 class projectController {
     static getIncluded(req, res, next) {
@@ -102,11 +104,11 @@ class projectController {
         console.log(memberId)
         projectModel
             .findById(projectId)
-            .then((foundProject)=> {
-                console.log(foundProject,'<== before')
+            .then((foundProject) => {
+                console.log(foundProject, '<== before')
                 let left = []
                 foundProject.members.forEach(member => {
-                    if(member != memberId){
+                    if (member != memberId) {
                         left.push(member)
                     }
                 })
@@ -115,12 +117,42 @@ class projectController {
 
                 return update.save()
             })
-            .then((updated)=> {
+            .then((updated) => {
                 res.status(200).json(updated)
             })
             .catch(next)
     }
-    static delete(req, res, next) {}
+    static delete(req, res, next) {
+        let projectId = req.params.projectId
+        let arrayOfList = []
+
+        todoListModel
+            .find({
+                projectId
+            })
+            .then((founds) => {
+                founds.forEach(found => {
+                    arrayOfList.push(found._id)
+                })
+                return todoListModel.deleteMany({
+                    projectId
+                })
+            })
+            .then(() => {
+                return taskModel.deleteMany({
+                    listId: {
+                        $in: arrayOfList
+                    }
+                })
+            })
+            .then(() => {
+                return projectModel.findByIdAndDelete(projectId)
+            })
+            .then((deleted) => {
+                res.status(200).json(deleted)
+            })
+            .catch(next)
+    }
 }
 
 module.exports = projectController

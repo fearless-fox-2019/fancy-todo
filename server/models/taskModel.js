@@ -16,12 +16,17 @@ let taskSchema = new Schema({
     },
     duedate: {
         type: Date,
-        required: true
+        required: true,
+        min: new Date(Date.now() - 864e5)
     },
     creator: {
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: true
+    },
+    listId: {
+        type: Schema.Types.ObjectId,
+        ref: 'List'
     }
 }, {
     timestamps: true

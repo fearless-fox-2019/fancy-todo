@@ -1,7 +1,9 @@
 const mongoose = require('mongoose')
-const Schema =  mongoose.Schema
+const Schema = mongoose.Schema
+const projectModel = require('./projectModel')
+const taskModel = require('./taskModel')
 
-let listSchema = new Schema ({
+let listSchema = new Schema({
     name: {
         type: String,
         require: true
@@ -14,16 +16,40 @@ let listSchema = new Schema ({
         type: Schema.Types.ObjectId,
         ref: 'Project',
         default: null
-    },
-    taskId: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Task',
-        default: []
-    }]
-},{
-  timestamps: true  
+    }
+    // ,
+    // taskId: [{
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Task',
+    //     default: []
+    // }]
+}, {
+    timestamps: true
 })
 
-let List = mongoose.model('List',listSchema)
+// listSchema.pre('save', function (next) {
+//     if (this.projectId) {
+//         console.log(this.projectId)
+//         console.log(this._id, '<== ini idnya si list')
+//         let listId = this._id
+//         projectModel
+//             .findById(this.projectId)
+//             .then((found) => {
+
+//                 found.list.push(listId)
+//                 let update = new projectModel(found)
+//                 update.save()
+//             })
+//             .catch(next)
+//     }
+//     next()
+// })
+
+// listSchema.post('remove',function(doc){
+//     console.log(doc.task,'<==== INI TASK')
+
+// })
+
+let List = mongoose.model('List', listSchema)
 
 module.exports = List
