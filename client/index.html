@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- google Oauth-->
+    <meta name="google-signin-client_id"
+        content="132166001773-nljl5umc0vmdlvodji12sfl1eqk051q7.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <!-- css ftramework -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+
+    <!-- font  -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Crete+Round&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+    <!-- fontawesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+    <!-- animate Css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+    <!-- css style -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/home.css">
+    <title>Magic Todo</title>
+</head>
+
+<body>
+    <div id="landing">
+        <section class="hero is-fullheight landingHero">
+            <!-- Hero head: will stick at the top -->
+            <div class="hero-head">
+                <header class="navbar">
+                    <div class="container">
+                        <div class="navbar-brand">
+                            <a class="navbar-item ">
+                                <img src="https://deckmaster.info/images/sets/PRM_M.png" alt="Logo" id='imagelanding'>
+                            </a>
+                        </div>
+                    </div>
+                </header>
+            </div>
+
+            <!-- Hero content: will be in the middle -->
+            <div class="hero-body landingMain">
+                <div class="container heroContainer ">
+                    <img src="https://deckmaster.info/images/sets/PRM_M.png" alt="Logo"
+                        class="animated swing infinite delay-500ms"
+                        style="width: 150px; height: auto; margin-left: 20px;">
+                    <h1 class="title is-1">
+                        Magic To-do
+                    </h1>
+                    <h2 class="subtitle">
+                        where you can organize your amazing daily task activity <br>
+                        or organize your project with your team.
+                    </h2>
+                    <a class="button is-success is-outlined" onclick="toSignInForm()">Getting started</a>
+                </div>
+                <div class="container" id="signInForm">
+                    <div class="card signInCard">
+                        <h1 class="title is-2" style="margin-left: 20px; margin-bottom: 0px; padding-top: 25px;">Magic
+                            Todo</h1>
+                        <div class="card-content">
+                            <div class="field signInField">
+                                <label class="label" style="color: rgb(22, 32, 46);">Username</label>
+                                <p class="control has-icons-left has-icons-right">
+                                    <input id="loginFormUsername" class="input" type="username" placeholder="Username">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                </p>
+                                <p class="signInFailPopUp">Wrong username / password</p>
+                            </div>
+                            <div class="field signInField">
+                                <label class="label" style="color: rgb(22, 32, 46);">Password</label>
+                                <p class="control has-icons-left">
+                                    <input id="loginFormPassword" class="input" type="password" placeholder="Password">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                </p>
+                                <p class="signInFailPopUp">Wrong username / password</p>
+                            </div>
+                            <p>Doesn`t have an account? <a onclick="toSignUp()">Register</a></p>
+                            <br>
+                            <div class="field">
+                                <p class="control">
+                                    <a class="button is-success is-outlined" onclick="getSignIn()">Login</a>
+                                    <a class="button g-signin2" data-onsuccess="onSignIn" style="border: none">Login</a>
+                                </p>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container" id="signUpForm">
+                    <div class="card signUpCard">
+                        <h1 class="title is-2" style="margin-left: 20px; margin-bottom: 0px; padding-top: 25px;">Magic
+                            Todo</h1>
+                        <div class="card-content">
+                            <div class="field signInField">
+                                <label class="label" style="color: rgb(22, 32, 46);">Username</label>
+                                <p class="control has-icons-left has-icons-right">
+                                    <input id="signUpFormUsername" class="input" type="username" placeholder="Username">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="field signInField">
+                                <label class="label" style="color: rgb(22, 32, 46);">Email</label>
+                                <p class="control has-icons-left has-icons-right">
+                                    <input id="signUpFormEmail" class="input" type="email" placeholder="Email">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="field signInField">
+                                <label class="label" style="color: rgb(22, 32, 46);">Password</label>
+                                <p class="control has-icons-left">
+                                    <input id="signUpFormPassword" class="input" type="password" placeholder="Password">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                </p>
+                            </div>
+                            <p>Already have an account? <a onclick="toSignIn()">Sign In</a></p>
+                            <br>
+                            <div class="field">
+                                <p class="control">
+                                    <a class="button is-primary is-outlined" onclick="getSignUp()">Submit</a>
+                                </p>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div id="home">
+        <div class="homeNav">
+            <!-- <h1>huehuehuehuohfaosuvln</h1> -->
+            <h1 class="title is-6 has-text-warning addFromHomeNav"><a onclick="addTaskButton()"> AddTask </a></h1>
+            <!-- <h1 class="title is-6 has-text-warning addFromHomeNav"><a onclick="addListButton()"> AddList </a></h1> -->
+            <h1 class="title is-6 has-text-warning addFromHomeNav"><a onclick="addProjectButton()"> AddProject </a></h1>
+            <h1 class="title is-5 has-text-warning" onclick="signOutLocal()">SignOut</h1>
+        </div>
+        <div class="container is-fluid homeBody" >
+            <div class="columns mainColumns">
+                <div style="border: 1px solid blue" id="mainLeft" class="column is-4">
+                    <div class="columns">
+                        <div class="column" id="addTask">
+                            <h1 class="title is-5">Add New Task</h1>
+                        </div>
+                    </div>
+                    <!-- <div class="columns">
+                        <div class="column" id="addList">
+                            <h1>222222</h1>
+                        </div>
+                    </div> -->
+                    <div class="columns">
+                        <div class="column" id="addProject">
+                            <h1 class="title is-5">Add New Project</h1>
+                            <div class="field">
+                                <label class="label">Name</label>
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="Name of project" id="addProjectName">
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                    <label class="label">Description</label>
+                                    <div class="control">
+                                        <textarea class="textarea" placeholder="Description of Project here" id="addProjectDescription"></textarea>
+                                    </div>
+                                </div>
+
+                            <div class="field is-grouped">
+                                <div class="control">
+                                    <button class="button is-link" onclick="addProjectForm()">Submit</button>
+                                </div>
+                                <div class="control">
+                                    <button class="button is-text">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="columns"
+                        style="max-height: 95vh; overflow: scroll; margin-top: 20px; padding-bottom: 30px;">
+                        <div class="column" id="timelineHome">
+                            <h3 class="title is-4 activityHome">My Activity</h3>
+                        </div>
+                    </div>
+                </div>
+                <div style="border: 1px solid blue" id="mainRight" class="column">
+                    <div class="homePicture">
+                        <figure class="image is-128x128" style="margin: -40px 35px 40px 30px;">
+                            <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
+                        </figure>
+                    </div>
+                    <div class="identity"></div>
+                    <a class="button is-success is-active is-outlined buttonHome" style="margin: 0px 30px;">To Projects
+                        <i class="fas fa-angle-right" style="margin-left: 7px;"></i></a> <br>
+                    <a class="button is-warning is-active is-outlined buttonHome" style="margin: 0px 30px;">To Mymenu <i
+                            class="fas fa-angle-right" style="margin-left: 7px;"></i></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id="projects">
+        <h1 class="title is-1">Projects</h1>
+    </div>
+    <div id="mytasks">
+        <h1 class="title is-1">mytasks</h1>
+    </div>
+    <div id="about">
+        <h1 class="title is-1">about</h1>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/log.js"></script>
+    <script src="./js/fetch.js"></script>
+    <script src="./js/home.js"></script>
+    <script src="./js/add.js"></script>
+
+</body>
+
+</html>

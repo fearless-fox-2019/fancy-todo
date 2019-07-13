@@ -1,0 +1,66 @@
+.homeNav {
+    margin-top: 20px;
+    margin-right: 30px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
+}
+
+.addFromHomeNav {
+    justify-content: flex-end;
+    margin-right: 15px;
+}
+
+#home {
+    height: 100vh;
+}
+
+.homeBody {
+    height: 100vh;
+    margin-bottom: 20px;
+}
+
+h1.title.is-4 {
+    margin: 20px 20px;
+}
+
+.mainColumns {
+    height: 100vh;
+}
+
+#mainRight {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.buttonHome {
+    width: 110px;
+}
+
+.identity {
+    margin-bottom: 20px;
+    margin-left: 30px;
+}
+
+.activityHome {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.boxHome {
+    width: 350px;
+    height: auto;
+    margin: 10px auto
+}
+
+#addProject {
+    margin: 10px 10px -2px 10px;
+    padding-bottom: 0px;
+}
+
+#addTask {
+    margin: 10px 10px -2px 10px;
+    padding-bottom: 0px;
+}
