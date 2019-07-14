@@ -95,7 +95,13 @@ $(document).ready(function(){
         sendEmail()
     })
 
-
+    $('#search-href').click(function(event) {
+        event.preventDefault()
+        let data = {
+            name : $('#search').val()
+        }
+        search(data)
+    })
 });
 
 function getMyUncompleteTodo(){
@@ -245,6 +251,13 @@ function register(newUser){
         data: newUser
     })
     .done(() => {
+        Swal.fire({
+            // position: 'top-end',
+            type: 'success',
+            title: 'Success Register, enjoy!',
+            showConfirmButton: false,
+            timer: 1700
+        })     
         $('#register').hide()
         $('#login').show()
     })
@@ -448,5 +461,25 @@ function onSignIn(googleUser) {
     })
     .fail(function(err){
         console.log(err)        
+    })
+}
+
+function search(todoName){
+    console.log(todoName)
+    console.log('masuk search')
+    $('#table-search').empty()
+    $.post({
+        url : `${baseUrl}/todos/search`,
+        headers : { token : localStorage.getItem('token') },
+        data : todoName
+    })
+    .done(data => {
+        console.log(data)
+        $('#search').val('')        
+        data.forEach(el => {
+            $('#table-search').append(`
+                <tr><td>${el.name}</td><td>${el.description}</td><td><i class="material-icons">date_range</i><br>${el.due_date}</td><td><i class="material-icons">access_time</i><br>${el.time}</td><td><i class="material-icons" style="cursor : pointer" onclick="completeTodo('${el._id}')">check_box</i></td><td id="delete-todo"><i class="material-icons" style="cursor : pointer" onclick="deleteTodo('${el._id}')">delete</i></td><tr>
+            `)            
+        })
     })
 }

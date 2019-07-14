@@ -31,7 +31,14 @@
 
     <!-- sidenav -->
     <ul id="slide-out" class="sidenav">
-        <li><a id="to-search" class="waves-effect"><i class="material-icons prefix">search</i></a></li>
+        <li>            
+            <div id="input-search" class="input-field center" style="width: fit-content; margin-left: 10px; height: 20vh;">
+                <input placeholder="Search by name" id="search" type="text" autocomplete="off">
+                <a id="search-href" class="btn waves-effect teal lighten-1 right hoverable modal-trigger" type="submit" href="#modal-search" >Submit
+                    <i class="material-icons" style="vertical-align: middle;">search</i>
+                </a>                
+            </div>
+        </li>
         <li><div class="divider"></div></li>
         <li><a class="waves-effect waves-light btn modal-trigger" href="#modal1">Add new Todolist</a></li>
         <li><a id="trigger-comp" class="waves-effect waves-light btn modal-trigger" href="#modal-comp">My Completed Task</a></li>
@@ -118,6 +125,22 @@
                     <h5 class="header yellow center">Your Completed Task</h5>
                     <table class="centered">
                         <tbody id="table-comp"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="modal-complete-close" class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-light btn">Close</a>
+            </div>
+        </div>
+
+        <!-- modal search -->
+        <div id="modal-search" class="modal hoverable">
+            <div class="modal-content">
+                <!-- completed task table -->
+                <div id="searched" class="container">
+                    <h5 class="header yellow center">Result</h5>
+                    <table class="centered">
+                        <tbody id="table-search"></tbody>
                     </table>
                 </div>
             </div>

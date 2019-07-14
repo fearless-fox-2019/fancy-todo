@@ -8,7 +8,7 @@ router.get('/complete', authentication, TodoController.findComplete)
 router.post('/add', authentication, TodoController.create)
 router.patch('/complete/:id', authentication, authorization,TodoController.updateTodoStatus)
 router.delete('/delete/:id', authentication, authorization,TodoController.delete)
-router.get('/search', authentication, TodoController.searchName)
+router.post('/search', authentication, TodoController.searchName)
 router.post('/sendEmail', authentication, TodoController.sendEmail)
 
 module.exports = router

@@ -114,6 +114,8 @@ class TodoController {
     }
 
     static searchName(req, res, next){
+        console.log('masuuuukkkkkkk')
+        console.log(req.body)
         let regex = new RegExp(req.body.name, 'i')
         Todo.find({name : {$regex : regex}})
         .then(data => {

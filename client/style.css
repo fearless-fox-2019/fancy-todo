@@ -73,3 +73,8 @@
 #mailer-but {
     margin-top: 25px;
 }
+
+#modal-search {
+    width : 90vw;
+    height: 100vh;
+}

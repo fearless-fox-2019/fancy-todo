@@ -5,6 +5,7 @@ module.exports = function authorization(req, res, next) {
     // console.log(req.decoded.id)
     Todo.findOne({ UserId : req.decoded.id })
     .then(data => {
+        console.log(data)
         if(data){
             next()
         } else {
