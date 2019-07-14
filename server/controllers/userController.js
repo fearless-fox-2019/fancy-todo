@@ -23,8 +23,6 @@ class UserController{
 
     static login(req, res, next){
         const {username, password} = req.body
-        console.log(req.decoded, "ini");
-        
         User.findOne({username})
         .then(found => {
             if(found){
@@ -48,8 +46,6 @@ class UserController{
                     }
                 }
             } else {
-                console.log("ini gak ketemu usernamenya");
-                
                 throw {
                     code : 404  
                 }
@@ -70,8 +66,6 @@ class UserController{
                 email : payload.email
             })
             .then(result => {
-                console.log(result);
-                
                 if(result){
                     const {id, username, name, email, password} = result
                     const found = {id, username, name, email, password}

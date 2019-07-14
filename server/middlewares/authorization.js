@@ -5,11 +5,7 @@ module.exports = (req, res, next) => {
         UserId : req.decoded.id
     })
     .then(data => {
-        console.log('masuk auth');
-        
         if(data){
-            console.log('ada data',data);
-            
             if(data.UserId = req.decoded.id){
                 next()
             } else {
