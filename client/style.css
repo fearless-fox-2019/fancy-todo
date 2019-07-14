@@ -1,0 +1,75 @@
+#landing-container {
+    margin-top: 15vh;
+    margin-left: 65vh;
+    position: fixed;
+    z-index: 2;
+}
+
+#image-landing {
+    position: fixed;
+    z-index: 1;
+    filter :brightness(0.80) blur(2px)
+}
+
+#logo {
+    margin-left: 60px;
+}
+
+#register {
+    margin: 0 auto; 
+    height: 60vh; 
+    width: 50vw; 
+    border-radius: 20px;
+    margin-top: 20px; 
+    box-shadow : 0 0 10px gray;
+}
+
+#register-form {
+    position: absolute; 
+    padding-left: 10%; 
+    margin-top: 15px;
+}
+
+#login {
+    margin: 0 auto; 
+    height: 50vh; 
+    width: 50vw; 
+    border-radius: 20px;; 
+    margin-top: 20px; 
+    box-shadow : 0 0 10px gray;
+}
+
+#login-form {
+    position: absolute; 
+    padding-left: 10%; 
+    margin-top: 15px;
+}
+
+#modal1 {
+    width : 90vw;
+    height: 100vh;
+    /* padding-top: 50px; */
+}
+
+#due-date-inp {
+    width: 100px;
+}
+
+#set-time {
+    margin-left: 20px; 
+    width: 100px;
+}
+
+#modal-comp {
+    width : 90vw;
+    height: 100vh;
+    /* padding-top: 50px; */
+}
+
+#modal-complete-close {
+    margin-top: 120px;
+}
+
+#mailer-but {
+    margin-top: 25px;
+}

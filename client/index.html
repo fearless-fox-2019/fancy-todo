@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="google-signin-client_id" content="17355066347-n66ns0b6bue9lpi2uogn2krl925gk1j3.apps.googleusercontent.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <title>WhatTodo</title>
+</head>
+<body>
+
+    <!-- navbar -->
+    <nav>
+        <div class="nav-wrapper  teal lighten-1">
+          <div id="logo">
+              <a id="whattodo" class="brand-logo" style="cursor: pointer;">WhatTodo</a>
+          </div>
+        <div id="sidenav-menu">
+            <a data-target="slide-out" class="sidenav-trigger show-on-large hoverable"><i class="material-icons" style="display: block !important; cursor: pointer;">menu</i></a>
+        </div>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a id="to-login">Login</a></li>
+            <li><a id="to-register">Register</a></li>
+            <li><a id="to-logout">Logout</a></li>
+          </ul>
+        </div>
+    </nav>
+
+    <!-- sidenav -->
+    <ul id="slide-out" class="sidenav">
+        <li><a id="to-search" class="waves-effect"><i class="material-icons prefix">search</i></a></li>
+        <li><div class="divider"></div></li>
+        <li><a class="waves-effect waves-light btn modal-trigger" href="#modal1">Add new Todolist</a></li>
+        <li><a id="trigger-comp" class="waves-effect waves-light btn modal-trigger" href="#modal-comp">My Completed Task</a></li>
+        <li><a class="sidenav-close" href="#!">Close<i class="material-icons">close</i></a></li>
+    </ul>
+
+    <!-- landing -->
+    <div id="landing">
+        <div id="image-landing"><img src="https://www.vitalsmarts.com/crucialskills/files/2018/10/ToDoList_1920x1080.jpg" alt="" class="responsive-img"></div>
+        <div id="landing-container" class="center">
+            <h2 class="header center orange-text">Welcome to WhatTodo</h2>
+            <h5>A Cool Todolist to manage your activities</h5>
+            <button id="landing-login-but" class="btn-large waves-effect waves-light orange hoverable">Login</button>
+            <button id="landing-register-but" class="btn-large waves-effect waves-light orange hoverable">Register</button> 
+        </div>
+    </div>
+    
+    <div id="container">
+        <!-- register form -->
+        <div id="register" class="container">
+            <form id="register-form" class="col s12">
+                <h4 style="padding-bottom: 20px;">Register</h4>
+                <div class="input-field col s6" style="width : 30vw;">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="name-reg" type="text" class="validate">
+                    <label for="name-reg">Name</label>
+                </div>
+                <div class="input-field col s6" style="width : 30vw;">
+                    <i class="material-icons prefix">email</i>
+                    <input id="email-reg" type="email" class="validate">
+                    <label for="email-reg">Email</label>
+                </div>              
+                <div class="input-field col s12" style="width : 30vw;">
+                    <input id="password-reg" type="password" class="validate">
+                    <label for="password-reg">Password</label>
+                </div>
+                <button id="button-register" class="btn waves-effect teal lighten-1 right hoverable" type="submit" name="action">Submit
+                    <i class="material-icons" style="vertical-align: middle;">send</i>
+                </button>               
+                <div style="margin-bottom: 10px;">
+                    <div class="g-signin2" data-width="168" data-height="40" data-onsuccess="onSignIn"></div>
+                </div>
+            </form>
+        </div>       
+
+        <!-- login form -->
+        <div id="login" class="container">
+            <form id="login-form" class="col s12">
+                <h4 style="padding-bottom: 20px;">Login</h4>
+                <div class="input-field col s6" style="width : 30vw;">   
+                    <input id="email-log" type="email" class="validate">
+                    <label for="email-log">Email</label>
+                </div>              
+                <div class="input-field col s12" style="width : 30vw;">
+                    <input id="password-log" type="password" class="validate">
+                    <label for="password-log">Password</label>
+                </div>
+                <button id="button-login" class="btn waves-effect teal lighten-1 right hoverable" type="submit" name="action">Submit
+                    <i class="material-icons" style="vertical-align: middle;">send</i>
+                </button>        
+                <div style="margin-bottom: 10px;">
+                    <div class="g-signin2" data-width="168" data-height="40" data-onsuccess="onSignIn"></div>
+                </div>
+            </form>
+        </div>
+
+        <!-- home -->
+        <div id="home">
+            <div id="todo-table" class="container">
+                <h3 class="header yellow center">Your Uncompleted Task</h3>
+                <table class="centered">
+                    <tbody id="table-uncomp">                        
+                    </tbody>
+                </table>
+                <a id="mailer-but" class="waves-effect waves-light btn-large right"><i class="material-icons left">email</i>send this to my email</a>
+            </div>
+        </div>
+
+        <!-- modal completed task -->
+        <div id="modal-comp" class="modal hoverable">
+            <div class="modal-content">
+                <!-- completed task table -->
+                <div id="todo-complete" class="container">
+                    <h5 class="header yellow center">Your Completed Task</h5>
+                    <table class="centered">
+                        <tbody id="table-comp"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="modal-complete-close" class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-light btn">Close</a>
+            </div>
+        </div>
+
+        <!-- Modal todo form Structure -->
+        <div id="modal1" class="modal hoverable">
+            <div class="modal-content">
+                <!-- Form add Todo -->
+                <div id="add-todo" class="container">
+                    <h4 class="header center">Add new Todo to your list</h4><br>
+                    <div class="row">
+                        <form id="form-add-todo">
+                            <div class="row">
+                                <div class="input-field">
+                                    <i class="material-icons prefix">event_available</i>
+                                    <input id="todo-name" type="text" class="validate">
+                                    <label for="todo-name">Todo Name</label>
+                                </div>                                
+                            </div>          
+                            <div class="row">
+                                <div class="input-field">
+                                    <textarea id="todo-description" class="materialize-textarea"></textarea>
+                                    <label for="todo-description">Description</label><br>
+                                </div>                                
+                            </div>
+                            <div class="row">
+                                <input id="due-date-inp" class=" datepicker" placeholder="Set Due date">
+                                <input id="set-time" type="text" class="timepicker" placeholder="Set time">
+                            </div>
+                            <div class="row">
+                                <button class="waves-effect waves-light btn-small hoverable" type="submit" name="action"><i class="material-icons left">add</i>Add Todo</button>
+                            </div>                            
+                        </form>
+                    </div>           
+                </div>                
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="./js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
