@@ -3,6 +3,7 @@ const {generateToken}= require('../helpers/jwt')
 const {compare}= require('../helpers/bcrypt')
 const {OAuth2Client} = require('google-auth-library');
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+const sendEmail= require('../helpers/nodemailer')
 
 class userController{
 
@@ -22,6 +23,18 @@ class userController{
         })
         newUser.save()
         .then(user=>{
+            let subject='Welcome to Trail Work'
+            let textToSend = `
+                    <h1> Welcome ${req.body.name} </h1>
+                    <h3> Thank you for signing up for Trail Work!</h3>
+                    <p> We really exited to help you manage your todo list project.</p>
+                    <p> Checkout to our apps to get started. <span><a href="${process.env.CLIENT_URL}"> Get Started <a> </span></p><br>
+                    <br><hr>
+                    <h4>Sincerely, </h4>
+                    <h4>Trail Work Team</h4>
+                                           
+                `
+            sendEmail(req.body.email, subject, textToSend)
             res.status(201).json(user)
         })
         .catch(next)
@@ -104,6 +117,19 @@ class userController{
     
 
                         let token = generateToken(payload)
+
+                        let subject='Welcome to Trail Work'
+                        let textToSend = `
+                                <h1> Welcome ${user.name} </h1>
+                                <h3> Thank you for signing up for Trail Work!</h3>
+                                <p> We really exited to help you manage your todo list project.</p>
+                                <p> Checkout to our apps to get started. <span><a href="${process.env.CLIENT_URL}"> Get Started <a> </span></p><br>
+                                <br><hr>
+                                <h4>Sincerely, </h4>
+                                <h4>Trail Work Team</h4>
+                                                    
+                            `
+                        sendEmail(user.email, subject, textToSend)
 
                         res.status(200).json({
                             token,

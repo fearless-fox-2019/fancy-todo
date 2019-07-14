@@ -14,10 +14,6 @@ const projectSchema= new Schema({
     members:[{
         type: Schema.Types.ObjectId,
         ref: 'User'
-    }],
-    todoList:[{
-        type: Schema.Types.ObjectId,
-        ref: 'Todo'
     }]
 },{ timestamps: true})
 

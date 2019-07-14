@@ -7,8 +7,9 @@
     <meta name="google-signin-client_id" content="9452940206-9dk3rul1mga5m8nnurb7oputiurqbkae.apps.googleusercontent.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Nunito+Sans|Roboto+Slab|Russo+One|Varela+Round&display=swap" rel="stylesheet"> 
     <link rel="shortcut icon" type="image/svg" href="https://cdn3.iconfinder.com/data/icons/business-office/256/To-do_List-512.png" />
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <title>Trail Work</title>
@@ -25,7 +26,7 @@
     <!-- Start Landing Page -->
     <div id="landingPage">
         <center>
-            <h2 class="indigo-text text-darken-4">Work Trail</h2>
+            <h2 class="indigo-text text-darken-4" style="font-family: 'Russo One', sans-serif;">Work Trail</h2>
         </center>
         <div class="container white z-depth-5"style="width: 500px">
             <ul class="tabs indigo">
@@ -114,43 +115,60 @@
         <!-- Navbar -->
         <nav>
             <div class="nav-wrapper indigo" style="height: 110%">
-                <a href="#" class="brand-logo"><img src="https://cdn3.iconfinder.com/data/icons/business-office/256/To-do_List-512.png" style="width: 50px; height: 50px; margin-top:12px;"/></a>
+                <a class="brand-logo"><img src="https://cdn3.iconfinder.com/data/icons/business-office/256/To-do_List-512.png" style="width: 50px; height: 50px; margin-top:12px;"/></a>
                 <div style="margin-left: 50px">
-                    <h4 class="left" style="margin-left: 20px; margin-top: 15px">Trail Work</h4>
-                    <h6 class="left" style="margin-left: 20px; margin-top: 30px" id="today">Date</h6>
+                    <h4 class="left" style="margin-left: 20px; margin-top: 15px; font-family: 'Russo One', sans-serif;">Trail Work</h4>
+                    <h6 class="left" style="margin-left: 20px; margin-top: 25px; font-family: 'Varela Round', sans-serif;" id="today">Date</h6>
                 </div>
 
                 <div class="right" style="margin-right:20px" >
-                    <a style="margin-right: 20px" id="loggedName">Hi, </a>
-                    <a id="logout">
-                        <img src="https://cdn2.iconfinder.com/data/icons/weby-flat-vol-1/512/1_power-off-on-shutdown-512.png" alt="Logout" style="height:40px; margin-bottom:-10px">
+                    <a style="margin-right: 20px; font-family: 'Varela Round', sans-serif; font-size:16px; font-weight: bold" id="loggedName">Hi, </a>
+                    <a class="btn-flat" id="logout">
+                        <img src="https://cdn2.iconfinder.com/data/icons/weby-flat-vol-1/512/1_power-off-on-shutdown-512.png" alt="Logout" style="height:40px; margin-bottom:-5px">
                     </a>
                 </div>
             </div>
         </nav><br />
 
         <!-- Button Add -->
-        <div class="row" id="btnTask">
-            <div class="col s6">
+        <div class="row" id="btnTask"  style="margin: 8px 0; margin-bottom: 20px">
+            <div class="col s12">
                 <center>
-                    <button href="#addProjectModal" id="toAddProject-btn" class="waves-effect waves-light btn-small teal modal-trigger" style="width: 150px">
-                        <i class="fas fa-plus" style="font-size: 15px"></i> Project
-                    </button>
+                    <a href="#addProjectModal" id="toAddProject-btn" class="modal-trigger">
+                        <i class="fas fa-plus-circle"></i> New Project
+                    </a>
                 </center>
             </div>
-            <div class="col s6" id="addTask=btn">
+        </div>
+
+        <!-- Row Project & Todo -->
+        <div class="row">
+            <div class="col s4" id="projectContainer">
                 <center>
-                    <button href="#addTodo" class="waves-effect waves-light btn-small teal modal-trigger" style="width: 100px">
-                        <i class="fas fa-plus" style="font-size: 15px"></i> Task
-                    </button>
+                    <h5 id="projectList-title">My Project List</h5>
                 </center>
+                <div id="projectList"></div>
+            </div>
+
+            <div class="col s4" id="todoContainer">
+                <center>
+                    <h5 id="todoList-title">Todo List</h5>
+                </center>
+                <div id="todoList"></div>
+            </div>
+
+            <div class="col s4" id="finishedContainer">
+                <center>
+                    <h5 id="finishedList-title">Finished Task</h5>
+                </center>
+                <div id="finishedList"></div>
             </div>
         </div>
 
         <!-- Modal Add Project -->
         <div id="addProjectModal" class="modal">
             <div class="modal-content">
-                <h4>Add New Project</h4><br>
+                <h5 style="text-align:center; font-weight:bold; text-decoration:underline">Add New Project</h5><br>
                 <div class="row" id="formAddProject">
                     <form class="col s12">
                         <div class="row">
@@ -166,8 +184,8 @@
                             </div>
                         </div>
                         <div id="inviteMember" style="height: 200px; overflow:scroll">
-                            <h6>Project Members:</h6>
-                            <div id="userList" class="row"></div>
+                            <h6 style="font-weight: bold">Project Members:</h6>
+                            <div id="userList" class="row" style="margin-left: 20px"></div>
                         </div>
                     </form>
                 </div>
@@ -177,6 +195,25 @@
                 <button id="addProject-btn" class="btn waves-effect waves-light" type="submit" name="action">Save</button>
             </div>
         </div>
+
+        <!-- Modal Add Todo -->
+        <div id="addTodoModal" class="modal"></div>
+
+        <!-- Modal Invite Member -->
+        <div id="inviteMemberModal" class="modal">
+            <div class="modal-content">
+                <h5 style="text-align:center; font-weight:bold; text-decoration:underline">Invite Project Member</h5><br>
+                <h6 style="font-weight: bold; margin-left:20px">List Users:</h6>
+                <div id="userListInvite" style="margin-left: 50px;"></div><br><hr>
+                <button class="waves-effect waves-light btn" type="submit" style="background-color: #c62828; font-weight: bold; margin-left: 40%" onclick="inviteMember()">Invite</button>
+            </div>
+        </div>
+
+        <!-- Modal Edit Todo -->
+        <div id="editTodoModal" class="modal"></div>
+
+        <!-- Modal Edit Project -->
+        <div id="editProjectModal" class="modal"></div>
 
     </div>
 

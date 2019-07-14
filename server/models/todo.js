@@ -11,8 +11,8 @@ const todoSchema = new Schema({
         required: [true, 'Description must be filled']
     },
     status:{
-        type: Number,
-        default: 0
+        type: String,
+        default: 'todo'
     },
     dueDate:{
         type: Date,

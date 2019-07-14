@@ -3,10 +3,10 @@ const todoController= require('../controllers/todoController')
 const {authentication}= require('../middlewares/authenticate')
 
 router.use(authentication)
-router.get('/', todoController.findAll)
+router.get('/:status/:projectId', todoController.findAll)
 router.get('/:todoId', todoController.findOne)
 router.post('/', todoController.create)
-router.patch(':/todoId', todoController.update)
+router.patch('/:todoId', todoController.update)
 router.delete('/:todoId', todoController.remove)
 
 

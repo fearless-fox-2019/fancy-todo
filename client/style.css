@@ -1,0 +1,115 @@
+html body{
+    height: 100%;
+    width: 100%;
+}
+
+#toLogin:active{
+    background-color: #90caf9;
+    font-weight: bold
+}
+
+#toRegister:active{
+    background-color: #90caf9;
+    font-weight: bold
+}
+
+#toAddProject-btn {
+    text-decoration: none;
+    font-size: 17px;
+    font-family: 'Nunito Sans', sans-serif;
+    color: green;
+    font-weight: bold
+}
+
+
+#toAddProject-btn:hover {
+    color: red;
+    font-weight: bolder;
+}
+
+#projectList-title{
+    font-weight: bold;
+    font-family: 'Bree Serif', serif;
+    font-size: 22px;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    color: #e65100;
+    position: fixed-top;
+}
+
+#todoList-title{
+    font-weight: bold;
+    font-family: 'Bree Serif', serif;
+    font-size: 22px;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    color: #311b92;
+    text-align: center;
+}
+
+#finishedList-title{
+    font-weight: bold;
+    font-family: 'Bree Serif', serif;
+    font-size: 22px;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    color: #880e4f 
+}
+
+#projectContainer {
+    border-right: 5px solid darkred;
+    height: 500px;
+    overflow-y: scroll
+}
+
+#todoContainer{
+    border-right: 5px solid darkgreen;
+    height: 500px;
+    overflow-y: scroll
+}
+
+#todoList-titleProject{
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+    border-radius: 30px;
+    background:#b39ddb;
+    padding: 10px;
+    margin-bottom: 10px;
+
+}
+
+#todoList-titleProject:hover{
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+    border-radius: 30px;
+    background:#ce93d8;
+    padding: 10px;
+    margin-bottom: 10px;
+
+}
+
+#finishedList-projectTitle{
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+    border-radius: 30px;
+    background:#ef9a9a;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#finishedList-projectTitle:hover{
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+    border-radius: 30px;
+    background:#f48fb1;
+    padding: 10px;
+    margin-bottom: 10px;
+}
