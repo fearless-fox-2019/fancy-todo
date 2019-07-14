@@ -6,7 +6,6 @@ const moment = require('moment')
 class TodoController {
 
   static create(req, res, next) {
-    console.log(req.body);
     let { title, description, dueDate } = req.body
     let decode = verify(req.headers.token)
     let dataToCreate = {
@@ -14,7 +13,7 @@ class TodoController {
       title,
       description,
       dueDate,
-      status : false,
+      status: false,
       moment: moment(dueDate).endOf('day').fromNow()
     }
     todoModel.create(dataToCreate)
@@ -29,6 +28,17 @@ class TodoController {
   static read(req, res, next) {
     let decode = verify(req.headers.token)
     todoModel.find({ userId: decode._id })
+      .then(data => {
+        res.status(200).json({
+          data
+        })
+      })
+      .catch(next)
+  }
+
+  static readUndone(req, res, next) {
+    let decode = verify(req.headers.token)
+    todoModel.find({ userId: decode._id, status: false })
       .then(data => {
         res.status(200).json({
           data
@@ -55,20 +65,20 @@ class TodoController {
   }
 
   static destroy(req, res, next) {
-    todoModel.deleteOne({_id : req.params.id})
-    .then((del)=>{
-      if(del.deletedCount != 0) {
-        res.status(200).json({
-          msg : `${del.deletedCount} transaction(s) successfully deleted`
-        })
-      }
-      else{
-        throw {
-          status : 404
+    todoModel.deleteOne({ _id: req.params.id })
+      .then((del) => {
+        if (del.deletedCount != 0) {
+          res.status(200).json({
+            msg: `${del.deletedCount} transaction(s) successfully deleted`
+          })
         }
-      }
-    })
-    .catch(next)
+        else {
+          throw {
+            status: 404
+          }
+        }
+      })
+      .catch(next)
   }
 
 }

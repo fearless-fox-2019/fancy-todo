@@ -68,5 +68,10 @@ body {
   display: flex;
   flex-direction: column;
   align-content: center;
-  align-items: center
+  align-items: center;
+  margin: 0%;
+}
+
+#weather p{
+  margin: 0 !important
 }

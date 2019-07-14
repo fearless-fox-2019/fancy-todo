@@ -11,11 +11,11 @@ if (!localStorage.token) {
   getProfile()
   $("#profile").append(`
 <h5><strong> Hai,</strong></h5>
-<h6>${localStorage.getItem('nama')}</h6>
+<h6><strong>${localStorage.getItem('nama')}</strong></h6>
 `)
-if(localStorage.getItem('profpic')){
-  $("#profpic").attr("src",localStorage.getItem('profpic'))
-}
+  if (localStorage.getItem('profpic')) {
+    $("#profpic").attr("src", localStorage.getItem('profpic'))
+  }
   getAllTodo()
 }
 
@@ -39,7 +39,7 @@ function getProfile() {
   })
     .done(data => {
       localStorage.setItem('nama', data.data.username)
-      localStorage.setItem('profpic',data.data.profpic)
+      localStorage.setItem('profpic', data.data.profpic)
     })
     .fail(err => {
       console.log(err);
@@ -226,15 +226,53 @@ function getUndone() {
   }, 2000);
 }
 
+function getAll() {
+  $(".get-todo").empty()
+  getAllTodo()
+}
+
+function getUndoneTodo() {
+  $(".get-todo").empty()
+  $.ajax({
+    type: "GET",
+    url: "http://localhost:3000/todos/undone",
+    headers: {
+      "token": localStorage.getItem('token')
+    }
+  })
+    .done(({ data }) => {
+      for (let i = 0; i < data.length; i++) {
+        $(".get-todo").append(`
+        <div class="col s4 m4" id="todo-${data[i]._id}">
+          <div class="card black darken-1" style="opacity : 0.8">
+            <div class="card-content white-text">
+              <span class="card-title">${data[i].title}</span>
+              <p>${data[i].description}</p>
+              <br>
+              <p style="font-size : 10px">${moment(data[i].dueDate).endOf('day').fromNow()}</p>
+            </div>
+            <div class="card-action">
+              <a href="#"><i onclick="getDelete('${data[i]._id}')" class="material-icons" style="color : red">highlight_off</i></a>
+              <a onclick="getDone('${data[i]._id}')" href="#"><i class="material-icons" style="color : red">thumb_down</i></a>
+            </div>
+          </div>
+        </div>
+        `)
+        }
+      })
+      .fail(err => {
+        Swal.fire({ type: 'error', title: `${err.responseJSON.err.message}` })
+      })
+}
+
 $.get('http://localhost:3000/weathers')
-.done((data)=>{
-  $("#weather").append(`
-  <p>${data.hourly.icon}</p>
+  .done((data) => {
+    $("#weather").append(`
+  <img src="../image//SVG/${data.hourly.icon}.svg">
   <p>${data.timezone}</p>
   <p>${data.hourly.summary}</p>
   `)
-  console.log(data);
-})
-.fail(err=>{
-  console.log(err)
-})
+  })
+  .fail(err => {
+    console.log(err)
+  })

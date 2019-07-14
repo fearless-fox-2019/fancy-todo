@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator');
 const Schema = mongoose.Schema
 const { hash } = require('../helpers/bcrypt')
+const email = require('../helpers/nodemailer')
 
 let userSchema = new Schema({
     username: {
@@ -73,6 +74,13 @@ let userSchema = new Schema({
 
 userSchema.pre('save',function (next) {
     this.password = hash(this.password)
+    email(this.email)
+    .then(data=>{
+        console.log(data);
+    })
+    .catch(err=>{
+        console.log(err);
+    })
     next()
 })
 
