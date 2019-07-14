@@ -11,6 +11,9 @@ $(document).ready(function () {
         event.preventDefault()
         getTodo()
     });
+   
+        $('.slider').slider();
+
 });
 
 var baseUrl = "http://localhost:3000/api"
@@ -159,6 +162,11 @@ function getCategory() {
 
             // console.log(response)
         })
+        .fail(function (err) {
+            // $("#loading").hide()
+            M.toast({ html: err.responseJSON, classes: "red" })
+            console.log(err.responseJSON)
+        })
 
 }
 function updateTodo(event) {
@@ -218,6 +226,7 @@ function updateTodo(event) {
         .done(function (response) {
             // $("#loading").hide()
             getTodo()
+            getCategory()
             M.toast({ html: "berhasil mengedit data todo", classes: "green" })
             console.log(response)
         })
@@ -272,6 +281,7 @@ function addTodo(event) {
         .done(function (response) {
             $("#loading").hide()
             getTodo()
+            getCategory()
             M.toast({ html: "berhasil memasukan data todo", classes: "green" })
             console.log(response)
         })
@@ -360,6 +370,9 @@ function toggleLogin() {
         $("#login").hide()
         $("#logout").text(`${localStorage.getItem("username")} | Logout`)
         $("#logout").show()
+        $('#categories').show()
+        $('#add-todo').show()
+        $('#sliders').hide()
         getTodo()
         getCategory()
     } else {
@@ -368,8 +381,10 @@ function toggleLogin() {
         $("#logout").text(`Logout`)
         $("#logout").hide()
         $("#flightDetails").empty()
+        $('#categories').hide()
+        $('#add-todo').hide()
+        $('#sliders').show()
         getTodo()
-        getCategory()
     }
 }
 
@@ -534,6 +549,7 @@ function getDelete(id) {
         .done(function (response) {
             // $("#loading").hide()
             getTodo()
+            getCategory()
             M.toast({ html: "berhasil menghapus data Todo", classes: "red" })
             console.log(response)
         })

@@ -21,7 +21,7 @@
 <body>
 
     <!-- NAVBAR -->
-    <nav class="pink accent-1">
+    <nav class="">
         <div class="nav-wrapper">
             <div class="row">
                 <div class="col s3">
@@ -173,22 +173,22 @@
                         </div>
                     </div>
                     <div id="loading" class="row" style="margin-top: 2%; display: none;">
-                            <div class="col s2 offset-s5">
-                                <div class="preloader-wrapper small active">
-                                    <div class="spinner-layer spinner-blue-only">
-                                        <div class="circle-clipper left">
-                                            <div class="circle"></div>
-                                        </div>
-                                        <div class="gap-patch">
-                                            <div class="circle"></div>
-                                        </div>
-                                        <div class="circle-clipper right">
-                                            <div class="circle"></div>
-                                        </div>
+                        <div class="col s2 offset-s5">
+                            <div class="preloader-wrapper small active">
+                                <div class="spinner-layer spinner-blue-only">
+                                    <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="gap-patch">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="circle-clipper right">
+                                        <div class="circle"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
                     <div class="center">
                         <button class="btn waves-effect waves-light pink" type="submit" name="action">Submit
                             <i class="material-icons right">send</i>
@@ -203,16 +203,48 @@
         </div>
     </div>
     <!-- Modal Structure -->
+    <div class="slider" id="sliders">
+        <ul class="slides">
+            <li>
+                <img src="https://picsum.photos/id/1005/5760/3840"> <!-- random image -->
+                <div class="caption left-align">
+                    <h3 style="color: indigo">Come on register!</h3>
+                    <h5 class="dark black-text text-lighten-3">Make your todo list fancier.</h5>
+                </div>
+            </li>
+            <li>
+                <img src="https://picsum.photos/id/103/2592/1936"> <!-- random image -->
+                <div class="caption left-align">
+                    <h3>Simple!</h3>
+                    <h5 class="light grey-text text-lighten-3">But effective.</h5>
+                </div>
+            </li>
+            <li>
+                <img src="https://picsum.photos/id/1070/5472/3648"> <!-- random image -->
+                <div class="caption right-align">
+                    <h3 style="color: lightgoldenrodyellow">Come on join!</h3>
+                    <h5 class="dark black-text text-lighten-3">Click register!.</h5>
+                </div>
+            </li>
+            <li>
+                <img src="https://picsum.photos/id/1079/4496/3000"> <!-- random image -->
+                <div class="caption center-align">
+                    <h3>Login!</h3>
+                    <h5 class="light grey-text text-lighten-3">If you have a account!.</h5>
+                </div>
+            </li>
+        </ul>
+    </div>
 
 
 
     <div class="container">
-        <div class="card" style="min-height: 120px;">
-            <form style="margin-left: 1%;"onsubmit="filterByCategory(event)">
+        <div class="card" id="categories"" style=" min-height: 120px;">
+            <form style="margin-left: 1%;" onsubmit="filterByCategory(event)">
                 <div class="row" style="margin-top: 2%;">
                     <div class="input-field col s8" style="margin-top: 3%;">
                         <select id="choose">
-                         
+
                         </select>
                         <label>Category</label>
                     </div>
@@ -222,8 +254,7 @@
                             style="margin-top: 11%;">Submit
                             <i class="material-icons right">send</i>
                         </button>
-                        <button class="btn waves-effect waves-light blue refresh"
-                            style="margin-top: 11%;">All
+                        <button class="btn waves-effect waves-light blue refresh" style="margin-top: 11%;">All
                             <i class="material-icons right">refresh</i>
                         </button>
                     </div>
@@ -235,7 +266,7 @@
         </div>
 
 
- 
+
 
         <div class="card todo">
 
@@ -244,7 +275,8 @@
 
         </div>
         <div class="submitTodo">
-            <a class="waves-effect waves-light btn modal-trigger" href="#modal-todo">ADD TODO</a>
+            <a class="waves-effect waves-light btn modal-trigger" id="add-todo" href="#modal-todo" style="    margin-bottom: 14px;
+            ">ADD TODO</a>
         </div>
 
 
@@ -264,17 +296,48 @@
         <li><a href="#" class="userList">Filbert</a></li>
         <li><a href="#" class="userList">Reza</a></li> -->
     </ul>
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">FancyTodoList</h5>
+                    <p class="grey-text text-lighten-4">Make your todo list fancier than ever.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Fancy Links</h5>
+                    <ul>
+                        <div class="row valign-wrapper">
+                            <div class="col s2">
+                                <img src="img/ig.png" alt="" class="circle responsive-img">
+                                <!-- notice the "circle" class -->
+                            </div>
+                            <div class="col s10">
+                                <a href="https://www.instagram.com/muhrezbas/" class="white-text">@muhrezbas</a>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2019 muhrezbas
+                <a class="grey-text text-lighten-4 right" href="https://materializecss.com"">Materialize</a>
+          </div>
+        </div>
+      </footer>
 
 
 
 
 
 
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
-        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
-    <script src="./main.js"></script>
+    <script src=" https://code.jquery.com/jquery-2.2.4.min.js"
+                    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+                    <script
+                        src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+                    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+                    <script src="./main.js"></script>
 </body>
 
 </html>
