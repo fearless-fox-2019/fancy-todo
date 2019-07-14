@@ -8,7 +8,7 @@ $(document).ready(function(){
     toggleLogin()
 });
 
-var baseUrl = "http://localhost:3000/api"
+var baseUrl = "http://35.186.150.38/api"
 
 function onSignIn(googleUser) {
     var id_token = googleUser.getAuthResponse().id_token;
@@ -39,7 +39,7 @@ function login() {
     var password = $("#passwordLogin").val()
     $.ajax({
         method: "POST",
-        url: "http://localhost:3000/api/users/login",
+        url: `${baseUrl}/users/login`,
         data: {
             username: username,
             password: password
@@ -67,7 +67,7 @@ function register() {
     var email = $("#emailRegister").val()
     $.ajax({
         method: "POST",
-        url: "http://localhost:3000/api/users/register",
+        url: `${baseUrl}/users/register`,
         data: {
             username: username,
             email: email,

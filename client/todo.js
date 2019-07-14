@@ -1,4 +1,4 @@
-var baseUrl = "http://localhost:3000/api"
+var baseUrl = "http://35.186.150.38/api"
 function updateStatus() {
     var todoId= event.target.id
     var projectId = localStorage.getItem("projectId")
@@ -114,6 +114,7 @@ function bored() {
 
 function deleteTodo(todoId, selected) {
     var projectId = localStorage.getItem("projectId")
+    console.log(todoId,"TODOID")
     $.ajax({
         method: "DELETE",
         url: `${baseUrl}/projects/${projectId}/deleteTodo`,

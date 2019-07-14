@@ -6,7 +6,7 @@ $(document).ready(function() {
     }
 })
 
-var baseUrl = "http://localhost:3000/api"
+var baseUrl = "http://35.186.150.38/api"
 
 
 function loadMyProjects() {
@@ -75,7 +75,7 @@ function viewProject() {
         var members = ""
         var todoList = ""
         project.members.forEach(member =>{
-            members += `<div class="chip">${member.username}</div>`
+            members += `<div class="chip cyan lighten-5">${member.username}</div>`
         })
         project.todos.forEach(todo =>{
             var Category = todo.category[0].toUpperCase() + todo.category.slice(1)
@@ -259,7 +259,7 @@ function inviteMember() {
     .done(function(response) {
         var newMember = response.members[response.members.length-1].username
         $("#projectMembers").append(`
-        <div class="chip">${newMember}</div>
+        <div class="chip cyan lighten-5">${newMember}</div>
         `)
     })
     .fail(function(err) {
