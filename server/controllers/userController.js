@@ -38,7 +38,7 @@ class UserController {
             })
     }
 
-    static verify(req, res) {
+    static googleLogin(req, res) {
         let payload
         let token
         

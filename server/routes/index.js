@@ -7,7 +7,7 @@ const { authentication } = require('../middlewares/auth')
 
 route.use('/users', user)
 
-router.use(authentication)
+route.use(authentication)
 
 route.use('/todos', todo)
 route.use('/projects', project)
