@@ -18,4 +18,4 @@ baseUrl = http:localhost:3000
 | /todos/add | POST | {name,description,due_date,time}| ${success message} | 401(Invalid Token) <br> 401(you have to login first!) <br> 404 (Unauthorized) <br> 400 (Due Date can't be before today)| Create a new Task! |
 | /todos/delete/:id | DELETE | -| { deleted }| 401 (Invalid Token)<br> 401 (you have to login first!) <br> 401 (Unauthorized) <br> 404 (Unauthorized) <br> 500 (Internal Server Error) | Delete a a ToDo List |
 | /todos/complete/:id| PATCH | - | { completed }| 401 (Invalid Token)<br> 401 (you have to login first!) <br> 404 (Unauthorized) <br> 500 (Internal Server Error) | Complete a ToDo |
-| /todos/endEmail| POST | - | ${ success message }| 401 (Invalid Token)<br> 401 (you have to login first!) <br> 500 (Internal Server Error) | Get an email of all Uncompleted tasks, in case you can't access the web, so you have the backup. |
+| /todos/sendEmail| POST | - | ${ success message }| 401 (Invalid Token)<br> 401 (you have to login first!) <br> 500 (Internal Server Error) | Get an email of all Uncompleted tasks, in case you can't access the web, so you have the backup. |
