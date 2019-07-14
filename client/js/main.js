@@ -7,7 +7,8 @@ $('document').ready(function () {
     })
 
     if (localStorage.getItem('token')) {
-        toHome()
+        // toHome()
+        toMyTask()
         fetchAll().then(result=>console.log(result))
     } else {
         toLanding()
@@ -49,6 +50,10 @@ function toMyTask() {
     $('#projects').hide()
     $('#mytasks').show()
     $('#about').hide()
+
+    appendToMidUp()
+    appendToMidBotRight()
+    myProjects()
 }
 
 function toAbout() {

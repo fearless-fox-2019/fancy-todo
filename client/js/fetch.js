@@ -47,3 +47,17 @@ function usersProject() {
             .fail((err) => reject(err))
     })
 }
+
+function fetchUserData() {
+    return new Promise((resolve, reject)=> {
+        $.ajax({
+            url: `${baseUrl}/users/userData`,
+            type: 'GET',
+            headers: {
+                token: localStorage.getItem('token')
+            }
+        })
+            .done(result => resolve( result ))
+            .fail( err => reject( err ))
+    })
+}
