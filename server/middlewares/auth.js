@@ -1,7 +1,7 @@
 const jwt = require('../helpers/jwt')
 const Model = require('../models/index')
 
-function aunthetication(req, res, next) {
+function authentication(req, res, next) {
     const token = req.headers.token
     try {
         const decoded = jwt.checkToken(token)
@@ -15,13 +15,12 @@ function aunthetication(req, res, next) {
       }
 }
 function authorization(req, res, next) {
-    const token = req.headers.token
     try {
         const todoId = req.params.id
-        Model.Todo.findOne({where: {id: todoId}})
+        Model.Todo.findById(todoId)
         .then(data =>{
-            const decoded = jwt.checkToken(token)
-            if(data.UserId === decoded.data.id){
+            console.log(req.decoded, 'asd')
+            if(String(data.UserId) == req.decoded.id){
                 next()
             }else{
                 res.status(401).json({
@@ -32,7 +31,7 @@ function authorization(req, res, next) {
         })
         .catch(err => {
             res.status(404).json({
-                message: 'Not Found - 1',
+                message: 'Not Found',
                 data: err
             })
         })
@@ -45,4 +44,4 @@ function authorization(req, res, next) {
     
 }
 
-module.exports = {aunthetication, authorization}
+module.exports = {authentication, authorization}

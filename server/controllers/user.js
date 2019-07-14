@@ -2,7 +2,6 @@ const {User, Todo} = require('../models/index')
 const {getToken} = require('../helpers/jwt')
 const {comparePassword} = require('../helpers/bcrypt')
 const {OAuth2Client} = require('google-auth-library')
-const {MongoClient, ObjectID} = require('mongodb');
 
 class UserController{
     static create(req, res, next){
@@ -29,53 +28,89 @@ class UserController{
     }
     static login(req, res, next){
         // email & password => jwt
-        const {username, password} = req.body
-        let userData 
-        User.findOne({username: username})
+        const {email, password} = req.body
+        User.findOne({email: email})
         .then(data => {
-            userData = data
-            return Todo.findOne({UserId: ObjectID(data._id)})
-            console.log(data)
-        })
-        .then(todoFind => {
             if(data){
-                if(comparePassword(userData.password, password)){
+                if(comparePassword(data.password, password)){
                     const forJwt = {
-                        email: userData.email,
-                        password: userData.password
+                        id: data._id,
+                        email: data.email,
+                        username: data.username
                     }
                     const token = getToken(forJwt)
                     res.status(200).json({
                         message: 'Valid',
-                        dataUser: userData,
-                        dataTodo: todoFind,
+                        data: {
+                            name: data.username,
+                            email: data.email
+                        },
                         jwt: token
                     })
                 }else{
-                    res.status(404).json({
+                    next({
+                        status: 400,
                         message: 'Username/Password Invalid'
                     })
                 }
             }else{
-                res.status(404).json({
+                next({
+                    status: 400,
                     message: 'Username/Password Invalid'
                 })
             }
+            // dataFind di client return Todo.findOne({UserId: ObjectID(data._id)})
+            console.log(data)
         })
         .catch(next)
     }
     static loginGoogle(req, res, next){
+        let userPayload
         const { id_token } = req.body
+        console.log(id_token, ' -> ada id gasi -_-')
         const client = new OAuth2Client(process.env.GOOGLE_ACCESS_ID)
         client.verifyIdToken({
             idToken: id_token,
             audience: process.env.GOOGLE_ACCESS_ID
         })
         .then(ticket => {
-            const { email, name, picture } = ticket.getPayload()
+            console.log('dari sini kayaknya')
+            const payload = ticket.getPayload()
+            return Promise.all([payload, User.findOne({
+                email:  payload.email
+            })])
+        })
+        .then(([payload, user]) => {
+            console.log('masuk error disini')
+            if (user) {
+                return Promise.all([payload, user])
+            } else {
+                return Promise.all([payload, User.create({
+                    username: payload.name,
+                    email: payload.email,
+                    password: 'indihaha'
+                })])
+            }
+        })
+        .then(([payload]) => {
+            console.log(payload, 'masuk sini dulu')
+            userPayload = payload
+            return User.findOne({email: payload.email})
+        })
+        .then(userFind => {
+            const forJwt = {
+                id: userFind._id,
+                email: userFind.email,
+                username: userFind.username
+            }
+            const token = getToken(forJwt)
             res.status(200).json({
-                message: 'masuk dari server',
-                data: name
+                message: 'Valid',
+                data: {
+                    name: userFind.username,
+                    email: userFind.email
+                },
+                jwt: token
             })
         })
         .catch(next)

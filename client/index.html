@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta name="google-signin-client_id" content="1002405411059-k28nebrdn0pc0c1jomebjtk9v4f04lrc.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Fancy Todo</title>
     <style>
         form{
@@ -26,40 +28,91 @@
         <form id="form-login">
             <h1> Fancy Todo </h1>
             <hr>
-            <div class="container" >
+            <div>
                 <p>Hello ... 👋🏻</p>
                 <p>what's your plan 📆📌 next day??? 🌎 </p>
-                <form class="submit">
-                    <input  type="text" placeholder="username please . ." id="inusername" style="width:400px; margin-bottom:auto; margin-top:auto;  margin-right:auto; margin-left:auto; border:1px " required><br><br>
-                    <input  type="password" placeholder="actually your password" id="inpassword" style="width:400px; margin-bottom:auto; margin-top:auto;  margin-right:auto; margin-left:auto; border:1px " required><br><br>
-                    <p style="text-align: center;">👇🏻 ups!</p>
-                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-                    <button id="btnLogin" type="button" class="btn btn-outline-light">let me in please .. </button>
-                    <button id="btnRegister" onclick="registerForm()" style="padding-right: 20px" type="button" class="btn btn-outline-light">mmm i don't have account .. </button>
-                </form>
+                <input  type="email" placeholder="email please . ." id="inemail" style="width:400px; margin-bottom:auto; margin-top:auto;  margin-right:auto; margin-left:auto; border:1px " required><br><br>
+                <input  type="password" placeholder="actually your password" id="inpassword" style="width:400px; margin-bottom:auto; margin-top:auto;  margin-right:auto; margin-left:auto; border:1px " required><br><br>
+                <button id="btnLogin" type="button" class="btn btn-sm btn-outline-secondary">let me in please .. </button>
+                <button id="btnRegister" onclick="registerForm()" style="padding-right: 20px" type="button" class="btn btn-sm btn-outline-secondary">mmm i don't have account .. </button>
+                <br><br>
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
             </div>
         </form>
         <!-- Form Register -->
         <form id="form-register">
             <h1 id="fanc"> Fancy Todo </h1>
-            <div class="container" >
+            <div>
                 <p>Hello ... 👋🏻</p>
-                <form class="submit">
-                    <input  id="regusername" type="text" placeholder="username minimal 5 characters" style="width:400px; margin-bottom:auto; margin-top:auto;  margin-right:auto; margin-left:auto; border:1px " required><br><br>
-                    <input  id="regemail" type="email" placeholder="💌 email " style="width:400px; margin-bottom:auto; margin-top:auto;  margin-right:auto; margin-left:auto; border:1px " required><br><br>
-                    <input  id="regpassword" type="password" placeholder="🔐 password minimal 5 characters" style="width:400px; margin-bottom:auto; margin-top:auto;  margin-right:auto; margin-left:auto; border:1px " required><br><br>
-                    <button id="subregister" class="btn btn-sm btn-outline-danger" type="submit">register</button>
-                    <button class="btn btn-sm btn-outline-secondary" type="reset">ups .. reset please</button>
-                </form>
+                <input  id="regusername" type="text" placeholder="username minimal 5 characters" style="width:400px; margin-bottom:auto; margin-top:auto;  margin-right:auto; margin-left:auto; border:1px " required><br><br>
+                <input  id="regemail" type="email" placeholder="💌 email " style="width:400px; margin-bottom:auto; margin-top:auto;  margin-right:auto; margin-left:auto; border:1px " required><br><br>
+                <input  id="regpassword" type="password" placeholder="🔐 password minimal 5 characters" style="width:400px; margin-bottom:auto; margin-top:auto;  margin-right:auto; margin-left:auto; border:1px " required><br><br>
+                <button id="sublogin" class="btn btn-sm btn-outline-info" type="submit">login</button>
+                <button id="subregister" class="btn btn-sm btn-outline-danger" type="submit">register</button>
+                <button class="btn btn-sm btn-outline-secondary" type="reset">ups .. reset please</button>
             </div>
         </form>
         <!-- content-page -->
         <div id="content-page">
             <h2>Fancy Todo</h2>
             <a href="#" onclick="signOut();">Sign out</a>
+            <button class="btn btn-sm btn-outline-secondary" type="button"  id="btnCreate">Create</button>
+            <hr>
+            <p id="content-pick">
+                <small>Pick Todos By :</small>
+                <button class="btn btn-sm btn-outline-secondary" type="button"  id="btnAll" value="New">All</button>                
+                <button class="btn btn-sm btn-outline-info" type="button"  id="btnNew" value="New">New</button>
+                <button class="btn btn-sm btn-outline-danger" type="button"  id="btnProgress" value="Progress">On Progres</button>
+                <button class="btn btn-sm btn-outline-success" type="button"  id="btnFinished" value="Finished">Finished</button> 
+                <hr>
+                <input id="searchTodo" type="text" class="form-control" placeholder="search todos by title . . ">           
+            </p>
             <div id="content-todo">
                 <div class="row" id="allTodos"></div>
             </div>
+            <!-- Create Todo -->
+            <br>
+            <form id="createtodo">
+                <div class="container" >
+                    <h3>Create Todo ... 📝🗓</h3>
+                    <p> what's your plan today??? 🧐🧐🧐 </p>
+                    <hr>
+                    <div class="submit">
+                        <label for="">Title: </label>
+                        <input id="inname" placeholder="todo title . . ." type="text" style="width:400px; margin-bottom:auto; margin-top:auto;  margin-right:auto; margin-left:auto; border:1px " ><br><br>
+                        <label for="">Description: </label>
+                        <input id="indescription" placeholder="todo description . . . " type="text" style="width:400px; margin-bottom:auto; margin-top:auto;  margin-right:auto; margin-left:auto; border:1px " ><br><br>
+                        <label for="">Due Date: </label>
+                        <input id="induedate" placeholder="todo due date . . ." type="date" style="width:400px; margin-bottom:auto; margin-top:auto;  margin-right:auto; margin-left:auto; border:1px " ><br><br>
+                        <button id="btnFinishedCreate" onclick="createTodo()" type="submit" class="btn btn-sm btn-outline-success">Finished .. </button>
+                    </div>
+                </div>
+            </form>
+            <!-- Edit Todo -->
+            <form id="edittodo">
+                <div class="container" >
+                    <h3>Edit Todo ... 📝🗓</h3>
+                    <p>something wrong with your plan ??? 🧐🧐🧐 </p>
+                    <hr>
+                    <div class="submit">
+                        <label for="">Title: </label>
+                        <input id="editinname" type="text" style="width:400px; margin-bottom:auto; margin-top:auto;  margin-right:auto; margin-left:auto; border:1px " ><br><br>
+                        <label for="">Description: </label>
+                        <input id="editindescription" type="text" style="width:400px; margin-bottom:auto; margin-top:auto;  margin-right:auto; margin-left:auto; border:1px " ><br><br>
+                        <label for="">Status: </label>
+                        <input id="editinstatus" type="text" style="width:400px; margin-bottom:auto; margin-top:auto;  margin-right:auto; margin-left:auto; border:1px " disabled><br><br>
+                        <select id="selectStatus" class="btn btn-sm btn-outline-success">
+                            <option value="New">New</option>
+                            <option value="On Progress">On Progress</option>
+                            <option value="Finished">Finished</option>
+                        </select>
+                        <label for="">Due Date: </label>
+                        <input id="editinduedate" type="date" style="width:400px; margin-bottom:auto; margin-top:auto;  margin-right:auto; margin-left:auto; border:1px " ><br><br>
+                        <div id='btnedit'></div>
+                    </div>
+                </div>
+            </form>
+            <!-- Delete Todo -->
         </div>
     </div>
 
@@ -75,13 +128,5 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- js -->
     <script src="./js/main.js"></script>
-    <script>
-        function signOut() {
-            const auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-                console.log('User signed out.');
-            });
-        }
-    </script>
 </body>
 </html>

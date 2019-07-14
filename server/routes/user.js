@@ -7,5 +7,7 @@ router.post('/', user.create)
 router.get('/', user.findAll)
 //login
 router.post('/login', user.login)
+//loginGoogle
+router.post('/login/google', user.loginGoogle)
 
 module.exports = router
