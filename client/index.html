@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>TodoList</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- BOOTSTRAP4 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- FONTAWESOME -->
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+
+    <!-- GOOGLE SIGN IN -->
+    <script src="https://apis.google.com/js/platform.js"></script>
+    <meta name="google-signin-client_id" content="1053031799771-bhj730hu83q47nik1ujbau2omc6vab2i.apps.googleusercontent.com">
+
+    <!-- POINTER -->
+    <style>
+      .default {cursor: default;}
+      .pointer {cursor: pointer;}
+    </style>
+
+    <!-- DATEPICKER -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+    $( function() {
+      $( "#datepickerAdd" ).datepicker();
+      $( "#datepickerProject" ).datepicker();
+    } );
+    </script>
+
+    <!-- FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+
+    <!-- CUSTOM JS -->
+    <script src="./js/main.js"></script>
+    <script src="./js/retrieve.js"></script>
+    <script src="./js/user.js"></script>
+    <script src="./js/page.js"></script>
+    <script src="./js/add.js"></script>
+    <script src="./js/edit.js"></script>
+</head>
+
+<body  style="
+    font-family: 'Literata', serif; 
+    background-image: url('https://www.redwallpapers.com/download/original/imac-apple-computer-table-cup-notebook-free-stock-photos-images-hd-wallpaper.jpg'); 
+    height: 91.2vh; 
+    width: 100vw; 
+    background-size: cover">
+
+    <!-- BEFORE LOGIN -->
+    <div>
+        <!-- LENDING -->
+        <div id="lending" style="color: white; margin: 5%;">
+            <h1> Todo-List </h1>
+            <h3 style="margin-top: 8%;"> “Before you eat the elephant, </h3>
+            <h3> make sure you know what parts you want to eat.” </h3>
+            <h6 style="margin-left: 41%;">― Todd Stocker</h6>
+            <button class="btn btn-light" data-toggle="modal" data-target="#signinModal" style="margin-top: 2.8%; width: 50%;"> Sign in here </button>
+        </div>
+    
+        <!-- SIGNIN MODALS -->
+        <div class="modal fade" id="signinModal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title" style="margin-left: 1%">SignIn</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group" style="margin-left:1%; margin-right: 1%;">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" id="emailSignin">
+                            </div>
+                            <div class="form-group" style="margin-left:1%; margin-right: 1%;">
+                                <label for="password">Password:</label>
+                                <input type="password" class="form-control" id="passwordSignin">
+                                <button class="btn btn-dark" type="submit" style="margin-top: 3%; width: 100%;" data-dismiss="modal" id="signin-btn">SignIn</button>
+                            </div>
+                        </form>
+                        <div style="margin-left: 1%; float: left;">
+                            <div id="gsignin" class="g-signin2" data-onsuccess="onSignIn" data-dismiss="modal"></div>
+                        </div>
+                        <div>
+                            <a data-toggle="modal" data-target="#signupModal" data-dismiss="modal" class="pointer" style="float: right; margin-right: 1%; color: blue">SignUp</a>
+                            <a class="default" style="float: right; margin-right: 1%;">Don't have any account?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SIGNUP MODALS -->
+        <div class="modal fade" id="signupModal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title" style="margin-left: 1%">SignUp</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group" style="margin-left:1%; margin-right: 1%;">
+                                <label for="name">Name:</label>
+                                <input type="name" class="form-control" id="nameSignup">
+                            </div>
+                            <div class="form-group" style="margin-left:1%; margin-right: 1%;">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" id="emailSignup">
+                            </div>
+                            <div class="form-group" style="margin-left:1%; margin-right: 1%;">
+                                <label for="password">Password:</label>
+                                <input type="password" class="form-control" id="passwordSignup">
+                                <button class="btn btn-dark" type="submit" style="margin-top: 3%; width: 100%;" id="signup-btn" data-dismiss="modal" data-toggle="modal" data-target="#signinModal">SignUp</button>
+                            </div>
+                        </form>
+                        <div>
+                            <a data-toggle="modal" data-target="#signinModal" data-dismiss="modal" class="pointer" style="float: right; margin-right: 1%; color: blue">SignIn</a><a class="default" style="float: right; margin-right: 1%;">Have any account?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AFTER LOGIN -->
+    <div id="home" class="row" style="height: 82vh; background-color: rgba(255, 255, 255, 0.8); margin: 5%;">
+
+        <!-- SIDEBAR -->
+        <div id="sidebar" class="col-3" style="background-color: #B47C27">
+            <h3 class="text-truncate" style="margin: 11%; margin-top: 20%; color: white;" id="name"> </h3>
+            <button id="personal-btn" class="btn btn-light" style="margin: 7%; margin-top: 10%; width: 85%; height: 13%;"> Personal </button>
+            <button id="project-btn" class="btn btn-light" style="margin: 7%; width: 85%; height: 13%;"> Project </button>
+            <button id="addproject-btn" class="btn btn-light" style="margin: 7%; width: 85%; height: 13%;" data-toggle="modal" data-target="#addProjectModal"> Create Project </button>
+            <button id="signout-btn" class="btn btn-light" style="margin: 7%; width: 85%; height: 13%;"> SignOut </button>
+        </div>
+
+        <!-- ADD PERSONAL TODO MODALS -->
+        <div class="modal fade" id="addtodoModal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title" style="margin-left: 1%">Create New Personal Todo</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group" style="margin-left:1%; margin-right: 1%;">
+                                <label for="titleAdd">Title:</label>
+                                <input type="text" class="form-control" id="titleAdd">
+                            </div>
+                            <div class="form-group" style="margin-left:1%; margin-right: 1%;">
+                                <label for="descriptionAdd">Description:</label>
+                                <input type="text" class="form-control" id="descriptionAdd">
+                            </div>
+                            <div class="form-group" style="margin-left:1%; margin-right: 1%;">
+                                <label for="datepicker">Due Date:</label>
+                                <input type="text" class="form-control" id="datepickerAdd">
+                                <button class="btn btn-dark" type="submit" style="margin-top: 3%; width: 100%;" data-dismiss="modal" id="addtodo-submit">Create new personal todo</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ADD PROJECT TODO MODALS -->
+        <div class="modal fade" id="addtodoProject">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title" style="margin-left: 1%">Create New Project Todo</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group" style="margin-left:1%; margin-right: 1%;">
+                                    <label for="titleProject">Title:</label>
+                                    <input type="text" class="form-control" id="titleProject">
+                                </div>
+                                <div class="form-group" style="margin-left:1%; margin-right: 1%;">
+                                    <label for="descriptionProject">Description:</label>
+                                    <input type="text" class="form-control" id="descriptionProject">
+                                </div>
+                                <div class="form-group" style="margin-left:1%; margin-right: 1%;">
+                                    <label for="datepicker">Due Date:</label>
+                                    <input type="text" class="form-control" id="datepickerProject">
+                                    <button class="btn btn-dark" type="submit" style="margin-top: 3%; width: 100%;" data-dismiss="modal" id="projecttodo-submit">Create new project todo</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <!-- ADD MEMBER MODALS -->
+        <div id="addmemberProject"></div>
+
+        <!-- ADD PROJECT MODALS -->
+        <div class="modal fade" id="addProjectModal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title" style="margin-left: 1%"> Create New Project </h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group" style="margin-left:1%; margin-right: 1%;">
+                                <label for="nameProject">Project Name:</label>
+                                <input type="text" class="form-control" id="nameProject">
+                                <button class="btn btn-dark" type="submit" style="margin-top: 3%; width: 100%;" data-dismiss="modal" id="addproject-submit">Create new project</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EDIT TODO MODALS -->
+        <div id="edittodoModal"></div>
+
+        <!-- MAIN -->
+        <div id="container" class="col-9">
+            <!-- PERSONAL -->
+            <div id="personal" class="row">
+                <h2 class="col-8" style="margin: 1%;">Personal</h2>
+                <div class="col-3" style="margin-left:6.33%; margin-top: 1%;">
+                    <button class="btn btn-dark" id="addtodo-btn" data-toggle="modal" data-target="#addtodoModal"> Create Personal Todo </button>
+                </div>
+                <div id="main-personal" class="col-11 row" style="overflow: scroll; max-height: 88%; height: 88%; margin: 3%;">
+                </div>
+            </div>
+            <!-- PROJECT -->
+            <div id="project" class="row">
+                <h2 class="col-2" style="margin: 1%;">Project</h2>
+                <div class="col-10 row" id="addprojecttodo-btn" style="margin-top: 1%;"></div>
+                <div id="main-project" class="row col-11" style="margin: 3%;">
+                    <div class="col-3" style="border-right: solid black 1px;">
+                        <h5>List</h5>
+                        <div id="project-list"></div>
+                    </div>
+                    <div class="col-3" style="border-right: solid black 1px;">
+                        <h5>Members</h5>
+                        <div id="project-member"></div>
+                    </div>
+                    <div class="col-6" style="overflow: scroll; max-height: 550px;">
+                        <h5>Todo</h5>
+                        <div id="project-todo"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
