@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="google-signin-client_id" content="1002405411059-k28nebrdn0pc0c1jomebjtk9v4f04lrc.apps.googleusercontent.com">
+    <title>Fancy Todo</title>
+    <style>
+        form{
+                position: absolute;
+                left: 0;
+                left: 30%;
+                right: 30%;
+                top: 20%;
+                width: 50%;
+                text-align: left;
+                font-size: 18px;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Form Login -->
+        <form id="form-login">
+            <h1> Fancy Todo </h1>
+            <hr>
+            <div class="container" >
+                <p>Hello ... 👋🏻</p>
+                <p>what's your plan 📆📌 next day??? 🌎 </p>
+                <form class="submit">
+                    <input  type="text" placeholder="username please . ." id="inusername" style="width:400px; margin-bottom:auto; margin-top:auto;  margin-right:auto; margin-left:auto; border:1px " required><br><br>
+                    <input  type="password" placeholder="actually your password" id="inpassword" style="width:400px; margin-bottom:auto; margin-top:auto;  margin-right:auto; margin-left:auto; border:1px " required><br><br>
+                    <p style="text-align: center;">👇🏻 ups!</p>
+                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                    <button id="btnLogin" type="button" class="btn btn-outline-light">let me in please .. </button>
+                    <button id="btnRegister" onclick="registerForm()" style="padding-right: 20px" type="button" class="btn btn-outline-light">mmm i don't have account .. </button>
+                </form>
+            </div>
+        </form>
+        <!-- Form Register -->
+        <form id="form-register">
+            <h1 id="fanc"> Fancy Todo </h1>
+            <div class="container" >
+                <p>Hello ... 👋🏻</p>
+                <form class="submit">
+                    <input  id="regusername" type="text" placeholder="username minimal 5 characters" style="width:400px; margin-bottom:auto; margin-top:auto;  margin-right:auto; margin-left:auto; border:1px " required><br><br>
+                    <input  id="regemail" type="email" placeholder="💌 email " style="width:400px; margin-bottom:auto; margin-top:auto;  margin-right:auto; margin-left:auto; border:1px " required><br><br>
+                    <input  id="regpassword" type="password" placeholder="🔐 password minimal 5 characters" style="width:400px; margin-bottom:auto; margin-top:auto;  margin-right:auto; margin-left:auto; border:1px " required><br><br>
+                    <button id="subregister" class="btn btn-sm btn-outline-danger" type="submit">register</button>
+                    <button class="btn btn-sm btn-outline-secondary" type="reset">ups .. reset please</button>
+                </form>
+            </div>
+        </form>
+        <!-- content-page -->
+        <div id="content-page">
+            <h2>Fancy Todo</h2>
+            <a href="#" onclick="signOut();">Sign out</a>
+            <div id="content-todo">
+                <div class="row" id="allTodos"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Scripts -->
+    <!-- jquery -->
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+    <!-- bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- js -->
+    <script src="./js/main.js"></script>
+    <script>
+        function signOut() {
+            const auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+        }
+    </script>
+</body>
+</html>
