@@ -23,5 +23,6 @@ header, main, footer, nav{
 
   .deleteTodo:hover {
     color: red;
+    cursor: pointer;
   }
         
