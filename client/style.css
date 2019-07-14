@@ -1,0 +1,27 @@
+header, main, footer, nav{
+    padding-left: 300px;
+  }
+
+  .container {
+      margin-left: 25%;
+  }
+
+  @media only screen and (max-width : 992px) {
+    header, main, footer, nav {
+      margin-left: 0;
+      padding-left: 0;
+    }
+
+    .container {
+        margin-left: 60px
+    }
+  }
+
+  .strike {
+    text-decoration: line-through;
+  }
+
+  .deleteTodo:hover {
+    color: red;
+  }
+        
