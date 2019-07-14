@@ -33,16 +33,16 @@
         }
     </style>
     <nav>
-        <div class="ui secondary menu container">
-            <div class="header item" id="view-mytodos">
+        <div class="ui secondary menu container" >
+            <div class="header item" id="view-mytodos" style="background-color: #daf5ae">
             Todo
             </div>
-            <a class="item" id="view-project-list">
+            <a class="item" id="view-project-list" style="background-color: #daf5ae">
             Project
             </a>
-    
-            <div class="right menu">
-                <a class="item" onclick="logout()">
+            
+            <div class="right menu" style="background-color: #eb0909">
+                <a class="item" onclick="logout()"><i class="fas fa-times-circle"></i>
                     Sign out
                 </a>
             </div>
@@ -87,7 +87,7 @@
             </div>
             </div>
         </div>
-        <h1 class="ui center aligned header huge" style="margin-top: 2rem;">Project List</h1>
+        <h1 class="ui center aligned header huge" style="margin-top: 2rem; background-color: #FFFF00">Project List</h1>
         <div class="ui grid" style="margin-top: 2rem" id="project-list">
             <div class="four wide column">
             <div class="ui card piled segment">
@@ -414,6 +414,7 @@
         </div>
       </div>
     </div>
+
     <script
     src="https://code.jquery.com/jquery-3.3.1.js"
     integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
