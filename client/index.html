@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="174713080632-g6ttlbssj8c861r5g7fv4t2egjft39k7.apps.googleusercontent.com">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Document</title>
+    <style>
+    .cardProfile {
+        padding-top: 20px;
+    }
+    .checked {
+        background: #888;
+        color: #fff;
+        text-decoration: line-through;
+    }
+    label {
+  /* Presentation */
+        font-size: 48px
+    }
+
+    #homePage {
+        background-image: url("./images/background3.jpg"); /* The image used */
+        background-color: #cccccc; /* Used if the image is unavailable */
+        height: 100vh;
+        background-position: center; /* Center the image */
+        background-repeat: no-repeat; /* Do not repeat the image */
+        background-size: 100%; /* Resize the background image to cover the entire container */
+    }
+
+/* Required Styling */
+
+    label input[type="checkbox"] {
+        display: none;
+    }
+
+    .custom-checkbox {
+        margin-left: 2em;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .custom-checkbox .glyphicon {
+        color: gold;
+        position: absolute;
+        top: 0.4em;
+        left: -1.25em;
+        font-size: 0.75em;
+    }
+
+    .custom-checkbox .glyphicon-star-empty {
+        color: gray;
+    }
+
+    .custom-checkbox .glyphicon-star {
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .custom-checkbox:hover .glyphicon-star{
+        opacity: 0.5;
+    }
+
+    .custom-checkbox input[type="checkbox"]:checked ~ .glyphicon-star {
+        opacity: 1;
+    }
+
+    .logoTommy {
+        margin-left: 20px;
+    }
+    /* .all-navbar {
+        margin: 10px;
+    } */
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+        <nav>
+            <div class="nav-wrapper  blue-grey darken-4">
+                <a href="#" class="brand-logo logoTommy">Tommy's ToDo</a>
+                <ul id="nav-mobile" class="all-navbar right hide-on-med-and-down">
+                <li><a href="#" id="homeBar">Home</a></li>
+                <li><a href="#" id="loginBar">Login</a></li>
+                <li><a href="#" id="registerBar">Register</a></li>
+                <li><a href="#" id="signOutBar" onclick="signOut();">Sign out</a></li>
+                <!-- <li><a href="collapsible.html">JavaScript</a></li> -->
+                </ul>
+            </div>
+        </nav>
+        <!-- END NAVBAR -->
+            
+        <!-- HOME PAGE -->
+        <div class="container" id="homePage">
+                <div class="row">
+                    <div class="col s12 center-align" id="backgroundNya">
+                    </div>
+            </div>
+        </div>
+        <!-- END HOME PAGE -->
+
+         <!-- USERPROFILEPAGE -->
+         <div class="row" >
+             <div class="col s3 grey darken-1" style="height: 100vh;" id="userProfilePage">
+     
+             </div>
+    <!-- END USER PROFILE PAGE -->
+        <div class="searchBar grey darken-1"  id="seachTodo">
+            <form id="searchForm">
+                <i class="medium material-icons">search<input id="inputSearch" type="text" placeholder="Search.."></i> 
+                <button type="submit"name="action">Submit</button>
+            </form>
+        </div>
+            <div class="col s9  grey darken-1" style="height: 100vh;" id="todoList">
+            </div>
+        </div>
+
+        <!-- REGISTER FORM -->
+
+    <div class="container">
+        <div class="row">
+            <form class="col s6 offset-s3" id="formRegister">
+                    <h3 style="text-align: center">Register Here</h3>
+                  <div class="row">
+                    <div class="input-field col s6">
+                      <i class="material-icons prefix">account_circle</i>
+                      <input id="usernameRegister" type="text" class="validate" name="username">
+                      <label for="usernameRegister">Username</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">email</i>
+                        <input id="emailRegister" type="tel" class="validate" name="email">
+                        <label for="emailRegister">Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                            <i class="material-icons prefix">lock</i>
+                            <input id="passwordRegister" type="password" class="validate" name="password">
+                            <label for="passwordRegister">Password</label>
+                    </div>
+                </div>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                        <i class="material-icons right">send</i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- END REGISTER FORM -->
+
+    <!-- LOGIN FORM -->
+
+    <div class="container">
+        <div class="row ">
+            <form id="formLogin" class="col s6 offset-s3">
+                <h3 style="text-align:center">
+                    Login here
+                </h3>
+                <div class="row">
+                    <div class="input-field col s6 offset-s3">
+                        <i class="material-icons prefix">email</i>
+                        <input id="emailLogin" type="tel" class="validate" name="email">
+                        <label for="emailLogin">Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6 offset-s3">
+                                <i class="material-icons prefix">lock</i>
+                            <input id="passwordLogin" type="password" class="validate" name="password">
+                            <label for="passwordLogin">Password</label>
+                            <br>
+                            <br>
+                            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                                <i class="material-icons right">send</i>
+                            </button>
+                            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- END LOGIN FORM -->
+
+    <!-- add Task Form -->
+    <div id="modal1" class="modal">
+            <div class="modal-content">
+                <form id="createTask">
+                    <h4> Add Task</h4>
+                    <label for="taskName">Name</label>
+                    <input id="taskName" type="text" class="validate" name="task">
+                    <label for="description">Description</label>
+                    <input id="description" type="text" class="validate" name="description">
+                    <label for="dueDate">Due Date</label>
+                    <input id="dueDate" type="date" class="validate datepicker" name="dueDate">
+                    <div class="modal-footer">
+                      <button type="submit" class="modal-close waves-effect waves-green btn-flat">Add Task</button>
+                    </div>
+                </form>
+            </div>
+    </div>
+    <!-- end task form -->
+
+   
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/todo.js"></script>
+</body>
+</html>
