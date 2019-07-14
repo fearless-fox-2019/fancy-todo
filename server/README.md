@@ -1,45 +1,47 @@
-# fancy-todo
-##Fancy Todo
-Buatlah aplikasi Todo menggunakan Client-server model dengan spesifikasi sebagai berikut:
 
-API Documentation yang meliputi : URLs, HTTP method, request, response (success dan error case)
-Membuat routes sesuai standar REST API
-CRUD endpoints untuk Todo (name, description, status, due date)
-Register
-Login menggunakan email & password (menggunakan JWT)
-Sign in with 3rd APIs (Google/Twitter/Facebook/GitHub)
-Validasi sehingga hanya authenticated user (owner) yang bisa melakukan CRUD Todo, baik dari sisi client maupun server
-Membuat authorization sehingga user hanya bisa melakukan Update/Delete terhadap todo-nya sendiri (server)
-NO alert();! (Client)
-Make it fancy! Tambahkan 1 fitur atau lebih yang akan menjadikan aplikasi todo kamu menjadi unik dan berbeda. Misal, integrasikan dengan Google Calendar. (Ingat, tambahkan fitur seunik mungkin)
+**Fancy Todo**
+----------------------------------------
 
-## Extras (Wajib buat anak ngulang):
+## Endpoint
 
-Authenticated user bisa membuat project, dan invite/add member ke project tersebut.
-User dapat membuat todo di project yang sudah dipilih
-Todo yang ada di suatu project hanya bisa di read/write (CRUD) oleh project members.
+baseUrl = http:localhost:3000/
 
-## Kompetensi Backend:
+#### User Routes
+| Routes| Method | Request Body | Response Data | Description |
+|----------------------|--------|-----------------------------|-----------------------------------|--|---------------------------------------------------------------|
+| `/users/register`| POST | `{ fullname, username, email, password }` | `{ access_token }`|Register a new user|
+| `/users/login` | POST | `{ email, password }`| `{ token }`|Log in and get an email verification!|
+| `/users/signin-google` | POST | `{ token(google) }` | `{ ntoken }` | |Sign in with Google|
+| `/users/dashboard` | GET | | `${ fullname, username, email, (if any) picture}` | Upon Log in, will carry basic information about User |
 
-REST API
-API Documentation
-API CRUD Todo + Authentication
-MongoDB + Mongoose
+#### User Validation
+Fullname : <br>
+<ul>
+  <li> Alphabet and Space Only
+  <li> Required
+Username : <br>
+<ul>
+  <li> Alphabet and Several Symbols ('.', '_' or '-')
+  <li> Minimum Character : 6
+  <li> Must Be Unique
+  <li> Required
+Email : <br>
+<ul>
+  <li> Required
+Password : <br>
+<ul>
+  <li> Alphabet and Numeric
+  <li> Minimum Character : 8
+  <li> Must Be Unique
+  <li> Required
 
-## Kompetensi Client:
-
-jQuery + AJAX
-SPA (Single Page Application)
-
-## Deadline:
-Week 2 - Senin 09:00
-
-## Submission:
-Fork dari organization, lalu open pull request dengan title NAMA LENGKAP KAMU (ex: Dimitri Wahyudiputra) dan assign ke buddy kamu jika sudah selesai. Tambahkan comment yang berisi environment variables yang dipakai (beserta valuenya), link deploy (jika ada), fitur tambahannya apa dan kendala saat mengerjakan.
-
-USERNAME
-Minimum 6 characters 
-Only numbers are not allowed at least one character should be there 
-No special characters allowed except _ 
-No space allowed 
-Character only is allowed
+#### Todo Routes
+| Routes | Method | Request Body | Description|
+|-----------------------------------|--------|----------------------------------|------------------|---------------------|------------------------------------------------------------------------------|
+| `/todos/create`| POST | -| `{ data }`| Create Todo List
+| `/todos/all` | GET | `{name,description,dueDate,isFinished,createdAt,updatedAt}`| Get All Todo List, based on Logged User |
+| `/todos/pending` | GET | `{name,description,dueDate,isFinished,createdAt,updatedAt}`| Get Pending Todo List, based on Logged User |
+| `/todos/completed` | GET | `{name,description,dueDate,isFinished,createdAt,updatedAt}`| Get Complete Todo List, based on Logged User |
+| `/todos/complete` | PATCH | `{id}`| Update Todo to Done Status |
+| `/todos/delete` | DELETE | `{id}`| Delete Todo with Finished Status |
+| `/todos/find` | GET | `{(used req.query)}`| Find Todo where  'NAME' like 'input' |

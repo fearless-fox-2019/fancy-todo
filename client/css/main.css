@@ -1,6 +1,6 @@
-body {
+/* body {
   overflow: hidden;
-}
+} */
 
 .todo-bg {
   height: 100vh;
@@ -13,10 +13,9 @@ body {
 }
 
 .profile {
-  background-color: #000;
+  background-color: #e5ecfe;
   position: fixed;
   height: 100vh;
-  color: #fff;
 }
 
 .info-profile img {
@@ -36,19 +35,59 @@ body {
   font-family: 'Poppins', sans-serif;
   font-size: 18px;
   font-weight: 600;
+  color: #222;
 }
 
 #user-profile-info span {
   font-family: 'Poppins', sans-serif;
   font-size: 18px;
   font-weight: 300;
+  color: #222;
 }
 
 #user-profile-info h5 {
   font-family: 'Poppins', sans-serif;
   font-size: 12px;
   font-weight: 400;
+  color: #222;
 }
+
+.btn {
+  border-radius: 25px
+}
+
+a.btn {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.content-todo {
+  padding: 0.25% 5%;
+}
+
+.content-todo h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin-left: 7.5px;
+}
+
+.todo-status h5 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  margin-left: 7.5px;
+}
+
+.content-todo p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  margin-left: 7.5px;
+}
+
 
 .wrapper {
   margin-left: 2.5vw;
@@ -63,4 +102,85 @@ body {
   -webkit-box-shadow: 5px 7.5px 20px -5px rgba(0,0,0,0.2);
   -moz-box-shadow: 5px 7.5px 20px -5px rgba(0,0,0,0.2);
   box-shadow: 5px 7.5px 20px -5px rgba(0,0,0,0.2)
+}
+
+#create-todo {
+  margin-top: 10px;
+  margin-bottom : 20px;
+}
+
+html {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.pop h1, h2, h3, h4, h5 {  
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 20px;
+  font-weight: 600;
+  color : #014af9
+}
+
+.collection a.collection-item {  
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 12px;
+  font-weight: 600;
+  color : #014af9
+}
+
+nav {
+  background-color : #014af9
+}
+
+.btn.blue  {
+  color: #fff
+}
+
+a.btn.blue {
+  color : #014af9
+}
+
+.btn  {
+  background-color: #014af9
+}
+
+a.btn {
+  color : #fff
+}
+
+.tabs .indicator {
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  background-color: #014af9;
+  will-change: left, right;
+}
+
+.pop a {
+  color: #014af9;
+  text-transform: capitalize
+}
+
+.tabs .tab a.active {
+  background-color: transparent;
+  color: #014af9;
+}
+
+.tabs .tab a:hover, .tabs .tab a.active {
+  background-color: transparent;
+  color: #014af9;
+}
+
+.tabs .tab a {
+  color: rgba(1,74,249, 0.7);
+}
+
+p.due {
+  color: grey;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.btn:hover {
+  background-color: #002c95
 }

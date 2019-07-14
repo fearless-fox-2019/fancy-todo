@@ -4,7 +4,7 @@ if (process.env.NODE_ENV === 'development') {
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const { compareHash } = require('../helpers/bcrypt');
-const {OAuth2Client} = require('google-auth-library');
+const { OAuth2Client } = require('google-auth-library');
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 class ControllerUser {
@@ -32,6 +32,7 @@ class ControllerUser {
       else {
         if (compareHash(req.body.password, found.password) === true) {
           let token = jwt.sign({
+            id : found._id,
             name : found.fullname,
             username : found.username,
             email : found.email
@@ -68,6 +69,7 @@ class ControllerUser {
       } else {
         console.log(found[0]);
         let token = jwt.sign({
+          id : found[1]._id,
           name : found[1].fullname,
           username : found[1].username,
           email : found[0].email,
@@ -81,14 +83,20 @@ class ControllerUser {
   }
 
   static getInfo(req, res, next) {
-    console.log('getinfo');
-    console.log(req.body);
-    try {
-      const decoded = jwt.verify(req.body.token, process.env.JWT_SECRET);
-      res.status(200).json(decoded)
-    } catch(err) {
-      res.status(500).json(err)
-    }
+    User.findOne({
+      email : req.decoded.email
+    })
+    .then((found) => {
+      let data = {
+        name : found.fullname,
+        email : found.email,
+        username : found.username,
+        picture : req.decoded.picture
+      }
+      console.log(data);
+      res.status(200).json(data)
+    })
+    .catch(next)
   }
 }
 

@@ -36,6 +36,7 @@ function onSuccess(googleUser) {
   .done((token) => {
     console.log(token);
     localStorage.setItem('token', token)
+    
     $('#start').hide()
     $('#dashboard').show()
     getInfo()
@@ -65,7 +66,7 @@ function onFailure(error) {
     text: err.statusText,
   })
 }
-
+ 
 // Sign In 
 function onSignIn() {
   event.preventDefault()
@@ -83,6 +84,7 @@ function onSignIn() {
     $('#start').hide()
     $('#dashboard').show()
     getInfo()
+    getTasks()
   })
   .fail((err) => {
     Swal.fire({

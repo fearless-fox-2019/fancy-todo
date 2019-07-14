@@ -32,6 +32,8 @@ const userSchema = new Schema({
     type : Schema.Types.ObjectId,
     ref: 'todo'
   }]
+}, {
+  versionKey : false
 });
 
 userSchema.pre('save', function(next) {

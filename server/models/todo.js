@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 const Schema = mongoose.Schema;
 
 const todoSchema = new Schema({
@@ -20,9 +21,22 @@ const todoSchema = new Schema({
   },
   dueDate: {
     type : Date,
-    default : null
+    default : null,
+    validate : {
+      validator : function (value) {
+        if (value !== null) {
+          let date = moment(value.toISOString().split('T')[0].split('-').join(''), "YYYYMMDD").fromNow(); // 8 years ago
+          return (date.includes('ago') === true ) ? false : true
+        }
+      },
+      message : 'Please Provide a Valid Date'
+    }
   },
-}, { timestamp : true });
+}, { 
+  versionKey : false,
+  timestamps : {}
+});
+
 
 let Todo = mongoose.model('todo', todoSchema)
 
