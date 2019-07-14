@@ -1,12 +1,31 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const projectModel = require('./projectModel')
-const taskModel = require('./taskModel')
 
 let listSchema = new Schema({
     name: {
         type: String,
-        require: true
+        require: true,
+        validate: [{
+            validator: function(val) {
+                return new Promise ((resolve, reject)=> {
+                    List
+                        .findOne({name: val})
+                        .then((found)=>{
+                            if(found){
+                                resolve(false)
+                            }
+                            else {
+                                resolve (true)
+                            }
+                        })
+                        .catch((err)=>{
+                            console.log(err)
+                        })
+                })
+            },
+            message: `Cannot make a same List of Task`
+        }]
     },
     creator: {
         type: Schema.Types.ObjectId,

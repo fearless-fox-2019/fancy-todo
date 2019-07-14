@@ -6,6 +6,7 @@ router.use('/', authentication)
 
 router.get('/', taskController.getIncluded)
 router.post('/', taskController.create)
+router.get('/list/:listId',taskController.getByList)
 router.get('/:taskId', taskController.getOne)
 router.patch('/:taskId', taskController.update)
 router.delete('/:taskId', taskController.delete)

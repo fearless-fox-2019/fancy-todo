@@ -3,11 +3,14 @@ const taskModel = require('../models/taskModel')
 
 class todoListController {
     static getOne(req, res, next) {
-        let listId = req.params.listId
-
+        let name = req.params.name
+        console.log(name, '_+_+_+_+_+_+_+')
         todoListModel
-            .findById(listId)
+            .findOne({
+                name
+            })
             .then((task) => {
+                console.log('masuk disini')
                 res.status(200).json(task)
             })
             .catch(next)
@@ -15,10 +18,14 @@ class todoListController {
     static getAll(req, res, next) {
         let creator = req.logedUser._id
         todoListModel
-            .find({creator})
+            .find({
+                creator
+            })
             .populate('taskId')
             .then((allData) => {
-                res.status(200).json({userList: allData})
+                res.status(200).json({
+                    userList: allData
+                })
             })
             .catch(next)
     }
@@ -67,17 +74,35 @@ class todoListController {
             })
             .catch(next)
     }
+
+    static updateList(req, res, next) {
+        let listId = req.params.listId
+        let update = {
+            name: req.body.name
+        }
+
+        todoListModel
+            .findByIdAndUpdate(listId, update, {
+                new: true
+            })
+            .then(updated => {
+                res.json(updated)
+            })
+            .catch(next)
+    }
     static delete(req, res, next) {
         let listId = req.params.listId
 
         taskModel
-            .deleteMany({ listId })
-            .then(()=>{
+            .deleteMany({
+                listId
+            })
+            .then(() => {
                 return todoListModel.findByIdAndDelete(listId)
             })
-            .then((deleted)=> {
+            .then((deleted) => {
                 console.log(deleted)
-                res.status(200).json(deleted)    
+                res.status(200).json(deleted)
             })
             .catch(next)
     }

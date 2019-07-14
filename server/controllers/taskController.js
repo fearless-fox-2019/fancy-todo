@@ -3,7 +3,6 @@ const taskModel = require('../models/taskModel')
 class TaskController {
     static getOne(req, res, next) {
         let taskId = req.params.taskId
-
         taskModel
             .findById(taskId)
             .then((task) => {
@@ -11,12 +10,27 @@ class TaskController {
             })
             .catch(next)
     }
+    static getByList(req, res, next) {
+        let listId = req.params.listId
+        console.log(listId)
 
-    static async getIncluded (req,res,next) {
+        taskModel
+            .find({listId})
+            .then(success => {
+                res.status(200).json(success)
+            })
+            .catch(next)
+    }
+
+    static async getIncluded(req, res, next) {
         let creator = req.logedUser._id
         try {
-            let userTask = await taskModel.find({ creator })
-            res.json({userTask})
+            let userTask = await taskModel.find({
+                creator
+            })
+            res.json({
+                userTask
+            })
         } catch (error) {
             next(error)
         }
@@ -37,7 +51,7 @@ class TaskController {
             creator,
             listId
         }
-
+        console.log(newTask)
         taskModel
             .create(newTask)
             .then((created) => {

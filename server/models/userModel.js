@@ -19,7 +19,7 @@ let userSchema = new Schema({
             message: `Invalid email format`
         }, {
             validator: function (val) {
-                return new Promise ((resolve, reject)=> [
+                return new Promise ((resolve, reject)=> {
                     User.findOne({
                         email: val
                     })
@@ -33,7 +33,7 @@ let userSchema = new Schema({
                     .catch((err) => {
                         console.log(err)
                     })
-                ])    
+                })    
             },
             message: `Email has been used/ exist`
         }]
@@ -42,6 +42,9 @@ let userSchema = new Schema({
         type : String,
         required : [true, `Input Password. `],
         minlength: [5,`Password length too short`]
+    },
+    avatar: {
+        type: String
     }
 },{
     timestamps: true

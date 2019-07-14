@@ -7,11 +7,13 @@ class projectController {
         let userId = req.decode.userId
         projectModel
             .find()
+            .populate('members')
             .then((allProjects) => {
                 let memberOf = []
                 allProjects.forEach((project, i) => {
                     project.members.forEach((member, i) => {
-                        if (member == userId) {
+                        console.log(member,'ini member ke ',i)
+                        if (member._id == userId) {
                             memberOf.push(project)
                         }
                     })

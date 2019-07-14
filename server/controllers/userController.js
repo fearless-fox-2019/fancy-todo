@@ -7,8 +7,8 @@ const {
 
 class UserController {
     static userData(req,res,next) {
-        let {_id, username, email} = req.logedUser
-        let sent = {_id, username, email}
+        let {_id, username, email, avatar} = req.logedUser
+        let sent = {_id, username, email, avatar}
 
         res.json(sent)
     }
@@ -22,7 +22,8 @@ class UserController {
         let newUser = {
             username,
             email,
-            password
+            password,
+            avatar: `https://api.adorable.io/avatars/213/${username}.png`
         }
 
         userModel
