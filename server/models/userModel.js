@@ -65,6 +65,9 @@ let userSchema = new Schema({
         required: [true, `Required input password`],
         minlength: [5, `Password must be 8 characters or more`],
         match : [/^[a-zA-Z0-9]*$/ , 'Password can Only Contain Alpha Numeric']
+    },
+    profpic :{
+        type : String
     }
 },{versionKey : false})
 

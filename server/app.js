@@ -3,6 +3,7 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'dev') {
 }
 
 const express = require('express')
+const moment = require('moment')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const router = require('./routes')
@@ -15,9 +16,9 @@ mongoose.connect(`mongodb://localhost:27017/${process.env.DB_NAME}`, {
   useNewUrlParser: true
 }, (err) => {
   if (err) {
-      console.log(err), console.log(`Error connection to mongoose`)
+    console.log(err), console.log(`Error connection to mongoose`)
   } else {
-      console.log(`Success connect to mongoose`)
+    console.log(`Success connect to mongoose`)
   }
 })
 

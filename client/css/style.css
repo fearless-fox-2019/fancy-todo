@@ -3,11 +3,6 @@ body {
   background-position: center;
  }
 
- nav {
-   margin-bottom: 30px;
- }
-
-
  .sign {
   background-color: white;
   margin-top: 50px;
@@ -27,3 +22,51 @@ body {
  .flex-box {
    display: flex;
  }
+
+ .profile {
+   height: 100vh;
+ }
+
+ .img-box {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin: 30px;
+   border-style: hidden;
+   border-radius: 20%
+ }
+
+ .img-box img {
+   width: 200px;
+   height: 200px;
+   border-radius: 50%
+ }
+
+ .dash {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+ }
+
+ .profile {
+   display: flex ; 
+   flex-direction: column;
+   align-content: center;
+   align-items: center;
+ }
+ 
+ .form-todo {
+   background-color:white;
+   margin-top: 20px;
+ }
+
+ .blue-grey.darken-1 {
+  width: 300px;
+}
+
+#weather{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center
+}

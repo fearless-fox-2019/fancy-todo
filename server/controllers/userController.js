@@ -19,7 +19,7 @@ class UserController {
 
   static signin(req, res, next) {
     let { username, password } = req.body
-    console.log('ini', username , password );
+    console.log('ini', username, password);
     userModel
       .findOne({
         username: username
@@ -32,6 +32,7 @@ class UserController {
               username: found.username,
               email: found.email
             }
+            console.log(payload);
             let token = sign(payload)
             res.status(200).json({ token })
           }
@@ -56,9 +57,10 @@ class UserController {
       .then((ticket) => {
         const { email } = ticket.getPayload()
         let newUserInfo = {
-          username: 'google' + email,
+          username: req.body.username,
           email: email,
-          password: 'google'
+          password: 'google',
+          profpic: req.body.profpic || null
         }
         userModel.findOne({ email: email })
           .then((user) => {
@@ -89,6 +91,15 @@ class UserController {
                 .catch(next)
             }
           })
+      })
+      .catch(next)
+  }
+
+  static find(req, res, next) {
+    let user = decodeId(req.headers.token)
+    userModel.findById(user._id)
+      .then(data =>{
+        res.status(200).json({data})
       })
       .catch(next)
   }
