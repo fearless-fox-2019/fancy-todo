@@ -1,0 +1,155 @@
+
+#landingPage {
+    /* background-image: url("https://cdnb.artstation.com/p/assets/images/images/011/931/531/original/pierre-yves-vauzelle-clean.gif?1532161301");
+    background-size: cover;
+    background-repeat: no-repeat; */
+    padding : 0;
+    height: 100vh;
+}
+
+#personalTodoContent {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: start; */
+    margin-top: 55px;
+    /* position: fixed; */
+    z-index: 0;
+}
+
+#homePage {
+    /* background-image: url('https://media.istockphoto.com/videos/smoke-levitating-in-front-of-black-background-video-id473159999?s=640x640');
+    background-size: cover;
+    background-repeat: no-repeat; */
+    padding : 0;
+    /* margin-top: -42px; */
+    height: 100vh;
+}
+
+/* .collection{
+    background-color: rgba(255, 255, 255, 0.5)
+} */
+
+.form {
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+    margin-top: 50px;
+    /* margin-right: -50px; */
+    justify-content: center;
+    align-content: center;
+}
+
+
+
+.clock {
+    border-radius: 50%;
+    background: #fff url('https://cssanimation.rocks/images/posts/clocks/ios_clock.svg') no-repeat center;
+    background-size: 88%;
+    height: 20em;
+    padding-bottom: 31%;
+    position: relative;
+    width: 20em;
+  }
+  
+  .clock.simple:after {
+    background: #000;
+    border-radius: 50%;
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 5%;
+    height: 5%;
+    z-index: 10;
+  }
+  
+  .minutes-container, .hours-container, .seconds-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  .hours {
+    background: #000;
+    height: 20%;
+    left: 48.75%;
+    position: absolute;
+    top: 30%;
+    transform-origin: 50% 100%;
+    width: 2.5%;
+  }
+  .minutes {
+    background: #000;
+    height: 40%;
+    left: 49%;
+    position: absolute;
+    top: 10%;
+    transform-origin: 50% 100%;
+    width: 2%;
+  }
+  .seconds {
+    background: #2BBBAD;
+    height: 45%;
+    left: 49.5%;
+    position: absolute;
+    top: 14%;
+    transform-origin: 50% 80%;
+    width: 1%;
+    z-index: 8;
+  }
+  @keyframes rotate {
+    100% {
+      transform: rotateZ(360deg);
+    }
+  }
+  .hours-container {
+    animation: rotate 43200s infinite linear;
+  }
+  .minutes-container {
+    animation: rotate 3600s infinite linear;
+  }
+  .seconds-container {
+    animation: rotate 60s infinite linear;
+  }
+
+  .lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px;
+  }
+  .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 51px;
+    height: 51px;
+    margin: 6px;
+    border: 6px solid #fff;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #fff transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  #personalTodoContent .card{
+    max-width: 279px;
+    min-width: 279px;
+  }

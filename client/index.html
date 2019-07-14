@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Fancy-TODO</title>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="./css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="landingPage" class="">
+      <div>
+        <div class="row" style="display: flex; justify-content : right;">
+          <div
+            class="col s3 form animated fadeIn"
+            style="border: 1px solid #2BBBAD; border-radius: 45px; padding: 15px; background-color: rgba(255, 255, 255, 0.8)"
+          >
+            <div class="switch" style="margin-top: 10px; text-align: center">
+              <label>
+                Login
+                <input id="formStatus" type="checkbox" />
+                <span class="lever"></span>
+                Register
+              </label>
+            </div>
+            <hr />
+            <form id="formLanding">
+              <div class="row signUpContent animated fadeIn">
+                <div class="input-field col s12">
+                  <input id="username" type="text" class="validate" />
+                  <label for="username">Username</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="email" type="email" class="validate" />
+                  <label for="email">Email</label>
+                  <span
+                    class="helper-text"
+                    data-error="invalid email format"
+                    data-success=""
+                  ></span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="password" type="password" class="validate" />
+                  <label for="password">Password</label>
+                </div>
+              </div>
+              <div class="row animated fadeIn">
+                <div class="input-field col s12">
+                  <button
+                    id="submitLogin"
+                    type="submit"
+                    class="btn signInContent animated fadeIn"
+                  >
+                    LOG IN
+                  </button>
+                  <button
+                    id="submitRegister"
+                    type="submit"
+                    class="btn signUpContent animated fadeIn"
+                  >
+                    REGISTER
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col s4"></div>
+          <div class="col s4" style="margin-top: 100px; text-align: center">
+            <article class="clock">
+              <div class="hours-container">
+                <div class="hours"></div>
+              </div>
+              <div class="minutes-container">
+                <div class="minutes"></div>
+              </div>
+              <div class="seconds-container">
+                <div class="seconds"></div>
+              </div>
+            </article>
+            <br />
+            <div style="text-align: left">
+              <p id="landingCalendar"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="homePage">
+      <!-- todo personal -->
+      <div class="teal" style="min-height: 100vh;">
+        <nav style="position: fixed; margin-top: 0px; z-index: 1">
+          <div class="nav-wrapper teal">
+            <a href="#" class="brand-logo" style="margin-left : 10px">TODO</a>
+            <ul id="nav-mobile1" class="right hide-on-med-and-down">
+              <li id="loaderCreate"></li>
+              <li><a id="createPersonalTodo" href="">+ Personal Todo</a></li>
+              <li>
+                <a href="" class="logout #2e7d32 green darken-3">LOGOUT</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        
+        <div>
+          <br /><br /><br />
+          <ul
+            id="notifications"
+            class="collection"
+            style="margin: 5px; border: none"
+          >
+            
+          </ul>
+        </div>
+        <div id="personalTodoContent"></div>
+      </div>
+
+      <!-- todo project -->
+      <div id="projectContent" class="#2e7d32 green darken-3" style="min-height:100vh; z-index: 10; position: relative;">
+        <nav style="position: sticky; z-index: 5; top: 0">
+          <div class="nav-wrapper #2e7d32 green darken-3">
+            <a href="#" class="brand-logo" style="margin-left : 10px"
+              >TODO
+              <small style="font-size: 20px; color: rgb(224, 194, 136)"
+                >Project</small
+              ></a
+            >
+            <ul id="nav-mobile" class="right hide-on-med-and-down" style="z-index: 10;">
+              <li><a id="createProject" href="">+ Project</a></li>
+              <li><a href="" class="logout teal">LOGOUT</a></li>
+            </ul>
+          </div>
+        </nav>
+
+              
+        <ul id="myProjects" class="collapsible" style="border: none; margin: 10px;margin-left: 50px; margin-right: 50px; z-index:10">
+          
+        </ul>
+              
+
+      </div>
+    </div>
+
+    <!-- Compiled and minified JavaScript -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://kit.fontawesome.com/c890a749a8.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+    <script src="./js/clock.js"></script>
+    <script src="./js/sign.js"></script>
+    <script src="./js/fetch.js"></script>
+    <script src="./js/project.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>
