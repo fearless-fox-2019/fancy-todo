@@ -5,11 +5,13 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
 const express = require('express')
 const app = express()
 const cors = require('cors')
+const morgan   = require('morgan')
 const port = 3000
 const route = require('./routes')
 const mongoose = require('mongoose')
 
 app.use(cors())
+app.use(morgan('dev'))
 app.use(express.urlencoded({ extended:false }))
 app.use(express.json())
 
