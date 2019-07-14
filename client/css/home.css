@@ -1,0 +1,225 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgb(16, 61, 73);
+}
+
+.container {
+    position: relative;
+    top: 80px;
+    text-align: center;
+}
+
+/* ============== HELPER ================== */
+
+.pacifico {
+    font-family: 'Pacifico'
+}
+
+.oswald {
+    font-family: 'Oswald'
+}
+
+.grey {
+    color: rgb(41, 41, 41)
+}
+
+.azure {
+    color: azure
+}
+
+.borbot {
+    border-bottom: 2px solid rgba(32, 32, 32, 0.5)
+}
+
+
+/* ===================== NAV ============================== */
+nav {
+    position: fixed;
+    width: 100%;
+    background-color: rgb(255, 209, 59);
+    z-index: 100;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.513)
+}
+
+ul {
+    display: flex;
+}
+
+a,
+ul,
+li.nav-menu {
+    display: inline-block;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+.brand-logo {
+    font-size: 30px;
+    padding: 0 20px;
+    font-family: 'Pacifico';
+    color: rgb(41, 41, 41)
+}
+
+li.nav-menu a {
+    padding: 20px;
+    text-decoration: none;
+    transition: 0.5s;
+    background-color: transparent;
+    font-family: 'Oswald';
+    color: rgb(71, 71, 71);
+    font-size: 20px;
+}
+
+li.nav-menu a:hover {
+    background-color: rgb(202, 175, 84);
+}
+
+/* ===================== GOOGLE BUTTON ========================== */
+
+.btn {
+    background-color: rgb(16, 61, 73);
+    color: rgb(202, 175, 84);
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-family: 'Oswald';
+    border: 2px solid rgb(2, 28, 36);
+    transition: 0.1s;
+    position: relative;
+    top: 0;
+    box-shadow: 0 3px 6px rgba(42, 42, 42, 0.678)
+}
+
+.btn:hover {
+    top: -5px;
+    box-shadow: 0 8px 9px rgba(42, 42, 42, 0.383)
+}
+
+.g-signin2 {
+    width: 100%;
+}
+
+.g-signin2>div {
+    margin: 0 auto;
+}
+
+/* ===================== BANNER REGIST & LOGIN ========================= */
+
+.banner-outer {
+    margin: auto;
+    width: 70%;
+    padding: 20px;
+}
+
+.banner-inner {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 191, 73);
+    text-align: center;
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.753);
+    padding: 30px 0;
+    border-radius: 20px;
+}
+
+/*  ===================== REGIST FORM ===================== */
+
+h1 {
+    padding-bottom: 30px;
+    text-align: center;
+    font-family: 'Righteous';
+    font-size: 50px;
+    margin-bottom: 10px;
+    color: rgb(46, 46, 46);
+    border-bottom: 2px solid rgb(34, 34, 34);
+}
+
+h2 {
+    font-family: 'Oswald';
+    color: rgb(16, 61, 73)
+}
+
+table {
+    margin: 20px auto;
+    text-align: left;
+    font-family: 'Oswald';
+    font-size: 18px;
+    color: rgb(16, 61, 73)
+}
+
+td {
+    padding: 5px 10px;
+}
+
+input {
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid rgb(63, 63, 63);
+    padding-bottom: 10px;
+    width: 200px;
+    font-family: 'Righteous';
+    outline: none;
+}
+
+/* =============== MESSAGE ===================== */
+.message {
+    display: block;
+    text-align: center;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    background-color: rgb(192, 235, 129);
+    border: 1px solid rgb(102, 136, 51);
+    color: rgb(102, 136, 51);
+    border-radius: 20px;
+}
+
+.error {
+    display: block;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 5px;
+    width: 50%;
+    padding: 10px;
+    background-color: rgb(235, 129, 129);
+    border: 1px solid rgb(136, 51, 51);
+    color: rgb(136, 51, 51);
+    border-radius: 20px;
+}
+
+/* =========================== TODO CARD ========================= */
+.todo-card {
+    margin: 20px 0;
+    padding: 20px;
+    width: 500px;
+    background-color: rgb(230, 230, 230);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.623);
+    border-radius: 10px;
+}
+
+table.card-table {
+    margin: 5px 0;
+}
+
+h2.todos-list-title {
+    font-size: 40px;
+}
+
+/* ========================= DONE/UNDONE ========================= */
+.done {
+    color: green;
+    font-weight: bold;
+}
+
+.undone {
+    color: red;
+    font-weight: bold;
+}
+
+/* ========================= SEARCH========================= */
+
+h2.search {
+    display: inline-block
+}

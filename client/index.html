@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- google client id -->
+    <meta name="google-signin-client_id"
+        content="800616839115-v04olo2jcipsoicrkasli0lpd603qnsn.apps.googleusercontent.com">
+    <link rel="stylesheet" href="./css/home.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Pacifico|Righteous&display=swap" rel="stylesheet">
+    <title>Fancy Todo</title>
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav>
+        <a href="#" class="brand-logo">Fancy Todo</a>
+        <ul id="nav-mobile" class="">
+            <li class="nav-menu"><a class="home-switch homebase" href="">Home</a></li>
+            <li class="nav-menu"><a class="signin-form login-btn" href="">Login</a></li>
+            <li class="nav-menu"><a class="todo-btn" href="" style="display: none">Create Todo</a></li>
+            <li class="nav-menu"><a class="logout" href="#" onclick="signOut();" style="display: none">Sign out</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+
+        <!-- message -->
+        <div class="info"></div>
+
+        <!-- banner -->
+        <div class="banner-outer register-form">
+            <div class="banner-inner">
+                <h1 class="welcome-register">Welcome to Fancy Todo</h1>
+                <h2 class="motto">Get a quick register and manage your todo now</h2>
+                <form action="">
+                    <table>
+                        <tr>
+                            <td>Name</td>
+                            <td><input type="text" name="name" id="name" placeholder="Input your username" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td><input type="text" name="email" id="email" placeholder="Input your email" required></td>
+                        </tr>
+                        <tr>
+                            <td>Password</td>
+                            <td><input type="password" name="password" id="password" placeholder="Input your password"
+                                    required>
+                            </td>
+                        </tr>
+                    </table>
+                    <a href="" class="btn-form btn">Register</a>
+                </form>
+                <br>
+                <h2>Login with Google Account</h2>
+                <div class="g-signin2 signin" data-onsuccess="onSignIn"></div>
+            </div>
+        </div>
+
+        <!-- user page -->
+        <div class="banner-outer user-page" style="display: none">
+            <div class="banner-inner">
+
+                <div class="user-page" style="display: none">
+                    <h1 class="welcome-title" style="display: none">Welcome to Fancy Todo</h1>
+                    <br>
+                    <a class="goto home" style="display: none" href="">
+                        <h2>Go to your Todo List now?</h2>
+                    </a>
+
+                    <div class="todos">
+                        <form id="search-form">
+                            <table>
+                                <tr>
+                                    <td>Search todo name</td>
+                                    <td><input type="text" name="search" id="search"></td>
+                                    <td><a href="#" class="btn search">Search</a></td>
+                                </tr>
+                            </table>
+                        </form>
+                        <h2 class="todos-list-title">Here are you To Do list, <span class="user-name"></span>:</h2>
+                        <ul class="todos-list"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- todo FORM -->
+        <div class="banner-outer todo-form" style="display: none">
+            <div class="banner-inner">
+                <div class="todo-form" style="display: none">
+                    <h1>What To Do next?</h1>
+                    <form class="todo-value">
+                        <table style="text-align: left">
+                            <tr>
+                                <td>Name</td>
+                                <td><input type="text" name="name" id="todo-name" required></td>
+                            </tr>
+                            <tr>
+                                <td>Description</td>
+                                <td><input type="text" name="description" id="description" required></td>
+                            </tr>
+                            <tr>
+                                <td>Due Date</td>
+                                <td><input type="date" name="due_date" id="due_date" required></td>
+                            </tr>
+                        </table>
+                        <a href="#" class="todo-post btn">Make Todo</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <!-- ============SCRIPT============ -->
+    <!-- google sign in -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="./js/google-sign.js"></script>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <!-- main js -->
+    <script src="./js/main.js"></script>
+</body>
+
+</html>
