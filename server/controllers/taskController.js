@@ -44,6 +44,7 @@ class TaskController {
             listId,
             duedate
         } = req.body
+        console.log(req.body, 'ini req body')
         let newTask = {
             name,
             description,
@@ -95,7 +96,7 @@ class TaskController {
 
         taskModel
             .findByIdAndDelete(taskId)
-            .then((deleted) => {
+            .then((finalResult) => {
                 res.status(200).json(finalResult)
             })
             .catch(next)

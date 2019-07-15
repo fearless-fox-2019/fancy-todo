@@ -12,6 +12,7 @@ let listSchema = new Schema({
                     List
                         .findOne({name: val})
                         .then((found)=>{
+                            console.log(found)
                             if(found){
                                 resolve(false)
                             }
@@ -36,12 +37,6 @@ let listSchema = new Schema({
         ref: 'Project',
         default: null
     }
-    // ,
-    // taskId: [{
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Task',
-    //     default: []
-    // }]
 }, {
     timestamps: true
 })

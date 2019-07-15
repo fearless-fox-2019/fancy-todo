@@ -12,7 +12,7 @@ class projectController {
                 let memberOf = []
                 allProjects.forEach((project, i) => {
                     project.members.forEach((member, i) => {
-                        console.log(member,'ini member ke ',i)
+                        console.log(member, 'ini member ke ', i)
                         if (member._id == userId) {
                             memberOf.push(project)
                         }
@@ -52,6 +52,18 @@ class projectController {
             .then((created) => {
                 console.log(created)
                 res.status(201).json(created)
+            })
+            .catch(next)
+    }
+
+    static get(req, res, next) {
+        let projectId = req.params.projectId
+
+        projectModel
+            .findById(projectId)
+            .populate('members')
+            .then(result => {
+                res.json(result)
             })
             .catch(next)
     }
