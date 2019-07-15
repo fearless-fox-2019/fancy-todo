@@ -3,8 +3,9 @@ const Project = require('../models/project')
 
 class Controller {
     static findAll(req, res, next) {   
-        Project.find({members:req.decoded.email})
+        Project.find({members:req.decoded.id})
         .populate('members')
+        .populate('admin')
         .then( (Projects) =>{
             res.status(200).json(Projects)
         })
@@ -15,6 +16,7 @@ class Controller {
         Project.findById(req.params.projectId)
         .populate('todos')
         .populate('members')
+        .populate('admin')
         .then( (project) =>{
             if (project) {
                 res.status(200).json(project)
