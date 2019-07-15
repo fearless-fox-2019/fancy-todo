@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="google-signin-client_id" content="168635261631-5lke390ljv0mdtvfqjk0m59s8f63eoks.apps.googleusercontent.com">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div class="navigation">
+        <nav class="navbar navbar-light bg-dark mb-2">
+            <a class="navbar-brand" href="#">Fancy todo</a>
+            <ul class="nav nav-pills justify-content-end">
+                <li class="nav-item" id="nav-login"><a href="" class="nav-link">Login</a></li>
+                <li class="nav-item" id="nav-logout"><a href="#" class="nav-link" onclick="signOut();">Sign out</a></li>
+                <li class="nav-item" id="nav-register"><a href="#" class="nav-link">Register</a></li>
+                <li class="nav-item" id="nav-userlogin" ><a href="#" class="nav-link" id="userlogin"></a></li>
+                
+            </ul>
+        </nav>
+    </div>  
+    <div class="container-fluid">
+        <div class="form">
+            <div class="row">
+                <div class="col col-md-4 col-md-offset-4 mx-auto">
+                    <div class="d-flex flex-column">
+                        <form class="form-login">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" id="password" placeholder="Password">
+                            </div>
+                            <button class="btn btn-primary btn-block" id="submit-login">Submit</button>
+                            <center><p>or</p></center>
+                            <div class="g-signin2" data-onsuccess="onSignIn" -theme="light" data-width="300" data-height="50" data-longtitle="true" style="margin: auto;"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="form-register">
+                <form>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Username</label>
+                        <input type="text" class="form-control" id="username" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="text" class="form-control" id="email-register" aria-describedby="emailHelp" placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="password-register" placeholder="Password">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" id="submit-register">Submit</button>
+                </form>
+                <div class="messages">
+
+                </div>
+            </div>
+        </div>
+        <div class="user-dashboard" >
+            <div class="row">
+                <div class="col-2">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-info" id="side-list-todo">todos</a>
+                        <a href="#" class="list-group-item list-group-item-info" id="side-create-new">create new</a>
+                    </div>
+                </div>
+                <div class="col-10">
+                    <div class="first-landing">
+                        <div class="welcome">
+                                <input type="text" name="" id="search">
+                                <button class="btn btn-primary" type="button" id="btn-search">search</button>
+                                <p>filterby</p>
+                                <select name="" id="filter">
+                                    <option value="all" id="opt-allTodo">all todo</option>
+                                    <option value="myTodo" id="opt-myTodo">my todo</option>
+                                </select>
+                                <div class="pop-up">
+
+                                </div>
+                           <div class="row">
+                               <div class="col col-sm-9">
+                                   <button class="btn btn-default"><span class="glyphicon glylphicon-search"></span></button>
+                               </div>
+                           </div>
+                        </div>
+                        <div class="list-todos">
+                                <table class="table">
+                                        <thead class="thead-dark">
+                                          <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">status</th>
+                                            <th scope="col">Due date</th>
+                                            <th scope="col">Action</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <th scope="row">1</th>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                            <td>
+                                                
+                                            </td>
+                                            <td>
+                                                <div class="d-flex flex-column">
+                                                    <div class="p2">
+                                                            <button class="btn btn-primary btn-block mb-2">complete</button>
+                                                    </div>
+                                                    <div class="p2">
+                                                        <button class="btn btn-danger btn-block mb-2">delete</button>
+                                                    </div>
+                                                    <div class="p2">
+                                                        <button class="btn btn-default btn-block mb-2">edit</button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                        </div>
+                    </div>
+                    <div class="form-todo" >
+                            <form>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Title</label>
+                                    <input type="text" class="form-control" id="title" aria-describedby="emailHelp" placeholder="Title">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Description</label>
+                                    <textarea class="form-control" id="description" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Due date</label>
+                                    <input class="form-control" type="date" name="" id="due_date">
+                                </div>
+                                <button type="submit" class="btn btn-primary" id="submit-todo">Submit</button>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="./js/google.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>
