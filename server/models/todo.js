@@ -2,8 +2,14 @@ const mongoose = require('mongoose')
 
 let Schema = mongoose.Schema
 const todoSchema = new Schema({
-    name: String,
-    description: String,
+    name: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
     status: {
         type: Boolean,
         default: false
