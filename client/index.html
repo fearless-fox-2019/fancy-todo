@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800&display=swap" rel="stylesheet">
+	<meta name="google-signin-client_id"
+		content="65838486660-97ma19klcq1lrjs197g6f05aama4r0sh.apps.googleusercontent.com">
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<link rel="stylesheet" href="./css/style.css">
+	<title>Todo List</title>
+</head>
+
+<body>
+	<div class="text-center" id="getting-started" style="margin: auto">
+		<div class="btn-group" role="group" aria-label="Basic example" style="margin-top: 100px;">
+			<button type="button" class="btn btn-secondary" id="btn-login">Login</button>
+			<button type="button" class="btn btn-secondary" id="btn-register">Register</button>
+		</div>
+		<form class="from form-signin" id="form-signin">
+
+			<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+			<label for="inputEmail" class="sr-only">Email address</label>
+			<input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address"
+				required="" autofocus="">
+			<label for="inputPassword" class="sr-only">Password</label>
+			<input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password"
+				required="">
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+		</form>
+
+		<form class="form form-signin" id="form-register" style="display: none">
+			<h1 class="h3 mb-3 font-weight-normal">Register</h1>
+			<label for="inputuser" class="sr-only">Username</label>
+			<input name="username" type="email" class="form-control" placeholder="Username" required="" autofocus="">
+			<label for="inputEmail" class="sr-only">Email address</label>
+			<input name="email" type="email" class="form-control" placeholder="Email address" required="" autofocus="">
+			<label for="inputPassword" class="sr-only">Password</label>
+			<input name="password" type="password" class="form-control" placeholder="Password" required="">
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+		</form>
+
+		<div class="g-signin2" data-onsuccess="onSignIn" -theme="light" data-width="300" data-height="50"
+			data-longtitle="true">button</div>
+	</div>
+
+	<!-- HOME  -->
+	<div id="home" style="display: none">
+		<header>
+			<div class="bg-dark collapse" id="navbarHeader">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-4 offset-md-1 py-4">
+							<ul>
+								<li><a href="#" onclick="signOut();">Sign out</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="navbar navbar-expand-lg navbar-light bg-light">
+				<div class="container d-flex justify-content-between">
+					<a href="#" class="navbar-brand d-flex align-items-center">
+						<strong>Todo List</strong>
+					</a>
+					<li><a href="#" onclick="signOut();">Sign out</a></li>
+				</div>
+			</div>
+		</header>
+
+
+
+		<main role="main">
+			<section class="create">
+				<div class="container" id="main-section">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="container">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<p>Title</p>
+											<div class="input-group">
+												<input type="text" class="form-control" id="todo-title"
+													placeholder="title">
+											</div>
+										</div>
+
+										<div class="form-group">
+											<p>Description</p>
+											<div class="md-form amber-textarea active-amber-textarea">
+
+												<textarea id="form22" name="todo-description"
+													class="md-textarea form-control" rows="3"></textarea>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<p>Due Date</p>
+											<div class="input-group date" id="datetimepicker4"
+												data-target-input="nearest">
+												<input type="date" id="due_date"
+													class="form-control datetimepicker-input" min="">
+											</div>
+										</div>
+
+										<div class="d-flex justify-content-center">
+											<button class="btn btn-lg btn-primary btn-block" type="submit"
+												onclick="createTodo()" id="create-task-button">Create Todo</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+
+							<div class="container">
+								<table style="color: blanchedalmond" cellpadding="5" class="table">
+									<thead>
+										<tr>
+											<th>Title</th>
+											<th>Description</th>
+											<th>Status</th>
+											<th>Due Date</th>
+											<th>Edit</th>
+											<th>remove</th>
+										</tr>
+									</thead>
+
+									<tbody id="todos"></tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
+			</section>
+
+		</main>
+
+		<footer class="text-muted">
+			<div class="container">
+				<p class="float-right">
+					<a href="#">Back to top</a>
+				</p>
+				<p>Simple Todo List Website, Copyright &copy; 2019</p>
+			</div>
+		</footer>
+	</div>
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+	</script>
+	<script>
+		function onSignIn(googleUser) {
+			var profile = googleUser.getBasicProfile();
+			console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+			console.log('Name: ' + profile.getName());
+			console.log('Image URL: ' + profile.getImageUrl());
+			console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+		}
+	</script>
+	<script>
+		function signOut() {
+			var auth2 = gapi.auth2.getAuthInstance();
+			auth2.signOut().then(function () {
+				console.log('User signed out.');
+			});
+		}
+	</script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="./js/handler.js"></script>
+	<script src="./js/main.js"></script>
+
+</body>
+
+</html>
