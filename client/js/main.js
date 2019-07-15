@@ -8,6 +8,7 @@ $(document).ready(function () {
     todoPost()
     home()
     done()
+    undone()
     deleteTodo()
     search()
 
@@ -309,7 +310,28 @@ function done() {
                 }
             })
             .done(response => {
-                console.log(response)
+                $('.todos-list').empty()
+                getMyTodo()
+            })
+            .fail(err => {
+                console.log(err)
+            })
+    })
+}
+
+function undone() {
+    $(document).on('click', '.unfinish', function (event) {
+        event.preventDefault()
+        let todoId = $(this).attr('class').split(' ')[1]
+
+        $.ajax({
+                method: 'PATCH',
+                url: `${baseURL}/todos/${todoId}/update`,
+                headers: {
+                    token: localStorage.getItem('token')
+                }
+            })
+            .done(response => {
                 $('.todos-list').empty()
                 getMyTodo()
             })
@@ -407,6 +429,9 @@ function getMyTodo() {
         .done(response => {
             let todos = response.todos
             for (let i = 0; i < todos.length; i++) {
+                let status = todos[i].status == 'undone'? 'Done' : 'Undone'
+                let classStat = todos[i].status == 'undone'? 'finish' : 'unfinish'
+
                 $('.todos-list').append(
                     `
                 <li class="todo-card">
@@ -428,7 +453,7 @@ function getMyTodo() {
                             <td>: ${todos[i].due_date}</td>
                         </tr>
                     </table>
-                    <a href="#" class="finish ${todos[i]._id} btn">Done</a>
+                    <a href="#" class="${classStat} ${todos[i]._id} btn">${status}</a>
                     <a href="#" class="delete ${todos[i]._id} btn">Delete</a> 
                 </li>
                 `

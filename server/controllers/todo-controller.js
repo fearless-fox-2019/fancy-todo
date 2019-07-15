@@ -29,11 +29,24 @@ class TodoController {
 
     static update(req, res, next) {
         // console.log(req.params.todoId, 'TODO ID  <<<<<<<<<<<<<<<<<<<<<<<<<')
-        Todo.updateOne({
-                _id: req.params.todoId
-            }, {
-                $set: {
-                    status: 'done'
+        Todo.findById(req.params.todoId)
+            .then(todo => {
+                if (todo.status == 'undone') {
+                    return Todo.updateOne({
+                        _id: req.params.todoId
+                    }, {
+                        $set: {
+                            status: 'done'
+                        }
+                    })
+                } else {
+                    return Todo.updateOne({
+                        _id: req.params.todoId
+                    }, {
+                        $set: {
+                            status: 'undone'
+                        }
+                    })
                 }
             })
             .then(updated => {
