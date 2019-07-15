@@ -1,0 +1,279 @@
+body, html {
+  margin:  0;
+  padding:  0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-image:url("https://hdwallsource.com/img/2014/9/blur-26347-27038-hd-wallpapers.jpg"); 
+}
+p {
+  margin: 0;
+}
+
+#navbar {
+  width: 100%;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 10px; */
+  background-color: #ffb30033 ;
+  color: white;
+  font-size: 18px;
+}
+
+#first-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+#sidebar {
+  padding: 10px 15px;
+}
+#username {
+  margin-left: 10px;
+}
+
+#second-bar {
+  display: flex;
+}
+
+.nav-item {
+  padding: 10px;
+}
+
+.link:hover{
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.185);
+}
+
+#nav-logout:hover{
+  background-color: rgba(255, 0, 0, 0.616);
+}
+
+/*  --------------------------------- login ------------------------ */
+
+#fancy-todo {
+  padding: 10px;
+}
+
+.title-form {
+  font-size: 36px;
+}
+
+#outside {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+.form {
+  margin-top: 30px;
+  /* margin: 50px auto; */
+  color: white;
+  width: 30%;
+  padding: 15px 20px;
+  background-color: #ff6f0031  ;
+
+}
+.field {
+  width: 300px;
+  margin-top: 20px;
+}
+.field label{
+  color: white;
+  /* text-align: left; */
+  font-size: 16px;
+}
+
+.field input[type=text] {
+  /* color: white; */
+  border: 2px solid white;
+  background-color: white;
+  padding: 0  5px;
+}
+.field input[type=password] {
+  /* color: white; */
+  border: 2px solid white;
+  background-color: white;
+  padding: 0 5px;
+}
+
+.input-field input[type=text]:focus {
+  border: none;
+}
+
+
+.submit-btn {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  /* align-items: center; */
+}
+.google-btn {
+  margin-top: 10px; 
+}
+
+/* ------------------- todo -------------------- */
+
+#content {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: space-evenly;
+}
+#inside {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  /* justify-content: center; */
+  justify-content: space-evenly;
+}
+
+#todo-container {
+  width: 60%;
+}
+
+#done-container {
+  text-align: center;
+  width: 30%;
+  background-color: #66bb6aa2 ;
+}
+
+/* th, td {
+  color: white;
+  text-align: center;
+}
+
+tr {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.575);
+  
+} */
+.table {
+  padding: 20px;
+  color: white;
+  background-color: #ff6f0031  ;
+  margin-top: 10px;
+  height: 80%;
+  overflow-y: auto;
+}
+
+.table::-webkit-scrollbar {
+  width: 10px;
+}
+
+.table::-webkit-scrollbar-track {
+  background: #f1f1f13b;
+}
+
+.table::-webkit-scrollbar-thumb {
+  background: #ffa826b7  ; 
+}
+
+.option-todo {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#new-todo-btn {
+  /* text-align: center; */
+  width: 300px;
+  margin: 20px 50px;
+}
+
+
+#form-modal-container {
+  height: 70%;
+}
+
+
+#edit-modal-container {
+  height: 70%;
+
+}
+
+
+/* --------------------------- sidenav ---------------------------- */
+
+.sidenav {
+  background-color: #f57f17  ;
+  color: white;
+}
+#project-menu {
+  color: black;
+}
+
+/* #project-list {
+  padding: 20px;
+} */
+.item-project {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  padding: 10px;
+  width: 100%;
+  background-color: #ffca28 ;
+}
+
+.item-project:hover{
+  cursor: pointer;	
+  background-color: #ffc9287e;	
+}
+
+#top-bar {
+  display: flex;
+  align-items: center;
+}
+
+.menu-project {
+  margin-left: 20px;
+}
+
+#project-name {
+  font-size: 24px;
+  color: white;
+  width: 50%;
+  text-align: center;
+  padding: 5px 0;
+  background-color: #ffc92870;
+}
+
+/* ---------------------------- projects ----------------------- */
+
+
+#member-modal-container {
+  overflow-y: auto;
+  width: 30%;
+  height: 70%;
+}
+
+#top-bar-members {
+  display: flex;
+  /* justify-content: space-between; */
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.collection-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-kick:hover {
+  cursor: pointer;
+  color: red;
+  font-size: 16px;
+}
+
+#add-member {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-evenly; */
+}
+
+#input-member {
+  margin-left: 20px;
+}

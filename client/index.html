@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <meta name="google-signin-client_id" content="361250104270-fk8pt9v0bt42c74310njumbu8hdofcve.apps.googleusercontent.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  <link rel="icon" href="./asset/letter-f-initial-icon-logo-template_23987-54.jpg">
+  <link rel="stylesheet" href="./style.css">
+  <title>Fancy todo</title>
+</head>
+<body>
+  <div id="navbar" class="z-depth-2">
+    <div id="first-bar">
+      <div id="sidebar" class="link sidenav-trigger" data-target="slide-out">
+        <i class="fas fa-bars"></i>
+      </div>
+      <p id="fancy-todo" style="margin: 0 20px;">Fancy Todo</p>
+      <p style="margin-left: 5px;" class="login-true">Welcome</p>
+      <p id="username" class="login-true"></p>
+    </div>
+    <div id="second-bar">
+      <p id="nav-logout" class="nav-item link login-true">Logout</p>
+    </div>
+  </div>
+  <ul id="slide-out" class="sidenav">
+    <li>
+      <div class="collapsible-header" id="your-todo">Your Todo</div>
+    </li>
+    <ul class="collapsible">
+      <li>
+        <div class="collapsible-header">Projects</div>
+        <div class="collapsible-body">
+          <ul class="collapsible" id="project-menu">
+            <li>
+              <div class="collapsible-header modal-trigger" data-target="create-project-form" id="create-project-btn">Create a project</div>
+            </li>
+            <li>
+                <div class="collapsible-header">Your projects</div>
+                <div class="collapsible-body">
+                  <ul id="project-list">
+                  </ul>
+                </div>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </ul>
+  <div id="create-project-form" class="modal">
+    <div class="modal-content">
+      <form id="new-project">
+        <div class="input-field">
+          <input placeholder="Name" id="i-new-name-project" type="text" >
+          <label for="i-new-name">Name</label>
+        </div>
+        <input type="submit" value="Create" class="btn">
+      </form>
+    </div>
+  </div>
+  <div id="edit-name-form" class="modal">
+  </div>
+  <div id="outside" class="animated fadeInDown">
+    <form id="login-form" class="form z-depth-3">
+      <p class="title-form">Login</p>
+      <div class="field">
+        <label class="label">Email</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Email" id="i-login-email">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Password</label>
+        <div class="control">
+          <input class="input" type="password" placeholder="Password" id="i-login-password">
+        </div>
+      </div>
+      <div class="submit-btn">
+        <input class="btn orange accent-4" type="submit" value="Login">
+        <p style="margin-top: 20px;">Or login with : </p>
+        <div class="g-signin2 google-btn" data-onsuccess="onSignIn"></div>
+      </div>
+    </form>
+    <form id="register-form" class="form z-depth-3">
+      <p class="title-form">Register</p>
+      <div class="field">
+        <label class="label">Email</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Email" id="i-register-email">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Password</label>
+        <div class="control">
+          <input class="input" type="password" placeholder="Password" id="i-register-password">
+        </div>
+      </div>
+      <div class="submit-btn">
+        <input class="btn orange accent-4 " type="submit" value="Register">
+      </div>
+    </form>
+  </div>
+  <div id="inside">
+    <div id="top-bar">
+      <p id="new-todo-btn" class="btn orange accent-4 modal-trigger" data-target="form-modal-container">Make new todo</p>
+      <p id="project-name" class="z-depth-3"></p>
+      <p id="open-member-btn" class="btn orange accent-2 menu-project modal-trigger" data-target="member-modal-container">Members</p>
+      <div id="member-modal-container" class="modal">
+        <div class="modal-content" id="member-modal-content">
+          <div id="top-bar-members">
+            <div id="owner-text"></div>
+            <form id="add-member">
+              <p class="btn orange accent-2" id="addmember-btn"><i class="fas fa-user-plus"></i></p>
+              <div class="input-field" id="input-member">
+                <input type="text" name="i-email-addmember" id="i-email-addmember" placeholder="Add members with email">
+              </div>
+            </form>
+          </div>
+          <ul class="collection" id="members-list">
+          </ul>
+        </div>
+      </div>
+      <p id="edit-name-btn" class="btn orange accent-2 menu-project modal-trigger" data-target="edit-name-form">Edit Names</p>
+    </div>
+    <div id="form-modal-container" class="modal">
+      <div class="modal-content">
+        <form id="new-todo">
+          <div class="input-field">
+            <input placeholder="Name" id="i-new-name" type="text" >
+            <label for="i-new-name">Name</label>
+          </div>
+          <div class="input-field">
+            <textarea name="description" placeholder="Description" id="i-new-description" class="materialize-textarea"></textarea>
+            <label for="i-new-description">Description</label>
+          </div>
+          <div class="input-field">
+            <input placeholder="Pick Date" id="i-new-date" type="text" class="datepicker">
+            <label for="i-new-date">Due Date</label>
+          </div>
+          <input type="submit" value="Post" class="btn">
+        </form>
+      </div>
+    </div>
+    <div id="edit-modal-container" class="modal">
+      
+    </div>
+    <div id="content">
+      <div id="todo-container" class="table z-depth-3">
+        <p>Uncompleted Todos</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Due Date</th>
+              <th style="text-align: center;"></th>
+            </tr>
+          </thead>
+          <tbody id="todo-list">
+          </tbody>
+        </table>
+      </div>
+      <div id="done-container" class="table z-depth-3">
+          <p>Completed Todos</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody id="done-list"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="./js/ajax.js" ></script>
+  <script src="./js/setPage.js" ></script>
+  <script src="./js/todo.js" ></script>
+  <script src="./js/project.js"></script>
+  <script src="./js/option.js"></script>
+  <script src="./js/main.js" ></script>
+</body>
+</html>
