@@ -171,12 +171,12 @@ class ProjectController {
                     <hr>
                     ${invitingUser.name} wants you to join ${data.name}, 
                     to accept the invitation please click link below :
-                    <a id="accept" href="http://localhost:3000/projects/member/${req.params.id}/${req.params.userId}"> Click Here </a>
+                    <a id="accept" href="http://34.87.76.86/projects/member/${req.params.id}/${req.params.userId}"> Click Here </a>
                     <script>
                     $('#accept').click(function (event) {
                         event.preventDefault()
                         return $.ajax({
-                            url: 'http://localhost:3000/projects/member/${req.params.id}/${req.params.userId}'
+                            url: 'http://34.87.76.86/projects/member/${req.params.id}/${req.params.userId}'
                             type: 'PATCH'
                         })
                         .done(function (data) {
