@@ -9,7 +9,8 @@ $('document').ready(function () {
     if (localStorage.getItem('token')) {
         // toHome()
         toMyTask()
-        fetchAll().then(result=>console.log(result))
+        // toProject()
+        fetchAll().then(result => console.log(result))
     } else {
         toLanding()
         signInForm()
@@ -36,12 +37,16 @@ function toHome() {
     appendIdentity()
 }
 
-function toProject() {
+function toProject(projectId) {
     $('#landing').hide()
     $('#home').hide()
     $('#projects').show()
     $('#mytasks').hide()
     $('#about').hide()
+
+    projectAllTask(projectId)
+    projectAllMembers(projectId)
+    projectAllDetail(projectId)
 }
 
 function toMyTask() {
@@ -50,6 +55,8 @@ function toMyTask() {
     $('#projects').hide()
     $('#mytasks').show()
     $('#about').hide()
+
+    $('#newListparentMyTask').hide()
 
     appendToMidUp()
     appendToMidBotRight()

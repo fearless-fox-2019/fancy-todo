@@ -1,5 +1,5 @@
 function addTaskForm() {
-    console.log('hello world from TaskFrom')
+    console.log('Masuk Pada Add Task Form')
     let taskTitle = $('#addTaskFormTitle').val()
     let taskTitleDescription = $('#addTaskFormTitleDescription').val()
     let duedate = $("#datepicker").datepicker({
@@ -9,61 +9,54 @@ function addTaskForm() {
     let list = $('#listOption').val()
     let newListName = $('#addNewList').val()
 
-    // console.log(taskTitle, 'ini task')
-    // console.log(taskTitleDescription, 'ini task description')
-    // console.log(duedate, 'ini due date')
-    // console.log(list, 'ini list')
-    // console.log(newListName, 'ini new list')
     let newTask = {
         name: taskTitle,
         description: taskTitleDescription,
         listId: '',
         duedate: duedate
     }
+    console.log(newTask, 'ini home page')
     if (list === 'Select list' || list === null) {
-        console.log('hello agaiiiiinnn')
-        //create new List
+        console.log('Create new List path.')
         let newList = {
             name: newListName
         }
         createNewList(newList)
             .then(newList => {
-                console.log(newTask)
+                console.log(newList, 'Hasil kembalian dari membuat List baru')
                 newTask.listId = newList._id
-                console.log(newList._id, 'inidia new list kitaa~~')
                 return createNewTask(newTask)
             })
             .then(createdTask => {
-                console.log(createdTask,'akhirnya task baruuuuu~~')
+                console.log(createdTask,'Hasil dari membuat task baru setelah membuat list baru')
                 appendIdentity()
                 timeline()
             })
             .catch(err => console.log(err))
     } else {
-        console.log('ahaayyyyyyy~~')
-        //findOnelist
+        console.log('Menggunakan List yang sudah Ada')
         
         findAlist(list)
             .then(foundList => {
-                console.log(foundList, 'telah ditemuakn sebuah list yang tlah ada')
+                console.log(foundList, 'Hasil pencarian dari list yang dipilih')
                 newTask.listId = foundList._id
                 return createNewTask(newTask)
             })
             .then( createdTask => {
-                console.log(createdTask,'task baru algi dari list yang sudah ada :p')
+                console.log(createdTask,'Hasil membuat task Baru dari menggunakan list yang sudah ada')
                 appendIdentity()
             })
-            .catch(err => console.log('lahhh kok eror', err))
+            .catch(err => console.log({err,message: `Error karena membuat task dengan list yang sudah ada`}))
     }
 }
 
 function addListForm() {
-    console.log('hello world from TaskFrom')
+    console.log('Memanggil tombol untuk menambahkan list baru')
     $('#newListparent').toggle()
 }
 
 function addProjectForm() {
-    console.log('hello world from projectsFrom')
+    console.log('Masuk ke fungsi untuk membuat form baru')
     let name = $('#addProjectName').val()
     let description = $('#addProjectDescription').val()
 
@@ -79,22 +72,21 @@ function addProjectForm() {
             }
         })
         .done(created => {
-            console.log(created)
+            console.log(created, 'Ini adalah hasil dari project yang sudah dibuat.')
             timeline()
         })
         .fail(err => {
-            console.log(err)
-
+            console.log({err, message: 'gagal membuat project baru'})
         })
 }
 
-function getMinDate() {
-    console.log('hehehe')
-    return new Date()
-}
+// function getMinDate() {
+//     console.log('Mengambil tanggal sekarang')
+//     return new Date()
+// }
 
 function createNewList(newListData) {
-    console.log(newListData, 'disiniiiii~~')
+    console.log(newListData, 'Dipanggil oleh create task form. mengembalikan promise pending.')
     return new Promise((resolve, reject) => {
         $.ajax({
                 url: `${baseUrl}/todolists`,
@@ -110,7 +102,7 @@ function createNewList(newListData) {
 }
 
 function createNewTask(newTaskData) {
-    console.log(newTaskData, 'calon tak baruuu')
+    console.log(newTaskData, 'Dipanggil oleh create task form. mengembalikan promise pending.')
     return new Promise((resolve, reject) => {
         $.ajax({
             url: `${baseUrl}/tasks`,
@@ -126,7 +118,7 @@ function createNewTask(newTaskData) {
 }
 
 function findAlist(name) {
-    console.log(name)
+    console.log(name, 'Mencari list berdasarkan id input list.menghasilkan promise pending')
     return new Promise ((resolve, reject)=> {
         $.ajax({
             url: `${baseUrl}/todolists/${name}`,

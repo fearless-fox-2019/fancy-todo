@@ -1,7 +1,3 @@
-let userTasks = []
-let userLists = []
-let userProjects = []
-
 function fetchAll() {
     return Promise.all([usersTask(),usersList(),usersProject()])
 }
