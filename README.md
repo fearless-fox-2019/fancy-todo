@@ -20,4 +20,4 @@ baseUrl = http:localhost:3000
 | /todos/complete/:id| PATCH | - | { completed } | 401 (Invalid Token)<br> 401 (you have to login first!) <br> 404 (Unauthorized) <br> 500 (Internal Server Error) | Complete a ToDo |
 | /todos/edit/:id| PATCH | - | { success } | 401 (Invalid Token)<br> 401 (you have to login first!) <br> 404 (Unauthorized) <br> 500 (Internal Server Error) | Edit todo list data |
 | /todos/sendEmail| POST | - | ${ success message }| 401 (Invalid Token)<br> 401 (you have to login first!) <br> 500 (Internal Server Error) | Get an email of all Uncompleted tasks, in case you can't access the web, so you have the backup. |
-| /todos/search| POST | - | { data }| 401 (Invalid Token)<br> 401 (you have to login first!) <br> 500 (Internal Server Error) | Search ToDo list by name, the results will be a collection of ToDo lists of everyone and it's name contain input value given. |
+| /todos/search| POST | - | { data }| 401 (Invalid Token)<br> 401 (you have to login first!) <br> 500 (Internal Server Error) | Search ToDo list by name, the results will be a collection of ToDo lists of you and it's name contain input value given. |

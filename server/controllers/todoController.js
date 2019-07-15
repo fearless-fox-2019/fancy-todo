@@ -156,7 +156,7 @@ class TodoController {
         console.log('masuuuukkkkkkk')
         console.log(req.body)
         let regex = new RegExp(req.body.name, 'i')
-        Todo.find({name : {$regex : regex}})
+        Todo.find({UserId : req.decoded.id , name : {$regex : regex}})
         .then(data => {
             if(data.length > 0){
                 res.status(200).json(data)
