@@ -138,6 +138,11 @@ function filterByCategory(event) {
             });
             console.log(response, "disini")
         })
+        .fail(function (err) {
+            // $("#loading").hide()
+            // M.toast({ html: err.responseJSON, classes: "red" })
+            console.log(err.responseJSON)
+        })
 }
 function getCategory() {
     // event.preventDefault()
@@ -232,7 +237,7 @@ function updateTodo(event) {
         })
         .fail(function (err) {
             // $("#loading").hide()
-            M.toast({ html: err.responseJSON, classes: "red" })
+            // M.toast({ html: err.responseJSON, classes: "red" })
             console.log(err.responseJSON)
         })
 }
@@ -307,7 +312,9 @@ function onSignIn(googleUser) {
             toggleLogin()
         })
         .fail(function (err) {
-            console.log(err)
+            // // $("#loading").hide()
+            // M.toast({ html: err.responseJSON, classes: "red" })
+            console.log(err.responseJSON)
         })
 }
 
@@ -535,6 +542,7 @@ function getUpdate(id) {
             console.log(id)
         })
         .fail(function (err) {
+            M.toast({ html: err.responseJSON, classes: "red" })
             console.log(err.responseJSON)
         })
 }
