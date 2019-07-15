@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/home.css">
     <link rel="stylesheet" href="./css/myTask.css">
+    <link rel="stylesheet" href="./css/project.css">
     <title>Magic Todo</title>
 </head>
 
@@ -149,9 +150,7 @@
     </div>
     <div id="home">
         <div class="homeNav">
-            <!-- <h1>huehuehuehuohfaosuvln</h1> -->
             <h1 class="title is-6 has-text-warning addFromHomeNav"><a onclick="addTaskButton()"> AddTask </a></h1>
-            <!-- <h1 class="title is-6 has-text-warning addFromHomeNav"><a onclick="addListButton()"> AddList </a></h1> -->
             <h1 class="title is-6 has-text-warning addFromHomeNav"><a onclick="addProjectButton()"> AddProject </a></h1>
             <h1 class="title is-5 has-text-warning"><a onclick="signOutLocal()">SignOut</a> </h1>
         </div>
@@ -213,35 +212,12 @@
                     </div>
                     <div class="columns">
                         <div class="column" id="addProject">
-                            <h1 class="title is-5">Add New Project</h1>
-                            <div class="field">
-                                <label class="label">Name</label>
-                                <div class="control">
-                                    <input class="input" type="text" placeholder="Name of project" id="addProjectName">
-                                </div>
-                            </div>
-
-                            <div class="field">
-                                <label class="label">Description</label>
-                                <div class="control">
-                                    <textarea class="textarea" placeholder="Description of Project here"
-                                        id="addProjectDescription"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="field is-grouped">
-                                <div class="control">
-                                    <button class="button is-link" onclick="addProjectForm()">Submit</button>
-                                </div>
-                                <div class="control">
-                                    <button class="button is-text">Cancel</button>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                     <div class="columns">
                         <div class="column" id="timelineHome">
-                            <h3 class="title is-4 activityHome">My Activity</h3>
+                            
                         </div>
                     </div>
                 </div>
@@ -250,9 +226,9 @@
 
                     </div>
                     <div class="identity"></div>
-                    <a class="button is-success is-active is-outlined buttonHome" style="margin: 0px 30px;"
+                    <!-- <a class="button is-success is-active is-outlined buttonHome" style="margin: 0px 30px;"
                         onclick="toProject()">To Projects
-                        <i class="fas fa-angle-right" style="margin-left: 7px;"></i></a> <br>
+                        <i class="fas fa-angle-right" style="margin-left: 7px;"></i></a> <br> -->
                     <a class="button is-warning is-active is-outlined buttonHome" style="margin: 0px 30px;"
                         onclick="toMyTask()">To Mymenu <i class="fas fa-angle-right" style="margin-left: 7px;"></i></a>
                 </div>
@@ -261,7 +237,38 @@
 
     </div>
     <div id="projects">
-        <h1 class="title is-1">Projects</h1>
+        <div class="TopBar">
+            <h6>SignOut</h6>
+        </div>
+        <div class="columns columnsProject">
+            <div class="column is-3">
+                <div class="columns">
+                    <div class="column" id="projectAddRemoveMember">
+                        <p>add member and remove member</p>
+                        <a class="button is-link">Add</a>
+                        <a class="button is-danger">Remove</a>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column" id="projectAllmember">
+                    <p>list member</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column is-9">
+                <div class="columns">
+                    <div class="column" id="projectDetailed">
+                        project detail
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column" id="projectAllTask">
+                        project task
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="mytasks">
         <div class="columns myTaskColoumns">
@@ -296,12 +303,14 @@
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <script src="./js/main.js"></script>
     <script src="./js/log.js"></script>
     <script src="./js/fetch.js"></script>
     <script src="./js/home.js"></script>
     <script src="./js/add.js"></script>
     <script src="./js/myTask.js"></script>
+    <script src="js/project.js"></script>
 
 </body>
 
