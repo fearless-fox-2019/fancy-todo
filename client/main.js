@@ -11,11 +11,22 @@ $(document).ready(function () {
         event.preventDefault()
         getTodo()
     });
-   
-        $('.slider').slider();
+     $('.slider').slider();
+     getInterest()
 
 });
-
+function getInterest(){
+    var band = "red hot chili peppers"
+    var movie ="pulp fiction"
+    $.ajax({
+        method: "GET",
+        url: `${baseUrl}/interest/?favorite=${band}&movie=${movie}`
+    })
+    .done(function (response) {
+        console.log(response)
+    })
+    
+}
 var baseUrl = "http://localhost:3000/api"
 function filter() {
     $(".filter").on('input keypress', function () {
