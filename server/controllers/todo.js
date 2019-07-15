@@ -14,7 +14,7 @@ class Controller {
     }
 
     static findOne(req, res, next) {
-        Todo.findById(req.params.todoId)
+        Todo.find({projectId: req.params.projectId})
         .populate('userId')
         .populate('projectId')
         .then( (todo) => {

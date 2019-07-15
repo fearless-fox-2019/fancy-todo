@@ -40,8 +40,8 @@ function afterLogin() {
                 </div>
                 <div class="form-group">
                 <select class="form-control" id="tipeSearch">
-                    <option value="repo">repo</option>
-                    <option value="user">user</option>
+                    <option value="project">Project</option>
+                    <option value="todo">Todo</option>
                 </select>
                 </div>
             </form>
@@ -81,7 +81,7 @@ function afterLogin() {
         </nav>
 
         <!-- Header -->
-        <div class="jumbotron text-center">
+        <div class="jumbotron text-center" style="height:200px">
             <h1>Welcome to <strong>FANCY</strong><i>todo</i></h1>
             <p>Place where many programmers work together</p>
         </div>
@@ -212,7 +212,7 @@ function afterLogin() {
             <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
           </div>
           <div class="toast-body">
-            Error occured while trying to fetch data
+            Error occured while fetching data
           </div>
         `)
         $('#toastInfo').toast({

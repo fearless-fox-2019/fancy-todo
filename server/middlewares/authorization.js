@@ -1,16 +1,16 @@
 const Todo = require('../models/todo')
-const Project = require('../models/todo')
+const Project = require('../models/project')
 
 function authorizationTodo(req, res, next) {
     Todo.findById(req.params.todoId)
     .populate('userId')
-    .populate('projectId')
     .then( (todo) => {
+        console.log(todo.projectId)
         if (todo) {
             if (todo.projectId) {
                 Project.findOne({ 
                     _id: todo.projectId,
-                    members: req.decoded.userId
+                    members: req.decoded.id
                 })
                 .then( (project) => {
                     if (project) {
@@ -23,7 +23,7 @@ function authorizationTodo(req, res, next) {
                     }
                 })
                 .catch(next)
-            } else if (todo.userId === req.decoded.userId) {
+            } else if (todo.userId === req.decoded.id) {
                 next()
             } else {
                 next({
@@ -41,12 +41,13 @@ function authorizationTodo(req, res, next) {
 }
 
 function authorizationProject(req, res, next) {
+    console.log(req.decoded.id)
     Project.findOne({
         _id: req.params.projectId, 
-        admin: req.decoded.userId
+        admin: req.decoded.id
     })
     .then( (project) => {
-        if (project) { 
+        if (project) {
             next()
         } else {
             next({

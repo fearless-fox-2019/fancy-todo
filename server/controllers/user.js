@@ -37,9 +37,6 @@ class Controller {
         User.findOne({ email: req.body.email })
         .then( (user) => {
             if (user) {
-                console.log(user)
-                console.log(req.body.password, user.password)
-                console.log(compare(req.body.password, user.password))
                 if (compare(req.body.password, user.password)) {
                     const token = sign({
                         userId: user._id,
@@ -71,7 +68,6 @@ class Controller {
                 audience: process.env.GOOGLE_API_KEY
         })
         .then( (ticket) => {
-            console.log(ticket.getPayload())
             const { email } = ticket.getPayload()
             let newUserInfo = { 
                 email: email,

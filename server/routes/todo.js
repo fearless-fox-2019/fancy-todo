@@ -8,7 +8,7 @@ router.get('/test', (req, res) => {
     })
 })
 
-router.get('/:projectId/:userId', Todo.fetchTodo)
+router.get('/:projectId', Todo.fetchTodo)
 router.get('/:todoId', Todo.findOne)
 router.get('/search', Todo.searchTodo)
 router.post('/:projectId', Todo.addTodo)
