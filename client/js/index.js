@@ -56,6 +56,29 @@ $( document ).ready(function() {
       addProject()
     })
 
+    $('#addMyTodo-btn').on('click', function(event){
+        event.preventDefault()
+        addMyTodo()
+    })
+
+    $('#home-btn').on('click', function(event){
+        event.preventDefault()
+        $('#todoProjectContainer').show()
+        $('#myTodoContainer').hide()
+        $('#todoList').empty()
+        $('#finishedList').empty()
+        fetchProject()
+        
+    })
+
+    $('#myTodo-btn').on('click', function(event){
+        event.preventDefault()
+        $('#todoProjectContainer').hide()
+        $('#myTodoContainer').show()
+        fetchMyTodo()
+        fetchMyFinishedTodo()
+    })
+
 
 });
 
@@ -77,6 +100,7 @@ function noToken(){
 function hasToken(){
     $('#landingPage').hide()
     $('#contentPage').show()
+    $('#myTodoContainer').hide()
     $('#today').empty()
     $('#today').append(`${new Date().toLocaleDateString('en-US',
                         { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}`)

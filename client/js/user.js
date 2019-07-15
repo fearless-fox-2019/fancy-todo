@@ -82,6 +82,12 @@ function logout() {
       if (result.value) {
           localStorage.clear()
           noToken()
+          $('#projectList').empty()
+          $('#todoList').empty()
+          $('#finishedList').empty()
+          $('#myTodoList').empty()
+          $('#myFinishedTodoList').empty()
+
         //sign out google
         const auth2 = gapi.auth2.getAuthInstance();
   

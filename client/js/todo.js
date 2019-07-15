@@ -1,3 +1,189 @@
+function addMyTodo(){
+  let newTodo={
+    name: $('#nameMyTodo').val(),
+    description: $('#descMyTodo').val(),
+    dueDate: $('#dueDateMyTodo').val(),
+    type: 'personal'
+  }
+
+  if(new Date(newTodo.dueDate)< new Date()== true){
+    Swal.fire({
+      type: "error",
+      title: "Check Your Date!",
+      text: 'Due Date minimal tomorrow.',
+      showConfirmButton: true,
+    })
+    console.log('lebih kecil')
+  }else{
+    $.ajax({
+      url: `${baseUrl}/todos`,
+      method: 'post',
+      dataType: 'json',
+      data:newTodo,
+      headers: {
+        token: localStorage.token
+      }
+    })
+    .done(todo =>{
+      $('#nameMyTodo').val(null)
+      $('#descMyTodo').val(null)
+      $('#dueDateMyTodo').val(null)
+      $('#addMyTodoModal').hide()
+      $('#todoProjectContainer').hide()
+      $('#myTodoContainer').show()
+      fetchMyTodo()
+      fetchMyFinishedTodo()
+      Swal.fire({
+        position: 'center',
+        type: 'success',
+        title: 'Success Add Todo',
+        showConfirmButton: false,
+        timer: 1200
+      })
+      
+    })
+    .fail(err =>{
+      console.log('error add todo')
+      console.log(err)
+      
+    })
+  }
+
+
+}
+
+function fetchMyTodo(){
+ 
+  $.ajax({
+    url: `${baseUrl}/todos/all/todos/status/todo`,
+    method: 'get',
+    headers:{
+      token: localStorage.token
+    }
+  })
+  .done(todos =>{
+    $('#myTodoList').empty()
+    if(todos.length<1){
+      $('#myTodoList').append(`
+          <div class="row" >
+            <div class="col s12 m6">
+              <div class="card horizontal" style="width: 390px; background-color: #ef5350">
+                <div class="card-content black-text" style="text-align:center">
+                  <h6 style="font-weight: bold; margin-left: 70px;"> No Todo For You!</h6>
+                  <h6 style="font-weight: bold; margin-left: 60px;">Please Add New Todo</6>
+                </div>
+              </div>
+            </div>
+          </div>
+      `)
+    }else{
+      todos.forEach(todo =>{
+        $('#myTodoList').append(`
+            <div class="row" style="margin: 0 auto" >
+              <div class="col s12 m6">
+                <div class="card" style="width: 390px; background-color: #e6ee9c ; ">
+                  <div class="card-image">
+                    <a onclick="removeTodo('${todo._id}','${todo.name}')" class="btn-flat" style="position:absolute;; font-size:10px; color: red; top: 3px; right:3px;">
+                      <i class="fas fa-times"></i>
+                    </a>
+                  </div>
+                  <div class="card-content black-text" style="margin: 0 auto; line-height: 1.5; height:125px;">
+                    <span class="card-title" style="font-size: 16px; font-weight: bold; margin-top: -15px;">${todo.name}</span>
+                    <p style="font-size: 14px; margin-top:-5px">${todo.description}</p>
+                    <p style="font-size: 14px;">Deadline: ${new Date(todo.dueDate).toLocaleDateString('en-US',
+                                        { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                  </div>
+                  <div class="row" >
+                    <div class="col s6">
+                      <center>
+                        <a href="#editTodoModal" style="margin-bottom: 10px; background-color:#3949ab " onclick="showModalEditTodo('${todo._id}')" class="modal-trigger btn-small">Edit</a>
+                      </center>
+                    </div>
+                    <div class="col s6">
+                      <center>
+                        <a class="btn-small" style="background-color: #558b2f" onclick="updateStatus('${todo._id}', 'finished')">complete</a>
+                      </center>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        `)
+      })
+    }
+  })
+  .fail(err =>{
+    console.log('masuk errror fetch mytodo')
+    console.log(err);
+    
+    
+  })
+}
+
+function fetchMyFinishedTodo(){
+  $.ajax({
+    url: `${baseUrl}/todos/all/todos/status/finished`,
+    method: 'get',
+    headers:{
+      token: localStorage.token
+    }
+  })
+  .done(todos =>{
+    $('#myFinishedTodoList').empty()
+    if(todos.length<1){
+      $('#myFinishedTodoList').append(`
+          <div class="row" >
+            <div class="col s12 m6">
+              <div class="card horizontal" style="width: 380px; background-color: #ef5350">
+                <div class="card-content black-text" style="text-align:center">
+                  <h6 style="font-weight: bold; margin-left: 90px;"> No Finished Task!</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+      `)
+    }else{
+      todos.forEach(todo =>{
+        $('#myFinishedTodoList').append(`
+            <div class="row" style="margin: 0 auto" >
+              <div class="col s12 m6">
+                <div class="card" style="width: 390px; background-color: #c5e1a5; ">
+                  <div class="card-image">
+                    <a onclick="removeTodo('${todo._id}','${todo.name}')" class="btn-flat" style="position:absolute;; font-size:10px; color: red; top: 3px; right:3px;">
+                      <i class="fas fa-times"></i>
+                    </a>
+                  </div>
+                  <div class="card-content black-text" style="margin: 0 auto; line-height: 1.5; height:125px;">
+                    <span class="card-title" style="font-size: 16px; font-weight: bold; margin-top: -15px;">${todo.name}</span>
+                    <p style="font-size: 14px; margin-top:-5px">${todo.description}</p>
+                    <p style="font-size: 14px;">Deadline: ${new Date(todo.dueDate).toLocaleDateString('en-US',
+                                        { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                  </div>
+                  <div class="row" >
+                    <div class="col s6">
+                      <center>
+                        <a href="#editTodoModal" style="margin-bottom: 10px; background-color:#3949ab " onclick="showModalEditTodo('${todo._id}')" class="modal-trigger btn-small">Edit</a>
+                      </center>
+                    </div>
+                    <div class="col s6">
+                      <center>
+                        <a class="btn-small" style="background-color: #e53935" onclick="updateStatus('${todo._id}', 'todo')">Uncomplete</a>
+                      </center>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        `)
+      })
+    }
+  })
+  .fail(err =>{
+    console.log('masuk errror ')
+    
+  })
+}
+
 function showModalAddTodo(id){
     event.preventDefault()
     currentProjectId= id
@@ -54,16 +240,17 @@ function showModalAddTodo(id){
       console.log(err)
       
     })
-  }
+}
   
-  function addTodo(){
+function addTodo(){
     console.log('masuk add todo projectId', currentProjectId);
   
     let newTodo={
       name: $('#nameTodo').val(),
       description: $('#descTodo').val(),
       dueDate: $('#dueDate').val(),
-      projectId: currentProjectId
+      projectId: currentProjectId,
+      type: 'project'
     }
     
     if(new Date(newTodo.dueDate)< new Date()== true){
@@ -104,15 +291,15 @@ function showModalAddTodo(id){
         
       })
     }
-  }
+}
   
-  function getTodos(id){
+function getTodos(id){
     currentProjectId= id
     fetchTodo()
     fetchFinished()
-  }
+}
   
-  function fetchTodo(){
+function fetchTodo(){
     console.log('masuk fetch todo');
     
     $.ajax({
@@ -147,13 +334,13 @@ function showModalAddTodo(id){
           $('#todoList').append(`
               <div class="row" style="margin: 0 auto" >
                 <div class="col s12 m6">
-                  <div class="card" style="width: 375px; background-color: #f0f4c3; ">
+                  <div class="card" style="width: 375px; background-color: #ffcc80 ; ">
                     <div class="card-image">
                       <a onclick="removeTodo('${todo._id}','${todo.name}')" class="btn-flat" style="position:absolute;; font-size:10px; color: red; top: 3px; right:3px;">
                         <i class="fas fa-times"></i>
                       </a>
                     </div>
-                    <div class="card-content black-text" style="margin: 0 auto; line-height: 1; height:150px;">
+                    <div class="card-content black-text" style="margin: 0 auto; line-height: 1.5; height:150px;">
                       <span class="card-title" style="font-size: 16px; font-weight: bold; margin-top: -15px;">${todo.name}</span>
                       <p style="font-size: 14px; margin-top:-5px">${todo.description}</p>
                       <p style="font-size: 14px;">Deadline: ${new Date(todo.dueDate).toLocaleDateString('en-US',
@@ -161,9 +348,17 @@ function showModalAddTodo(id){
                       <p style="font-size: 14px;">Status: ${todo.status}</p>
                       <p style="font-size: 14px; margin-bottom:10px;">Creator: ${todo.userId.name}</p>
                     </div>
-                    <div class="card-action"style="font-size: 11px; background-color: black; font-weight: bold;">
-                      <a href="#editTodoModal" onclick="showModalEditTodo('${todo._id}')" class="modal-trigger">Edit</a>
-                      <a onclick="updateFinished('${todo._id}')">Finish</a>
+                    <div class="row" >
+                      <div class="col s6">
+                        <center>
+                          <a href="#editTodoModal" style="margin-bottom: 10px; background-color:#3949ab " onclick="showModalEditTodo('${todo._id}')" class="modal-trigger btn-small">Edit</a>
+                        </center>
+                      </div>
+                      <div class="col s6">
+                        <center>
+                          <a class="btn-small" style="background-color: #558b2f" onclick="updateStatus('${todo._id}', 'finished')">complete</a>
+                        </center>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -177,8 +372,7 @@ function showModalAddTodo(id){
       console.log(err)
       
     })
-  }
-
+}
 
 function fetchFinished(){
     console.log('masuk fetch finished');
@@ -220,13 +414,25 @@ function fetchFinished(){
                         <i class="fas fa-times"></i>
                       </a>
                     </div>
-                    <div class="card-content black-text" style="margin: 0 auto; line-height: 1; height:130px;">
+                    <div class="card-content black-text" style="margin: 0 auto; line-height: 1.5; height:150px;">
                       <span class="card-title" style="font-size: 16px; font-weight: bold; margin-top: -10px;">${todo.name}</span>
                       <p style="font-size: 14px; margin-top: -5px;">${todo.description}</p>
                       <p style="font-size: 14px;">Deadline: ${new Date(todo.dueDate).toLocaleDateString('en-US',
                                                   { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
                       <p style="font-size: 14px;">Status: ${todo.status}</p>
                       <p style="font-size: 14px;">Creator: ${todo.userId.name}</p>
+                    </div>
+                    <div class="row" >
+                      <div class="col s6">
+                        <center>
+                          <a href="#editTodoModal" style="margin-bottom: 10px; background-color:#3949ab " onclick="showModalEditTodo('${todo._id}')" class="modal-trigger btn-small">Edit</a>
+                        </center>
+                      </div>
+                      <div class="col s6">
+                        <center>
+                          <a class="btn-small" style="background-color: #e53935" onclick="updateStatus('${todo._id}', 'todo')">Uncomplete</a>
+                        </center>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -239,9 +445,9 @@ function fetchFinished(){
       console.log('error fetch todo')
       console.log(err)
     })
-  }
+}
   
-  function updateFinished(id){
+function updateStatus(id, status){
     console.log('ini id todo', id);
     console.log(`${baseUrl}/todos/${id}`);
     
@@ -249,7 +455,7 @@ function fetchFinished(){
       url:`${baseUrl}/todos/${id}`,
       method: 'patch',
       data:{
-        status: 'finished'
+        status: status
       },
       headers:{
         token: localStorage.token
@@ -257,7 +463,8 @@ function fetchFinished(){
     })
     .done(response =>{
       console.log('success update',response);
-      
+      fetchMyTodo()
+      fetchMyFinishedTodo()
       fetchTodo()
       fetchFinished()
     })
@@ -265,7 +472,7 @@ function fetchFinished(){
       console.log('masuk error update finish');
       console.log(err);
     })
-  }
+}
   
 function removeTodo(id, name){
     console.log(id);
@@ -296,7 +503,10 @@ function removeTodo(id, name){
             showConfirmButton: false,
             timer: 1200
           })
-          getTodos(currentProjectId)
+          fetchMyTodo()
+          fetchMyFinishedTodo()
+          fetchTodo()
+          fetchFinished()
         })
         .fail(err =>{
           console.log('error delete todo')
@@ -360,7 +570,7 @@ function showModalEditTodo(id){
       console.log('masuk error get one todo')
       console.log(err)
     })
-  }
+}
   
 function editTodo(id){
     console.log('masuk edit todo')

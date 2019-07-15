@@ -84,7 +84,7 @@ function fetchProject(){
             $('#projectList').append(`
               <div class="row" style="margin: 0 auto" >
                 <div class="col s12 m6">
-                  <div class="card" style="width: 350px; background-color:#ffcdd2 ">
+                  <div class="card" style="width: 400px; background-color:#ffcdd2 ">
                     <div class="card-image row">
                       <a onclick="showModalEditProject('${project._id}')" href="#editProjectModal" class="btn-flat modal-trigger" style="position:absolute;; font-size:10px; color: orange; top: 3px; right:40px; height:30px">
                         <i class="fas fa-edit"></i>
@@ -94,7 +94,7 @@ function fetchProject(){
                       </a>
                     </div>
                     <div class="card-content black-text" style="margin: 0 auto; line-height: 1; height:120px;">
-                      <span class="card-title" style="font-size: 16px; font-weight: bold; margin-top: -30px;">${project.name}</span>
+                      <span class="card-title" onclick="getTodos('${project._id}')" style="font-size: 16px; font-weight: bold; margin-top: -30px;">${project.name}</span>
                       <p style="font-size: 14px;">${project.description}</p>
                       <p style="font-size: 14px;">Creator: ${project.creator.name}</p>
                     </div>
@@ -111,9 +111,9 @@ function fetchProject(){
           $('#projectList').append(`
               <div class="row" style="margin: 0 auto" >
                 <div class="col s12 m6">
-                  <div class="card" style="width: 300px; background-color: #c8e6c9">
-                    <div class="card-content black-text" style="margin: 0 auto; line-height: 1; height:100px;">
-                      <span class="card-title" style="font-size: 16px; font-weight: bold; margin-top: -20px;">${project.name}</span>
+                  <div class="card" style="width: 400px; background-color: #c8e6c9">
+                    <div class="card-content black-text" style="margin: 0 auto; line-height: 1; height:120px;">
+                      <span class="card-title" onclick="getTodos('${project._id}')" style="font-size: 16px; font-weight: bold; margin-top: -20px;">${project.name}</span>
                       <p style="font-size: 14px;">${project.description}</p>
                       <p style="font-size: 14px;">Creator: ${project.creator.name}</p>
                     </div>

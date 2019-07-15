@@ -14,6 +14,10 @@ const todoSchema = new Schema({
         type: String,
         default: 'todo'
     },
+    type:{
+        type: String,
+        required: [true, 'Type required'],
+    },
     dueDate:{
         type: Date,
         required: [true, 'Due Date must be filled']
@@ -25,8 +29,7 @@ const todoSchema = new Schema({
     },
     projectId:{
         type: Schema.Types.ObjectId,
-        ref: 'Project',
-        required:[true, 'Project Id must defined']
+        ref: 'Project'
     }
 },{ timestamps: true})
 

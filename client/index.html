@@ -114,35 +114,44 @@
     <div id="contentPage">
         <!-- Navbar -->
         <nav>
-            <div class="nav-wrapper indigo" style="height: 110%">
-                <a class="brand-logo"><img src="https://cdn3.iconfinder.com/data/icons/business-office/256/To-do_List-512.png" style="width: 50px; height: 50px; margin-top:12px;"/></a>
+            <div class="nav-wrapper indigo" style="height: 100%">
+                <a class="brand-logo"><img src="https://cdn3.iconfinder.com/data/icons/business-office/256/To-do_List-512.png" style="width: 45px; height: 45px; margin-top:12px;"/></a>
                 <div style="margin-left: 50px">
-                    <h4 class="left" style="margin-left: 20px; margin-top: 15px; font-family: 'Russo One', sans-serif;">Trail Work</h4>
-                    <h6 class="left" style="margin-left: 20px; margin-top: 25px; font-family: 'Varela Round', sans-serif;" id="today">Date</h6>
+                    <h4 class="left" style="margin-left: 20px; margin-top: 15px; font-family: 'Russo One', sans-serif; font-size: 30px">Trail Work</h4>
+                    <h6 class="left" style="margin-left: 20px; margin-top: 25px; font-family: 'Varela Round', sans-serif; font-size: 16px;" id="today">Date</h6>
+                    <a href="" id="home-btn">Home</a>
+                    <a href="" id="myTodo-btn">My Todo</a>
+                    <div class="right">
+                        <a style="margin-right: 20px; font-family: 'Varela Round', sans-serif; font-size:16px; font-weight: bold" id="loggedName">Hi, </a>
+                        <a class="btn-flat" id="logout">
+                            <img src="https://cdn2.iconfinder.com/data/icons/weby-flat-vol-1/512/1_power-off-on-shutdown-512.png" alt="Logout" style="height:40px; margin-bottom:-5px">
+                        </a>
+                    </div>
                 </div>
-
-                <div class="right" style="margin-right:20px" >
-                    <a style="margin-right: 20px; font-family: 'Varela Round', sans-serif; font-size:16px; font-weight: bold" id="loggedName">Hi, </a>
-                    <a class="btn-flat" id="logout">
-                        <img src="https://cdn2.iconfinder.com/data/icons/weby-flat-vol-1/512/1_power-off-on-shutdown-512.png" alt="Logout" style="height:40px; margin-bottom:-5px">
-                    </a>
-                </div>
+                
             </div>
         </nav><br />
 
         <!-- Button Add -->
-        <div class="row" id="btnTask"  style="margin: 8px 0; margin-bottom: 20px">
-            <div class="col s12">
+        <div class="row container" id="btnTask" >
+            <div class="col s6">
                 <center>
                     <a href="#addProjectModal" id="toAddProject-btn" class="modal-trigger">
                         <i class="fas fa-plus-circle"></i> New Project
                     </a>
                 </center>
             </div>
+            <div class="col s6">
+                <center>
+                    <a href="#addMyTodoModal" id="toAddMyTodo-btn" class="modal-trigger">
+                        <i class="fas fa-plus-circle"></i> New Todo
+                    </a>
+                </center>
+            </div>
         </div>
 
         <!-- Row Project & Todo -->
-        <div class="row">
+        <div class="row" id="todoProjectContainer">
             <div class="col s4" id="projectContainer">
                 <center>
                     <h5 id="projectList-title">My Project List</h5>
@@ -161,7 +170,22 @@
                 <center>
                     <h5 id="finishedList-title">Finished Task</h5>
                 </center>
-                <div id="finishedList"></div>
+                <div style="margin-left: 2%" id="finishedList"></div>
+            </div>
+        </div>
+
+        <div class="row container" id="myTodoContainer">
+            <div class="col s6" id="myTodoListContainer">
+                <center>
+                    <h5 class="myTodoTitle">My Todo</h5>
+                </center>
+                <div style="margin-left: 5%" id="myTodoList"></div>
+            </div>
+            <div class="col s6" id="myFinishedTodoContainer">
+                <center>
+                    <h5 class="myTodoTitle">My Finished Todo</h5>
+                </center>
+                <div style="margin-left: 5%" id="myFinishedTodoList"></div>
             </div>
         </div>
 
@@ -193,6 +217,38 @@
             </div>
             <div class="modal-footer">
                 <button id="addProject-btn" class="btn waves-effect waves-light" type="submit" name="action">Save</button>
+            </div>
+        </div>
+        
+        <!-- Modal Add My Todo -->
+        <div id="addMyTodoModal" class="modal">
+            <div class="modal-content">
+                <h5 style="text-align:center; font-weight:bold; text-decoration:underline">Add New Project</h5><br>
+                <div class="row" id="formAddProject">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="nameMyTodo" type="text" class="validate">
+                                <label for="nameMyTodo">Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="descMyTodo" type="text" class="validate">
+                                <label for="descMyTodo">Description</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="dueDateMyTodo" type="date" class="datepicker" name="dueDate" required="">
+                                <label for="dueDateMyTodo">Due Date</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="addMyTodo-btn" class="btn waves-effect waves-light" type="submit" name="action">Save</button>
             </div>
         </div>
 

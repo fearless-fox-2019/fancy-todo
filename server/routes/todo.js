@@ -3,6 +3,7 @@ const todoController= require('../controllers/todoController')
 const {authentication}= require('../middlewares/authenticate')
 
 router.use(authentication)
+router.get('/all/todos/status/:status', todoController.findMyTodo)
 router.get('/:status/:projectId', todoController.findAll)
 router.get('/:todoId', todoController.findOne)
 router.post('/', todoController.create)
