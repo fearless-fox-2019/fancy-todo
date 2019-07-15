@@ -69,33 +69,45 @@ class Controller {
     }
 
     static addMember(req, res, next){
-        Project.findOne({ 
-            _id: req.params.projectId, 
-            members: req.params.userId
+        User.findOne({
+            email: req.params.userEmail
         })
-        .then( (project) => {
-            console.log
-            if (project) {
-                next({
-                    code: 400,
-                    message: 'Cannot registering same member twice'
+        .then( (user) => {
+            if (user) {
+                Project.findOne({ 
+                    _id: req.params.projectId, 
+                    members: user._id
                 })
-            } else {
-                Project
-                .findByIdAndUpdate(req.params.projectId,
-                    {$push:
-                        {members: req.params.userId}
-                    },
-                    {new:true}
-                )
-                .populate('members')
-                .then( (updated) => {
-                    res.status(200).json(updated)
+                .then( (project) => {
+                    if (project) {
+                        next({
+                            code: 400,
+                            message: 'Cannot registering same member twice'
+                        })
+                    } else {
+                        Project
+                        .findByIdAndUpdate(req.params.projectId,
+                            {$push:
+                                {members: user._id}
+                            },
+                            {new:true}
+                        )
+                        .populate('members')
+                        .then( (updated) => {
+                            res.status(200).json(updated)
+                        })
+                        .catch(next)
+                    }
                 })
                 .catch(next)
+            } else {
+                next({
+                    code: 404,
+                    message: 'User not found'
+                })
             }
         })
-        .catch(next)
+        
     }
 
     static deleteMember(req, res, next){

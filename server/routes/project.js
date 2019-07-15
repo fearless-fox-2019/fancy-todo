@@ -11,8 +11,8 @@ router.get('/test', (req, res) => {
 router.get('/', Project.findAll)
 router.get('/:projectId', Project.findOne)
 router.delete('/:projectId', authorizationProject, Project.delete)
-router.patch('/member/:projectId/:userId', authorizationProject, Project.addMember)
-router.delete('/member/:projectId/:userId', authorizationProject, Project.deleteMember)
+router.patch('/member/:projectId/:userEmail', authorizationProject, Project.addMember)
+router.delete('/member/:projectId/:userEmail', authorizationProject, Project.deleteMember)
 router.patch('/:projectId', authorizationProject, Project.update)
 router.post('/', Project.create)
 
