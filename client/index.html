@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="google-signin-client_id"
+        content="306579710373-6gl1502rba54e8cu2nv3knvrhck7b53n.apps.googleusercontent.com">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="icon" href="./favicon.png">
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <title>FancyTODO</title>
+</head>
+<body>
+
+    <div id="beforeLogin">
+        <div class="container">
+            <div class="row" style="text-align: center; padding: 150px">
+                <form id="formLogin" style="margin-left: auto; margin-right: auto; margin-top: auto; margin-bottom: auto;">
+                    <h5><strong>TODO</strong><i>fancy</i></h5>
+                    <br>
+                    <div class="form-group" style="width: 650px;">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email" aria-describedby="emailHelp" placeholder="email@example.com">
+                        <small id="emailHelp" class="form-text text-muted">Your email address.</small>
+                    </div>
+                    <div class="form-group" style="width: 650px;">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Password">
+                    </div>
+                
+                    <div class="g-signin2" data-onsuccess="onSignIn" style="position: absolute !important; margin-left: auto; margin-right: auto;"></div>
+                    <button type="submit" class="btn btn-primary" style="margin-left: auto; margin-right: auto; background: #E9ECEF; color: black; border: #E9ECEF; left: 22px">Submit</button><br>
+                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#formregister" aria-expanded="false">Or register here?</button>
+                    <br>
+                </form>
+            </div>
+        </div>
+
+        <!-- register modal -->
+        <div class="modal fade" id="formregister" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header border-bottom-0">
+                        <h5 class="modal-title" id="exampleModalLabel">Create Account</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="formRegister">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" id="emailRegister" aria-describedby="emailHelp" placeholder="email@example.com">
+                                <small id="emailHelp" class="form-text text-muted">Your email address.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="passwordRegister" placeholder="Password">
+                            </div>                             
+                        </div>
+                        <div class="modal-footer border-top-0 d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary" style="margin-left: auto; margin-right: auto; background: #E9ECEF; color: black; border: #E9ECEF; left: 22px">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="afterLogin" style="display: none"></div>
+    <div class="toast" id="toastInfo" style="position: absolute; bottom: 22px; left: 22px"></div>
+
+    <!-- GOOGLE SIGN IN -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Our custom script -->
+    <script src="./js/main.js"></script>
+    <script src="./js/checkLogin.js"></script>
+    <script src="./js/afterLogin.js"></script>
+    <script src="./js/projectAppend.js"></script>
+    <script src="./js/detailProject.js"></script>
+    <script src="./js/googlesignin.js"></script>
+</body>
+</html>
