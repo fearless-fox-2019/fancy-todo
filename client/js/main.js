@@ -102,6 +102,7 @@ $(document).ready(function(){
         }
         search(data)
     })
+
 });
 
 function getMyUncompleteTodo(){
@@ -116,7 +117,7 @@ function getMyUncompleteTodo(){
         data.forEach(el => {
             if(el.status === 'uncompleted'){
                 $('#table-uncomp').append(`
-                    <tr><td>${el.name}</td><td>${el.description}</td><td><i class="material-icons">date_range</i><br>${el.due_date}</td><td><i class="material-icons">access_time</i><br>${el.time}</td><td><i class="material-icons" style="cursor : pointer" onclick="completeTodo('${el._id}')">check_box</i></td><td id="delete-todo"><i class="material-icons" style="cursor : pointer" onclick="deleteTodo('${el._id}')">delete</i></td><tr>
+                    <tr><td>${el.name}</td><td>${el.description}</td><td><i class="material-icons">date_range</i><br>${el.due_date}</td><td><i class="material-icons">access_time</i><br>${el.time}</td><td><i class="material-icons" style="cursor : pointer" onclick="completeTodo('${el._id}')">check_box</i></td><td><a class="modal-trigger" href="#modal-edit" onclick="findTodo('${el._id}')"><i class="material-icons" style="cursor : pointer">edit</i></a></td> <td id="delete-todo"><i class="material-icons" style="cursor : pointer" onclick="deleteTodo('${el._id}')">delete</i></td><tr>
                 `)
             }
         })
@@ -139,7 +140,7 @@ function getCompleteTodo(){
             if(el.status === 'completed'){
                 // console.log('masuk getCompletedTodo')
                 $('#table-comp').append(`
-                    <tr><td>${el.name}</td><td>${el.description}</td><td><i class="material-icons">date_range</i><br>${el.due_date}</td><td><i class="material-icons">access_time</i><br>${el.time}</td><td id="delete-todo"><i class="material-icons" style="cursor : pointer" onclick="deleteTodo('${el._id}')">delete</i></td><tr>
+                    <tr><td>${el.name}</td><td>${el.description}</td><td><i class="material-icons">date_range</i><br>${el.due_date}</td><td><i class="material-icons">access_time</i><br>${el.time}</td> <td><a class="modal-trigger" href="#modal-edit" onclick="findTodo('${el._id}')"><i class="material-icons" style="cursor : pointer">edit</i></a></td> <td id="delete-todo"><i class="material-icons" style="cursor : pointer" onclick="deleteTodo('${el._id}')">delete</i></td><tr>
                 `)
             }
         })
@@ -190,7 +191,7 @@ function deleteTodo(todoId){
             })
           Swal.fire(
             'Deleted!',
-            'Your file has been deleted.',
+            'Your todo list has been deleted.',
             'success'
           )
         }
@@ -402,6 +403,82 @@ function sendEmail(){
     })
 }
 
+function edit(todoId,newData){    
+    $.ajax({
+        url : `${baseUrl}/todos/edit/${todoId}`,
+        method : "PATCH",
+        headers : { token: localStorage.getItem('token') },
+        data : newData
+    })
+    .done(result => {
+        Swal.fire(
+            'Updated!',
+            'Your todo list has been deleted!.',
+            'success'
+        )
+        $('#table-uncomp').empty()
+        $('#table-comp').empty()
+        getCompleteTodo()
+        userHome()
+    })
+    .fail(err => {
+        console.log(err)
+        if(err.responseText.includes('Unauthorized')){
+            Swal.fire({
+                type: 'error',
+                title: 'Failed to complete todo',
+                text: 'Unauthorized user'
+            })
+        }
+        if(err.responseText.includes('Invalid Token')){
+            Swal.fire({
+                type: 'error',
+                title: 'Invalid Token'
+            })
+        }
+    })
+}
+
+function findTodo(todoId){
+    $.get({
+        url : `${baseUrl}/todos/find/${todoId}`,
+        headers : { token: localStorage.getItem('token') }
+    })
+    .done(data => {
+        console.log(data)
+        $('#todo-edit-name').val(`${data.name}`)
+        $('#todo-description-edit').val(`${data.description}`)
+        $('#due-date-inp-edit').val(`${data.due_date}`)
+        $('#set-time-edit').val(`${data.time}`)
+        return new Promise(function(resolve,reject){
+            resolve($('#form-edit-todo').submit(function(event) {
+                event.preventDefault()
+                let newData = {
+                    name : $('#todo-edit-name').val(),
+                    description : $('#todo-description-edit').val(),
+                    due_date : $('#due-date-inp-edit').val(),
+                    time : $('#set-time-edit').val()
+                }
+                // console.log(data._id, '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
+                edit(data._id, newData)
+                $('.modal').modal('close');
+            }))
+        })  
+        .then(() => {
+            console.log('sukses mamamannnggg')
+        })    
+    })
+    .fail(err => {
+        console.log(err)
+        if(err.responseText.includes('not found')){
+            Swal.fire({
+                type: 'error',
+                title: 'Data not found!'
+            })
+        }
+    })
+}
+
 
 function logout(){
     Swal.fire({
@@ -478,8 +555,11 @@ function search(todoName){
         $('#search').val('')        
         data.forEach(el => {
             $('#table-search').append(`
-                <tr><td>${el.name}</td><td>${el.description}</td><td><i class="material-icons">date_range</i><br>${el.due_date}</td><td><i class="material-icons">access_time</i><br>${el.time}</td><td><i class="material-icons" style="cursor : pointer" onclick="completeTodo('${el._id}')">check_box</i></td><td id="delete-todo"><i class="material-icons" style="cursor : pointer" onclick="deleteTodo('${el._id}')">delete</i></td><tr>
+                <tr><td>${el.name}</td><td>${el.description}</td><td><i class="material-icons">date_range</i><br>${el.due_date}</td><td><i class="material-icons">access_time</i><br>${el.time}</td><td><i class="material-icons" style="cursor : pointer" onclick="completeTodo('${el._id}')">check_box</i></td> <td><a class="modal-trigger" href="#modal-edit" onclick="findTodo('${el._id}')"><i class="material-icons" style="cursor : pointer">edit</i></a></td> <td id="delete-todo"><i class="material-icons" style="cursor : pointer" onclick="deleteTodo('${el._id}')">delete</i></td><tr>
             `)            
         })
+    })
+    .fail(err => {
+        console.log(err)        
     })
 }

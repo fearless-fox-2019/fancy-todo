@@ -78,3 +78,17 @@
     width : 90vw;
     height: 100vh;
 }
+
+#modal-edit {
+    width : 90vw;
+    height: 100vh;
+}
+
+#due-date-inp-edit {
+    width: 100px;
+}
+
+#set-time-edit {
+    margin-left: 20px; 
+    width: 100px;
+}

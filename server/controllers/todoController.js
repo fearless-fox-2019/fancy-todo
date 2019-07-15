@@ -93,10 +93,49 @@ class TodoController {
         .catch(next)
     }
     
+    static updateTodo(req, res, next){
+        console.log(req.body)
+        console.log(req.params.id)
+        const newData = {
+            name : req.body.name,
+            description : req.body.description,          
+            due_date : req.body.due_date,
+            time : req.body.time
+        }
+        Todo.updateOne({ _id : req.params.id }, newData)
+        .then(result => {
+            console.log(result)
+            res.status(200).json(result)
+        })        
+        .catch(next)
+    }
+
     static updateTodoStatus(req, res, next){
         Todo.updateOne({ _id : req.params.id }, {status : 'completed'})
         .then(result => {
             res.status(200).json(result)
+        })
+        .catch(next)
+    }
+
+    static findOne(req, res, next){
+        Todo.findOne({ _id : req.params.id })
+        .then(data => {
+            if(data){
+                res.status(200).json(data)
+            }
+            else {
+                next({status : 400, message : `data not found!`})
+            }
+        })
+        .catch(next)
+    }
+
+    static edit(req, res, next){
+        console.log(req.body)
+        Todo.updateOne({ _id : req.params.id }, req.body)
+        .then(() => {
+            res.status(200).json(data)
         })
         .catch(next)
     }

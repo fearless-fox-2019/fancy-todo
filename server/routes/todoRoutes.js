@@ -8,6 +8,8 @@ router.get('/complete', authentication, TodoController.findComplete)
 router.post('/add', authentication, TodoController.create)
 router.patch('/complete/:id', authentication, authorization,TodoController.updateTodoStatus)
 router.delete('/delete/:id', authentication, authorization,TodoController.delete)
+router.patch('/edit/:id', authentication, authorization, TodoController.updateTodo)
+router.get('/find/:id', authentication, TodoController.findOne)
 router.post('/search', authentication, TodoController.searchName)
 router.post('/sendEmail', authentication, TodoController.sendEmail)
 

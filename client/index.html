@@ -149,6 +149,39 @@
             </div>
         </div>
 
+        <!-- modal edit todo -->
+        <div id="modal-edit" class="modal hoverable">
+            <div class="modal-content">
+                <!-- modal edit -->
+                <div id="edit-todo" class="container">
+                    <h4 class="header center">Edit your todo list</h4><br>
+                    <div class="row">
+                        <form id="form-edit-todo">
+                            <div class="row">
+                                <div class="input-field">
+                                    <i class="material-icons prefix">event_available</i>
+                                    <input id="todo-edit-name" type="text" class="validate">                
+                                </div>                                
+                            </div>          
+                            <div class="row">
+                                <div class="input-field">
+                                    <textarea id="todo-description-edit" class="materialize-textarea"></textarea>
+                                </div>                                
+                            </div>
+                            <div class="row">
+                                <input id="due-date-inp-edit" class=" datepicker" placeholder="Set Due date">
+                                <input id="set-time-edit" type="text" class="timepicker" placeholder="Set time">
+                            </div>
+                            <div class="row">
+                                <button class="waves-effect waves-light btn-small hoverable" type="submit" name="action"><i class="material-icons left">edit</i>edit Todo</button>
+                            </div>
+                        </form>
+                    </div>           
+                </div>
+            </div>
+        </div>
+
+
         <!-- Modal todo form Structure -->
         <div id="modal1" class="modal hoverable">
             <div class="modal-content">
@@ -179,7 +212,7 @@
                             </div>                            
                         </form>
                     </div>           
-                </div>                
+                </div>        
             </div>
         </div>
     </div>
