@@ -23,7 +23,8 @@ async function getMyProjects(){
                                 <i class="material-icons">work</i><b>${el.name.toUpperCase()}</b>
                             </div>
                             <div>
-                                <a id="createTodoProject-${el._id}" href="" class="btn" style="color:black" >+ Todo</a>
+                                <a id="createTodoProject-${el._id}" href="" class="btn" style="color:black" ><i class="tiny material-icons">add</i><small>Todo</small></a>
+                                <a id="deleteProject-${el._id}" class="btn red darken-2" style="color:white"><i class="tiny material-icons">priority_high</i><small> Delete Project </small></a>
                             </div>
                         </div>
                         
@@ -37,7 +38,7 @@ async function getMyProjects(){
                                 </div>
                                 <div id="projectUnlisted-${el._id}" class="col s4" style="border-left : 1px dotted black; height:100%">
                                     <h6>Unlisted : </h6>
-                                    <br>
+                                    
                                 </div>
                             </div>
                             <hr>
@@ -71,56 +72,69 @@ async function getMyProjects(){
 
                 // list project todos
                 el.todos.forEach(todo => {
-                    if(todo.status === 'completed'){
-                        todoStatus = `
-                            <small style="color : lime"><b> ${todo.status} </b></small>
+                    if(todo){
+                        if(todo.status === 'completed' ){
+                            todoStatus = `
+                                <small style="color : lime"><b> ${todo.status} </b></small>
+    
+                            `
+                        } else {
+                            if(new Date(todo.dueDate) <= new Date()) {
+                    
+                                console.log('get todo (late) => ', todo.name);
 
-                        `
-                    } else {
-                        todoStatus = `
-                        <small style="color : pink"><b> ${todo.status} </b></small>
-                        <br>
-                        <br>
-                        <a id="prj-done-${todo._id}" href="" class="btn-small" style="float : right">DONE</a>
-                        <br>
-                        ` 
-                    }
-                    $(`#projectTodos-${el._id}`).append(`
-                        <div class="row" style="margin : 0">
-                            <div class="col s12 m12">
-                                <div class="card blue-grey darken-1">
-                                    <div class="card-content white-text">
-                                    <span class="card-title">${todo.name}</span>
-                                    <p>
-                                        <small>author : ${todo.userId.username}</small>
-                                        <hr>
-                                        ${todo.description}
-                                        <br>
-                                        ${todoStatus}
-                                        <br>
-                                        <small>Due Date : ${new Date(todo.dueDate).toDateString()}</small>
-                                    </p>
-                                    </div>
-                                    <div class="card-action">
-                                    <a id="prj-update-${todo._id}" href="">UPDATE</a>
-                                    <a id="prj-delete-${todo._id}" href="">DELETE</a>
+                                todoStatus = `
+                                <small style="color : yellow"><b> 'completed' </b></small>
+                                <br>
+                                <small style="color : peru"> (forced 'done' by system) </small>
+                                ` 
+                            } else {
+                                todoStatus = `
+                                <small style="color : orange"><b> ${todo.status} </b></small>
+                                <br>
+                                <br>
+                                <a id="prj-done-${todo._id}" href="" class="btn-small" style="float : right">DONE</a>
+                                <br>
+                                ` 
+                            }
+                        }
+                        $(`#projectTodos-${el._id}`).append(`
+                            <div class="row" style="margin : 0">
+                                <div class="col s12 m12">
+                                    <div class="card blue-grey darken-1">
+                                        <div class="card-content white-text">
+                                        <span class="card-title">${todo.name}</span>
+                                        <p>
+                                            <small>author : ${todo.userId.username}</small>
+                                            <hr>
+                                            ${todo.description}
+                                            <br>
+                                            ${todoStatus}
+                                            <br>
+                                            <small>Due Date : ${new Date(todo.dueDate).toDateString()}</small>
+                                        </p>
+                                        </div>
+                                        <div class="card-action">
+                                        <a id="prj-update-${todo._id}" href="">UPDATE</a>
+                                        <a id="prj-delete-${todo._id}" href="">DELETE</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    `)        
-                    $(`#prj-done-${todo._id}`).click(function(e){
-                        e.preventDefault()
-                        doneProjectTodo(el._id, todo._id)
-                    })
-                    $(`#prj-update-${todo._id}`).click(function(e){
-                        e.preventDefault()
-                        updateProjectTodo(el._id, todo._id, todo.name, todo.description, todo.dueDate)
-                    })
-                    $(`#prj-delete-${todo._id}`).click(function(e){
-                        e.preventDefault()
-                        deleteProjectTodo(el._id, todo._id, todo.name)
-                    })    
+                        `)        
+                        $(`#prj-done-${todo._id}`).click(function(e){
+                            e.preventDefault()
+                            doneProjectTodo(el._id, todo._id)
+                        })
+                        $(`#prj-update-${todo._id}`).click(function(e){
+                            e.preventDefault()
+                            updateProjectTodo(el._id, todo._id, todo.name, todo.description, todo.dueDate)
+                        })
+                        $(`#prj-delete-${todo._id}`).click(function(e){
+                            e.preventDefault()
+                            deleteProjectTodo(el._id, todo._id, todo.name)
+                        })    
+                    }
                 })
 
                 //create project todo
@@ -177,6 +191,29 @@ async function getMyProjects(){
 
                     }
                 })
+
+                //delete project 
+                $(`#deleteProject-${el._id}`).click(async function(e){
+                    e.preventDefault()
+                    let deleteOpt = await Swal.fire({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                    })
+
+                    console.log(deleteOpt.value);
+                    if(deleteOpt.value){
+                        console.log('a');
+                        
+                        deleteProject(el._id)
+                    }
+
+                })
+
 
             })
         }
@@ -245,6 +282,7 @@ async function deleteProjectTodo(id, todoId, name){
 async function updateProjectTodo(id, todoId, name, description, dueDate){
     try {
 
+        
         let y = new Date().getFullYear()
         let m = new Date().getMonth()+1
         let d = new Date().getDate()+1
@@ -261,20 +299,42 @@ async function updateProjectTodo(id, todoId, name, description, dueDate){
         if(m/10 < 1) m = `0${m}`
         dueDate = `${y}-${m}-${d}`
 
-        let updTodo = await Swal.fire({
-            title : 'UPDATE PROJECT TODO',
-            html : `
-                <label for="TodoNameUp">Todo Name</label>
-                <input id="TodoNameUp" type="text" value="${name}"/>
-            
-                <label for="DescriptionUp"> Description</label>
-                <textarea id="DescriptionUp" type="text">${description}</textarea>
-            
-                <label for="dueDateUp">Due Date</label>
-                <input id="dueDateUp" type="date" min="${complete}" value="${dueDate}"/>
-            `,
-            showCancelButton : true
-        })
+        let updTodo;
+
+        if(new Date(dueDate) <= new Date()){
+
+            console.log('update (late) => ', name);
+
+            updTodo = await Swal.fire({
+                title : 'UPDATE PROJECT TODO',
+                html : `
+                    <label for="TodoNameUp">Todo Name</label>
+                    <input id="TodoNameUp" type="text" value="${name}"/>
+                
+                    <label for="DescriptionUp"> Description</label>
+                    <textarea id="DescriptionUp" type="text">${description}</textarea>
+                
+                    <label for="dueDateUp">Due Date</label>
+                    <input id="dueDateUp" type="date" min="${complete}" value="${dueDate}" disabled/>
+                `,
+                showCancelButton : true
+            })
+        } else {
+            updTodo = await Swal.fire({
+                title : 'UPDATE PROJECT TODO',
+                html : `
+                    <label for="TodoNameUp">Todo Name</label>
+                    <input id="TodoNameUp" type="text" value="${name}"/>
+                
+                    <label for="DescriptionUp"> Description</label>
+                    <textarea id="DescriptionUp" type="text">${description}</textarea>
+                
+                    <label for="dueDateUp">Due Date</label>
+                    <input id="dueDateUp" type="date" min="${complete}" value="${dueDate}"/>
+                `,
+                showCancelButton : true
+            })
+        }
 
         name = $('#TodoNameUp').val() 
         description = $('#DescriptionUp').val() 
@@ -301,45 +361,6 @@ async function updateProjectTodo(id, todoId, name, description, dueDate){
         
     }
 }
-
-$('#createProject').click(async function(e){
-    e.preventDefault()
-    
-    let {value:createProject} = await Swal.fire({
-        title : 'CREATE NEW PROJECT',
-        html : `
-            <label for="ProjectName">Project Name</label>
-            <input id="ProjectName" type="text" />
-        
-        `,
-        showCancelButton : true
-    })
-
-    let name = $('#ProjectName').val() 
-    
-
-    if(createProject && name ){
-        console.log('masuk')
-        console.log(name)
-
-
-        try {
-            let create = await $.ajax({
-                url : `${baseURL}/projects`,
-                method : 'POST',
-                headers : {
-                    access_token : localStorage.getItem('access_token')
-                },
-                data : { name }
-            })
-            checkSignIn()
-        } catch (error) {
-            console.log('error: ', error.responseJSON);
-            
-        }
-
-    }
-})
 
 async function getUnlistedUser(project){
     try {
@@ -375,31 +396,40 @@ async function getUnlistedUser(project){
         }
 
         arrayUnlisted.forEach((el, i) => {
+            console.log('el: ', el);
+
             $(`#projectUnlisted-${project._id}`).append(`
-                <p style="margin:5px">
-                <small><a id="invite-${el._id}" class=" btn-small waves-effect waves-light teal" style="float:right">invite</a></small>
+                
+                <p style="margin-top:10px; padding:5px; border-bottom:1px dotted grey;">
+                    
+                    <small><a id="invite-${el._id}-${project._id}" class=" btn-small waves-effect waves-light blue" style="float:right; margin-top:15px">invite</a></small>
                     <h6>${i+1}. ${el.username}</h6>
                 </p>
-                
             `)
 
-            $(`#invite-${el._id}`).click(async function(e){
-                e.preventDefault()
-
-                let invite = await $.ajax({
-                    url : `${baseURL}/projects/${project._id}/invite`,
-                    method : 'PATCH',
-                    headers : {
-                        access_token : localStorage.getItem('access_token')
-                    },
-                    data : {
-                        userId : el._id
-                    }
-                })
-                
-                console.log('invite: ', invite);
-                M.toast({html: invite.msg, classes : 'rounded orange'})
-                getMyProjects()
+            $(`#invite-${el._id}-${project._id}`).click(async function(e){
+                try {
+                    e.preventDefault()
+                    console.log('masoook');
+                    let invite = await $.ajax({
+                        url : `${baseURL}/projects/${project._id}/invite`,
+                        method : 'PATCH',
+                        headers : {
+                            access_token : localStorage.getItem('access_token')
+                        },
+                        data : {
+                            userId : el._id
+                        }
+                    })
+                    
+                    console.log('invite: ', invite);
+                    M.toast({html: invite.msg, classes : 'rounded orange'})
+                    getMyProjects()
+                    
+                } catch (error) {
+                    console.log('error: ', error);
+                    
+                }
             })
 
         })
@@ -412,3 +442,69 @@ async function getUnlistedUser(project){
 
 
 }
+
+async function deleteProject(id){
+    try {
+        let deletePrj = await $.ajax({
+            url : `${baseURL}/projects/${id}`,
+            method : `DELETE`,
+            headers : {
+                access_token : localStorage.getItem('access_token')
+            }
+        })
+
+        console.log('deletePrj: ', deletePrj);
+        M.toast({html: deletePrj.message , classes : 'rounded'})
+        getMyProjects()
+
+    } catch (error) {
+        console.log('error: ', error);
+    }
+}
+
+$('#createProject').click(async function(e){
+    
+    
+    e.preventDefault()
+    
+    let {value:createProject} = await Swal.fire({
+        title : 'CREATE NEW PROJECT',
+        html : `
+            <label for="ProjectName">Project Name</label>
+            <input id="ProjectName" type="text" />
+        
+        `,
+        showCancelButton : true
+    })
+
+    let name = $('#ProjectName').val() 
+    
+    console.log('createProject: ', createProject);
+    console.log('name: ', name);
+
+    if(createProject && name ){
+
+        console.log('masuk')
+        console.log(name)
+
+        try {
+            let create = await $.ajax({
+                url : `${baseURL}/projects`,
+                method : 'POST',
+                headers : {
+                    access_token : localStorage.getItem('access_token')
+                },
+                data : { name }
+            })
+            console.log('create: ', create);
+            console.log('jadi nih');
+            checkSignIn()
+        } catch (error) {
+            console.log('engga deng');
+            console.log('error: ', error.responseJSON);
+            
+        }
+        
+    }
+    
+})

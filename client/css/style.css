@@ -1,10 +1,15 @@
-
+* {
+  margin: 0;
+  padding: 0;
+}
 #landingPage {
-    /* background-image: url("https://cdnb.artstation.com/p/assets/images/images/011/931/531/original/pierre-yves-vauzelle-clean.gif?1532161301");
+    background-image: url("https://wallpaperplay.com/walls/full/d/8/b/329997.jpg");
     background-size: cover;
-    background-repeat: no-repeat; */
-    padding : 0;
-    height: 100vh;
+    background-repeat: no-repeat;
+    /* padding-left : 100px; */
+
+    /* height: 100vh; */
+    
 }
 
 #personalTodoContent {
@@ -32,10 +37,10 @@
 .form {
     /* display: flex; */
     /* flex-wrap: wrap; */
-    margin-top: 50px;
+    /* margin-top: 50px; */
     /* margin-right: -50px; */
-    justify-content: center;
-    align-content: center;
+    /* height: 100%; */
+    
 }
 
 
@@ -48,6 +53,7 @@
     padding-bottom: 31%;
     position: relative;
     width: 20em;
+    border: 4px dotted #2BBBAD;
   }
   
   .clock.simple:after {

@@ -21,13 +21,27 @@ async function getPersonalTodos(){
     
                             `
                         } else {
-                            todoStatus = `
-                            <small style="color : pink"><b> ${el.status} </b></small>
-                            <br>
-                            <br>
-                            <a id="done-${el._id}" href="" class="btn-small" style="float : right">DONE</a>
-                            <br>
-                            ` 
+
+                            if(new Date(el.dueDate) <= new Date()) {
+                    
+                                console.log('get todo (late) => ', el.name);
+
+                                todoStatus = `
+                                <small style="color : yellow"><b> 'completed' </b></small>
+                                <br>
+                                <small style="color : peru"> (forced 'done' by system) </small>
+                                ` 
+                            } else {
+                                todoStatus = `
+                                <small style="color : pink"><b> ${el.status} </b></small>
+                                <br>
+                                <br>
+                                <a id="done-${el._id}" href="" class="btn-small" style="float : right">DONE</a>
+                                <br>
+                                `  
+                            }
+
+                            
                         }
                         $('#personalTodoContent').append(`
                             <div class="row" style="margin : 0">
@@ -187,20 +201,42 @@ async function updateTodo(id, name, description, dueDate){
         if(m/10 < 1) m = `0${m}`
         dueDate = `${y}-${m}-${d}`
 
-        let updTodo = await Swal.fire({
-            title : 'UPDATE TODO',
-            html : `
-                <label for="TodoNameUp">Todo Name</label>
-                <input id="TodoNameUp" type="text" value="${name}"/>
-            
-                <label for="DescriptionUp"> Description</label>
-                <textarea id="DescriptionUp" type="text">${description}</textarea>
-            
-                <label for="dueDateUp">Due Date</label>
-                <input id="dueDateUp" type="date" min="${complete}" value="${dueDate}"/>
-            `,
-            showCancelButton : true
-        })
+        let updTodo;
+
+        if(new Date(dueDate) <= new Date()){
+
+            console.log('update (late) => ', name);
+
+            updTodo = await Swal.fire({
+                title : 'UPDATE PROJECT TODO',
+                html : `
+                    <label for="TodoNameUp">Todo Name</label>
+                    <input id="TodoNameUp" type="text" value="${name}"/>
+                
+                    <label for="DescriptionUp"> Description</label>
+                    <textarea id="DescriptionUp" type="text">${description}</textarea>
+                
+                    <label for="dueDateUp">Due Date</label>
+                    <input id="dueDateUp" type="date" min="${complete}" value="${dueDate}" disabled/>
+                `,
+                showCancelButton : true
+            })
+        } else {
+            updTodo = await Swal.fire({
+                title : 'UPDATE PROJECT TODO',
+                html : `
+                    <label for="TodoNameUp">Todo Name</label>
+                    <input id="TodoNameUp" type="text" value="${name}"/>
+                
+                    <label for="DescriptionUp"> Description</label>
+                    <textarea id="DescriptionUp" type="text">${description}</textarea>
+                
+                    <label for="dueDateUp">Due Date</label>
+                    <input id="dueDateUp" type="date" min="${complete}" value="${dueDate}"/>
+                `,
+                showCancelButton : true
+            })
+        }
 
         name = $('#TodoNameUp').val() 
         description = $('#DescriptionUp').val() 

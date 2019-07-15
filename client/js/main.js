@@ -55,7 +55,8 @@ function initListener(){
         }
     })
 
-    $('.logout').click(function(){
+    $('.logout').click(function(e){
+        e.preventDefault()
         userNotifications = []
         localStorage.clear()
         checkSignIn()        
@@ -119,6 +120,7 @@ function initListener(){
 
     })
 
+    
 }
 
 

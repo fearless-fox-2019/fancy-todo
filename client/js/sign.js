@@ -27,7 +27,7 @@ async function signin(){
     } catch (error) {
         $('#password').val('')
         console.log('error: ', error.responseJSON);
-        M.toast({html: error.responseJSON.err, classes : 'rounded'})
+        M.toast({html: error.responseJSON.err, classes : 'rounded pink'})
         
     }
 
@@ -72,16 +72,16 @@ async function signup(){
         
     } catch (error) {
         console.log('error: ', error);
-        M.toast({html: 'Double check your form !', classes : 'rounded'})
+        // M.toast({html: 'Double check your form !', classes : 'rounded'})
         
         $('#password').val('')
         if( error.responseJSON.err.message){
             console.log('error: ', error.responseJSON.err);
-            M.toast({html: error.responseJSON.err.message, classes : 'rounded'})
+            M.toast({html: error.responseJSON.err.message, classes : 'rounded pink'})
         } else {
 
             console.log('error: ', error.responseJSON);
-            M.toast({html: error.responseJSON.err, classes : 'rounded'})
+            M.toast({html: error.responseJSON.err, classes : 'rounded pink'})
         }
 
         
@@ -109,13 +109,14 @@ async function getNotifications(id){
             userNotifications.forEach(element => {
                 
                 $('#notifications').append(`
-                    <li class="collection-item avatar animated shake" style="background-color: rgba(255, 255, 255, 0.8)">
+                    <li class="collection-item avatar animated shake delay-2s" style="background-color: rgba(255, 255, 255, 0.8); margin:10px">
                     <i class="material-icons circle blue">group_add</i>
                     
                     <span class="title"><b>Project Invitation</b></span>
                     <p>
-                        <a id="reject-${element._id}" href="" class="btn-small content red" style="float: right; margin: 5px">reject</a>
-                        <a id="accept-${element._id}" href="" class="btn-small content" style="float: right; margin: 5px">accept</a>
+                        <a id="reject-${element._id}" href="" class="btn-small content red" style="float: right; margin: 5px"><i class="tiny material-icons">error_outline</i><b><small> reject </small><b></a>
+                        <a id="accept-${element._id}" href="" class="btn-small content" style="float: right; margin: 5px"><i class="tiny material-icons">fingerprint</i><b><small> accept </small></b></a>
+
                         ${element.msg}
                     </p>
                     </li>
