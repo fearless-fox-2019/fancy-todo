@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Import Google OAUTH2 -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="663285798472-p2vhc6ok85t5ctus4ebnvas2aq53oper.apps.googleusercontent.com">
+    <script src="js/main.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
+
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    
+    <!-- Import jquery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body onload="getData()">
+    <nav>
+        <div class="nav-wrapper indigo darken-1">
+            
+            <a href="#!" class="brand-logo" style="margin-left: 1%">
+                <i class="large material-icons" style="font-size: 30px">bookmark_border</i>
+                ToDo
+            </a>
+
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="#modal-login" class="modal-trigger" id="login-button">Login</a></li>
+            <li><a href="#modal-register" class="modal-trigger" id="register-button">Register</a></li>
+            <li><a href="#" onclick="signOut()" id="logout-button" hidden>Log out</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="modal-login" class="modal">
+        <div class="modal-content">
+            <h4>Modal Header</h4>
+            <input type="text" id="emailLogin">
+            <input type="password" id="passwordLogin">
+            
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col s2 offset-s8">
+                    <div class="g-signin2" data-onsuccess="onSignIn" style="margin-top: 8px;"></div>
+                </div>
+                <div class="col s1" style="margin-left: 4%;">
+                    <a href="#" onclick="signIn()" class="modal-close btn waves-effect indigo">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-register" class="modal">
+        <div class="modal-content">
+            <h4>Modal Header</h4>
+            <input type="text" id="nameRegister">
+            <input type="text" id="emailRegister">
+            <input type="password" id="passwordRegister">
+            
+        </div>
+        <div class="modal-footer">
+            <div class="col s1" style="margin-right: 6%;">
+            <a href="#" class="modal-close btn waves-effect indigo" onclick="signUp()">Register</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid indigo lighten-5" style="height: 100%" onclick="hideUpdate()">
+        <div class="row">
+            <div class="col s3">
+                <div class="card">
+                    <h5 class="flow-text indigo-text" style="padding: 7% 5% 2% 5%">Create</h5>
+                    <div class="divider"></div>
+
+                    <div class="input-field" style="margin: 5%">
+                        <input id="name" type="text" class="validate">
+                        <label for="name">What to do?</label>
+                    </div>
+
+                    <div class="input-field" style="margin: 5%">
+                        <textarea id="description" type="text" class="materialize-textarea"></textarea>
+                        <label for="description">Description</label>
+                    </div>
+
+                    <div class="input-field" style="margin: 5%;">
+                        <input type="text" class="datepicker">
+                        <label for="due_date">Due Date</label>
+                    </div>
+
+                    <div class="input-field" style="margin: 5%; padding-bottom: 7%">
+                        <button class="btn waves-effect indigo" type="submit" name="action" onclick="addTodo()">Create
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col s4">
+                <div class="card">
+                    <h5 class="flow-text indigo-text" style="padding: 5% 5% 2% 5%">To Do List</h5>
+                    <div class="divider"></div>
+                    <ul style="margin: 5%" id="to-do-list">
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col s3" id="update-form">
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="js/materialize.js"></script>
+    <!--JavaScript at end of body for optimized loading-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
