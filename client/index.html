@@ -156,7 +156,7 @@
         </div>
         <div class="container is-fluid homeBody">
             <div class="columns mainColumns">
-                <div style="border: 1px solid blue" id="mainLeft" class="column is-4 "
+                <div  id="mainLeft" class="column is-4 "
                     style="max-height: 95vh; overflow: scroll; margin-top: 20px; padding-bottom: 30px;">
                     <div class="columns">
                         <div class="column" id="addTask">
@@ -221,7 +221,7 @@
                         </div>
                     </div>
                 </div>
-                <div style="border: 1px solid blue" id="mainRight" class="column">
+                <div  id="mainRight" class="column">
                     <div class="homePicture">
 
                     </div>
@@ -237,34 +237,52 @@
 
     </div>
     <div id="projects">
-        <div class="TopBar">
-            <h6>SignOut</h6>
+        <div class="topBar">
+            <h1 class="title is-5 has-text-warning" ><a style="padding-right: 15px;" onclick="toHome()">Home</a> </h1>
+            <h1 class="title is-5 has-text-warning"><a onclick="signOutLocal()">SignOut</a> </h1>
         </div>
         <div class="columns columnsProject">
-            <div class="column is-3">
+            <div class="column is-3 projectLeftSide">
                 <div class="columns">
                     <div class="column" id="projectAddRemoveMember">
-                        <p>add member and remove member</p>
-                        <a class="button is-link">Add</a>
+                        <p>Add or remove member</p>
+                        <a class="button is-link" onclick="projectShowAddForm()">Add</a>
                         <a class="button is-danger">Remove</a>
                     </div>
                 </div>
                 <div class="columns">
                     <div class="column" id="projectAllmember">
-                    <p>list member</p>
+                            
                     </div>
                 </div>
             </div>
 
             <div class="column is-9">
                 <div class="columns">
-                    <div class="column" id="projectDetailed">
+                    <div class="column is-8" id="projectDetailed">
+                        project detail
+                    </div>
+                    <div class="column is-2" id="projectDetailedRight">
+                        project detail
+                    </div>
+                    <div class="column is-2" id="projectDetailedRightRight">
                         project detail
                     </div>
                 </div>
                 <div class="columns">
                     <div class="column" id="projectAllTask">
-                        project task
+                        <div class="addTaskForm">
+                        project task1
+
+                        </div>
+                        <div class="addTaskForm2">
+                        project task2
+
+                        </div>
+                        <div class="editTaskForm">
+                        project task3 edit
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -272,12 +290,12 @@
     </div>
     <div id="mytasks">
         <div class="columns myTaskColoumns">
-            <div class="column is-2 mtleft" style="border: 1px solid purple">mtleft</div>
-            <div class="column is-9 " style="border: 1px solid purple">
+            <div class="column is-2 mtleft" >mtleft</div>
+            <div class="column is-9 " >
                 <div class="columns">
-                    <div class="column is-8 midUpLeft" style="border: 1px solid gold">mid.up.left</div>
-                    <div class="column is-2 midUpRight1" style="border: 1px solid gold">mid.up.right.1</div>
-                    <div class="column is-2 midUpRight2" style="border: 1px solid gold">
+                    <div class="column is-8 midUpLeft" >mid.up.left</div>
+                    <div class="column is-2 midUpRight1" >mid.up.right.1</div>
+                    <div class="column is-2 midUpRight2" >
                         <a id="myTaskaddTask" class="button is-warning is-round" onclick="addTaskMidBotLeft()">Add Task</a>
                         <a id="myTaskaddProject" class="button is-success is-round" onclick="addProjectMidBotLeft()">Add
                             Project</a>
@@ -285,14 +303,14 @@
                     </div>
                 </div>
                 <div class="columns">
-                    <div class="column is-5 midDownLeft" style="border: 1px solid green"></div>
-                    <div class="column is-7 midDownRight" style="border: 1px solid green">
+                    <div class="column is-5 midDownLeft"></div>
+                    <div class="column is-7 midDownRight">
                         <div class="midDownRightTitle"></div>
                         <div class="midDownRightBody"></div>
                     </div>
                 </div>
             </div>
-            <div class="column is-1 " style="border: 1px solid purple">mt.right</div>
+            <div class="column is-1 "></div>
         </div>
     </div>
     <div id="about">

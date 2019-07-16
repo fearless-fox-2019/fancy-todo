@@ -96,6 +96,7 @@ class projectController {
         console.log('==-=-=-=-=- ehehe')
         let projectId = req.params.projectId
         let newMember = req.body.memberId
+        console.log(projectId, newMember)
         projectModel
             .findById(projectId)
             .then((foundProject) => {

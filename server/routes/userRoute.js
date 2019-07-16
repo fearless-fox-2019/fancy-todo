@@ -9,5 +9,6 @@ router.post('/signin/google',userController.signGoogle)
 router.use('/', authentication)
 
 router.get('/userData',userController.userData)
+router.get('/getByName/:username',userController.getByName)
 
 module.exports = router

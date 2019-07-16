@@ -7,8 +7,8 @@ $('document').ready(function () {
     })
 
     if (localStorage.getItem('token')) {
-        // toHome()
-        toMyTask()
+        toHome()
+        // toMyTask()
         // toProject()
         fetchAll().then(result => console.log(result))
     } else {

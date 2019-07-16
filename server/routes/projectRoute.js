@@ -6,10 +6,10 @@ router.use('/',authentication)
 
 router.get('/', projectController.getAll)
 router.get('/include', projectController.getIncluded)
-router.get('/:projectId', projectController.get)
 router.post('/', projectController.create)
 router.patch('/addMember/:projectId',projectController.addMember)
 router.patch('/removeMember/:projectId',projectController.removeMember)
+router.get('/:projectId', projectController.get)
 router.patch('/:projectId', projectController.update)
 router.delete('/:projectId', projectController.delete)
 

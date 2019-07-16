@@ -34,7 +34,6 @@ class UserController {
             })
             .catch(next)
     }
-
     static signIn(req, res, next) {
         console.log(req.body,'<== ini loggin req body')
         let { username, password } = req.body
@@ -64,7 +63,6 @@ class UserController {
             })
             .catch(next)
     }
-
     static signGoogle(req, res, next) {
         console.log('sampaoi sini-=-=-=-')
         const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
@@ -117,6 +115,18 @@ class UserController {
                     message: `from server registered`,
                     token
                 })
+            })
+            .catch(next)
+    }
+    static getByName(req,res,next){
+        let username = req.params.username
+
+        userModel
+            .findOne({
+                username
+            })
+            .then((data) => {
+                res.json(data)
             })
             .catch(next)
     }

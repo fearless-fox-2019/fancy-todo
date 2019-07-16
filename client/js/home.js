@@ -96,7 +96,7 @@ function appendIdentity() {
                     $('.identity').empty()
                     $('.identity').append(`
                     <figure class="image is-128x128" style="margin: -40px 35px 40px 30px;">
-                        <img class="is-rounded avatarImage" src="${data.avatar}">
+                        <img class="is-rounded avatarImage animated bounce infinite delay-2s" src="${data.avatar}">
                     </figure>`)
                     $('.identity').append(`
                     <h1 class="title is-5">Welcome ${data.username}, <br> 

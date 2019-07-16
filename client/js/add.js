@@ -28,25 +28,28 @@ function addTaskForm() {
                 return createNewTask(newTask)
             })
             .then(createdTask => {
-                console.log(createdTask,'Hasil dari membuat task baru setelah membuat list baru')
+                console.log(createdTask, 'Hasil dari membuat task baru setelah membuat list baru')
                 appendIdentity()
                 timeline()
             })
             .catch(err => console.log(err))
     } else {
         console.log('Menggunakan List yang sudah Ada')
-        
+
         findAlist(list)
             .then(foundList => {
                 console.log(foundList, 'Hasil pencarian dari list yang dipilih')
                 newTask.listId = foundList._id
                 return createNewTask(newTask)
             })
-            .then( createdTask => {
-                console.log(createdTask,'Hasil membuat task Baru dari menggunakan list yang sudah ada')
+            .then(createdTask => {
+                console.log(createdTask, 'Hasil membuat task Baru dari menggunakan list yang sudah ada')
                 appendIdentity()
             })
-            .catch(err => console.log({err,message: `Error karena membuat task dengan list yang sudah ada`}))
+            .catch(err => console.log({
+                err,
+                message: `Error karena membuat task dengan list yang sudah ada`
+            }))
     }
 }
 
@@ -74,9 +77,14 @@ function addProjectForm() {
         .done(created => {
             console.log(created, 'Ini adalah hasil dari project yang sudah dibuat.')
             timeline()
+            $('#addProjectName').val('')
+            $('#addProjectDescription').val('')
         })
         .fail(err => {
-            console.log({err, message: 'gagal membuat project baru'})
+            console.log({
+                err,
+                message: 'gagal membuat project baru'
+            })
         })
 }
 
@@ -105,29 +113,29 @@ function createNewTask(newTaskData) {
     console.log(newTaskData, 'Dipanggil oleh create task form. mengembalikan promise pending.')
     return new Promise((resolve, reject) => {
         $.ajax({
-            url: `${baseUrl}/tasks`,
-            type: 'POST',
-            headers: {
-                token: localStorage.getItem('token')
-            },
-            data: newTaskData
-        })
-        .done(result => resolve(result))
-        .fail(err => reject(err))
+                url: `${baseUrl}/tasks`,
+                type: 'POST',
+                headers: {
+                    token: localStorage.getItem('token')
+                },
+                data: newTaskData
+            })
+            .done(result => resolve(result))
+            .fail(err => reject(err))
     })
 }
 
 function findAlist(name) {
     console.log(name, 'Mencari list berdasarkan id input list.menghasilkan promise pending')
-    return new Promise ((resolve, reject)=> {
+    return new Promise((resolve, reject) => {
         $.ajax({
-            url: `${baseUrl}/todolists/${name}`,
-            type: 'GET',
-            headers: {
-                token: localStorage.getItem('token')
-            }
-        })
-            .done(result => resolve( result ))
-            .catch(err => reject( err ))
+                url: `${baseUrl}/todolists/${name}`,
+                type: 'GET',
+                headers: {
+                    token: localStorage.getItem('token')
+                }
+            })
+            .done(result => resolve(result))
+            .catch(err => reject(err))
     })
 }

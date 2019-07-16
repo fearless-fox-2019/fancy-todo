@@ -98,12 +98,13 @@ function getDetail(listId) {
             `)
 
             userListTask.forEach(list => {
-                console.log(list, 'Masing-masing list user')
+                // console.log(list, 'Masing-masing list user')
                 if (list.status === 'true') {
                     list.status = 'Done'
-                } else {
+                } else if (list.status === 'false'){
                     list.status = 'Undone'
                 }
+                console.log(list,'==================')
                 $('.midDownLeft').append(`
                     <div class="box boxDetailTask" >
                         <article class="media">
@@ -122,8 +123,8 @@ function getDetail(listId) {
                                         ${list.description}
                                     </p>
                                     <p>
-                                        <i class="fas fa-check-circle statusDone" style="color: green;"></i>
-                                        <i class="fas fa-times-circle statusUnDone" style="color: red"></i>   
+                                        <i class="fas fa-check-circle Done${list._id}" id="statusDone" onclick="updateStatus('${list._id},${list.status}')" style="color: green;"></i>
+                                        <i class="fas fa-times-circle unDone${list._id}" id="statusUnDone" onclick="updateStatus('${list._id},${list.status}')" style="color: red"></i>   
                                         ${list.status} | dueDate: ${moment(list.duedate).format('MMMM Do YYYY')} 
                                     </p> 
                                 </div>
@@ -132,12 +133,13 @@ function getDetail(listId) {
                     </div>
             `)
                 if (list.status === 'Done') {
-                    $('.statusDone').show()
-                    $('.statusUnDone').hide()
+                    $('.unDone'+list._id).hide()
+                    $('.Done'+list._id).show()
                 } else {
-                    $('.statusDone').hide()
-                    $('.statusUnDone').show()
+                    $('.Done'+list._id).hide()
+                    $('.unDone'+list._id).show()
                 }
+                
             })
         })
         .catch(err => {
@@ -146,6 +148,35 @@ function getDetail(listId) {
                 message: `Cannot get Detailed Data`
             })
         })
+}
+
+function updateStatus(input){
+console.log(input)
+let data = input.split(',')
+console.log(data)
+let status
+if(data[1] === 'Undone'){
+    status = true
+}
+else {
+    status = false
+}
+    $.ajax({
+        url: baseUrl+'/tasks/'+data[0],
+        type: 'PATCH',
+        data: {
+            status
+        },
+        headers: {
+            token: localStorage.getItem('token')
+        }
+    })
+    .done(()=> {
+        console.log('berhasil')
+    })
+    .fail(()=> {
+        console.log('tidak berhasil')
+    })
 }
 
 function addTaskMidBotLeft() {
@@ -266,8 +297,19 @@ function addTaskFormMyTask() {
             })
             .then(createdTask => {
                 console.log(createdTask, 'Hasil dari membuat task baru setelah membuat list baru')
-                appendIdentity()
+                appendToMidBotRight()
                 timeline()
+                $('#addTaskMyTaskTitle').val('')
+                $('#addTaskMyTaskDescription').val('')
+                // $("#datepicker").val('')
+                $("#datepicker2").datepicker({
+                    minDate: -20,
+                    maxDate: "+1M +10D"
+                }).val('')
+                $('#addTaskMyTaskListOption').val('')
+                $('#addTaskMyTaskNewList').val('')
+                $('#midDownLeft').empty()
+
             })
             .catch(err => console.log(err))
     } else {
@@ -404,15 +446,15 @@ function deleteListMyTask(listId) {
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
+    }).then((result) => {
         if (result.value) {
-          Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-          )
+            Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+            )
         }
-      })
+    })
     $.ajax({
             url: baseUrl + '/todolists/' + listId,
             type: 'DELETE',
@@ -460,7 +502,7 @@ function editTaskMyTask(taskId) {
     `)
 }
 
-$('#cancelUpdate').click(()=> {
+$('#cancelUpdate').click(() => {
     $('.MyTaskUpdateForm').toggle()
 })
 
@@ -469,16 +511,16 @@ function updatMyTaskTask(taskId) {
     let description = $('#descriptionUpdateMyTask').val()
 
     $.ajax({
-        url: baseUrl+'/tasks/'+taskId,
-        type: 'PATCH',
-        data: {
-            name: title,
-            description: description
-        },
-        headers: {
-            token: localStorage.getItem('token')
-        }
-    })
+            url: baseUrl + '/tasks/' + taskId,
+            type: 'PATCH',
+            data: {
+                name: title,
+                description: description
+            },
+            headers: {
+                token: localStorage.getItem('token')
+            }
+        })
         .done(result => {
             console.log(result)
             $('.MyTaskUpdateForm').toggle()
@@ -498,30 +540,30 @@ function deleteTaskMyTask(taskId) {
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
+    }).then((result) => {
         if (result.value) {
             $.ajax({
-                url: baseUrl + `/tasks/` + taskId,
-                type: 'DELETE',
-                headers: {
-                    token: localStorage.getItem('token')
-                }
-            })
-                .done(result=> {
-                    console.log(result,'berhasil delete')
+                    url: baseUrl + `/tasks/` + taskId,
+                    type: 'DELETE',
+                    headers: {
+                        token: localStorage.getItem('token')
+                    }
+                })
+                .done(result => {
+                    console.log(result, 'berhasil delete')
                     toMyTask()
                     Swal.fire(
                         'Deleted!',
                         'Your file has been deleted.',
                         'success'
-                      )
+                    )
                 })
-                .fail(err=> {
+                .fail(err => {
                     console.log(err)
                 })
-          
+
         }
-      })
-    
+    })
+
 
 }

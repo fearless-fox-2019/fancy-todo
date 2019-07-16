@@ -1,19 +1,58 @@
-#projectAddRemoveMember{
+/* #projectAddRemoveMember{
     border: 1px solid black;
-
-}
+} */
 #projectAllmember{
-    border: 1px solid black;
-
+    /* border: 1px solid black; */
+    overflow: scroll;
+    max-height: 70vh;
 }
-#projectDetailed{
+/* #projectDetailed{
     border: 1px solid black;
-
-}
-#projectAllTask{
+} */
+/* #projectAllTask{
     border: 1px solid black;
-
-}
+} */
 .columnsProject{
-    margin-top: 30px;
+    margin-top: 10px;
+}
+
+.subtitleorganizerproject{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 10px;
+}
+#addTaskProject{
+    max-width: 300px;
+}
+.addTaskForm2{
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.projectAllTaskCard{
+    width: 250px;
+    height: auto;
+    margin: 10px;
+}
+
+.StatusAndName{
+    display: flex;
+    align-items: center;
+}
+.topBar{
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
+    padding: 20px 30px 0px 0px;
+}
+.memberForm{
+    display: none;
+}
+/* .projectAddRemoveMember{
+} */
+.projectLeftSide{
+    padding-left: 30px;
+    
 }
