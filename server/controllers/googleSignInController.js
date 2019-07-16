@@ -7,13 +7,16 @@ class googleSignInController{
     static loginFromGoogle(req, res, next){
         console.log('login dari google')
         const token = req.body.idToken
+        // console.log(token, 'ini token')
+        console.log(token, 'ini token anda')
         client.verifyIdToken({
             idToken: token,
             audience: process.env.GOOGLE_CLIENT_ID
         })
         .then((ticket) => {
-            console.log(ticket)
+            console.log(ticket, 'INI TICKETTTTTTTTTTTTTTTTTTTTTTTT')
             const { name, email, picture } = ticket.getPayload()
+            // const a =  { name, email, picture }
             return User.findOne({email})
             .then((found) => {
                 if(found){

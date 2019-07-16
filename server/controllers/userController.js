@@ -24,7 +24,7 @@ class userController{
             email : req.body.email,
             password : req.body.password
         }
-        User.findOne({ email : datalogin.email })
+        user.findOne({ email : datalogin.email })
         .then(emailMatch => {
             if(!emailMatch){
                 res.status(404).json('email not found')

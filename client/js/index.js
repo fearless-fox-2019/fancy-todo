@@ -34,12 +34,12 @@ $('#signForm').on('submit', function() {
     $.ajax({
         method: 'POST',
         url: 'http://localhost:3000/users/register',
-        data: $(this).serialize(),
-        // data: {
-        //     name : name_,
-        //     email: email_,
-        //     password: password_
-        // }
+        // data: $(this).serialize(),
+        data: {
+            name : name_,
+            email: email_,
+            password: password_
+        }
     })
     .done(function(data) {
        console.log(data)
@@ -55,18 +55,19 @@ function onSignIn(googleUser) {
     console.log('Name: ' + profile.getName());
     console.log('Image URL: ' + profile.getImageUrl());
     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    var id_token = googleUser.getAuthResponse().id_token;
+    var idToken = googleUser.getAuthResponse().id_token;
     
     $.ajax({
         url:"http://localhost:3000/users/googleSignIn",
         method:"POST",
         data:{
-            token:id_token
+            idToken : idToken
         }
     })
     .done(response => {
         console.log(response)
         localStorage.setItem("token", response);
+        console.log('sampai di done googlesignin')
         isToken()
     })
     .fail((jqXHR, textStatus) => {
@@ -91,6 +92,7 @@ function isToken() {
     console.log(token)
     console.log(user)
     $('#loginPage').hide()
+    $('#registerPage').hide()
     $('#todo').show()
     $('#navbar').show()
     $('#signOut').show()
