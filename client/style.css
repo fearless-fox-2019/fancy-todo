@@ -95,24 +95,24 @@ html body{
 
 #projectContainer {
     border-right: 5px solid darkred;
-    height: 100%;
+    height: 100vh;
     overflow-y: scroll
 }
 
 #todoContainer{
     border-right: 5px solid darkgreen;
-    height: 100%;
+    height: 100vh;
     overflow-y: scroll
 }
 
 #myTodoList{
-    height: 100%;
+    height: 100vh;
     width: 100%;
     overflow-y: scroll
 }
 
 #myFinishedTodoList{
-    height: 100%;
+    height: 100vh;
     width: 100%;
     overflow-y: scroll
 }

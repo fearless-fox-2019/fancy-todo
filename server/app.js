@@ -6,12 +6,12 @@ if(!process.env.NODE_ENV || process.env.NODE_ENV === 'development'){
 const express = require("express")
 const app = express()
 const cors = require('cors')
-const port = process.env.PORT || 3000
+const port = 3000
 const route = require('./routes')
 const mongoose = require('mongoose')
 const errorHandler = require('./middlewares/errorHandler')
 
-mongoose.connect(`mongodb://localhost/fancytodo`, {useNewUrlParser: true}, function(err){
+mongoose.connect(process.env.URL_DB, {useNewUrlParser: true}, function(err){
     if(err) throw err
     else console.log('success connect to database')
 });

@@ -5,7 +5,7 @@ const countDay= require('../helpers/countDay')
 const sendEmail= require('../helpers/nodemailer')
 const CronJob = require('cron').CronJob
 
-new CronJob('30 22 * * * *', function() {
+new CronJob('30 23 * * *', function() {
 
     User.find({})
     .then(users =>{
