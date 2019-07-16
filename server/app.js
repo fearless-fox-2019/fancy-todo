@@ -6,7 +6,7 @@ if(!process.env.NODE_ENV || process.env.NODE_ENV === 'development'){
 const express = require("express")
 const app = express()
 const cors = require('cors')
-const port = 3000
+const port = process.env.PORT || 3000
 const route = require('./routes')
 const mongoose = require('mongoose')
 const errorHandler = require('./middlewares/errorHandler')
