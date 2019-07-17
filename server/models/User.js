@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const {hash} = require('../helpers/bcryptjs')
+const {hash} = require('../helpers/bcrypt')
 
 let userSchema = new Schema({
     name : {
