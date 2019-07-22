@@ -44,6 +44,7 @@ function gotoEdit(title, desc, id, status) {
                         <div class="form-group" style="margin-left:1%; margin-right: 1%;">
                             <label for="status">Status:</label>
                             <input type="checkbox" value=${status} id="status"> It's done
+                            ${status}
                             <button onclick="editTodo('${id}')" class="btn btn-dark" type="submit" style="margin-top: 3%; width: 100%;" data-dismiss="modal" id="edit-modal">Edit todo</button>
                         </div>
                     </div>

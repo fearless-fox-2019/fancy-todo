@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
 const errHandler = require('./middlewares/errHandler')
 const cors = require('cors')
 
-mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser:true})
+mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser:true})
 .then(()=> {
     console.log('Database connected')
 })

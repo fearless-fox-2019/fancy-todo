@@ -8,7 +8,7 @@ const todoSchema = new Schema({
     duedate: String,
     userId: {
         type: Schema.Types.ObjectId,
-        ref : "User"
+        ref : "Users"
     },
     projectId: {
         type: Schema.Types.ObjectId,

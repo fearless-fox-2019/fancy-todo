@@ -171,7 +171,7 @@ class ProjectController {
                     <hr>
                     ${invitingUser.name} wants you to join ${data.name}, 
                     to accept the invitation please click link below :
-                    <a id="accept" href="http://34.87.76.86/projects/member/${req.params.id}/${req.params.userId}"> Click Here </a>
+                    <a id="accept" href="http://localhost:8080"> Click Here </a>
                     <script>
                     $('#accept').click(function (event) {
                         event.preventDefault()
@@ -248,4 +248,5 @@ class ProjectController {
         .catch(next)
     }
 }
+
 module.exports = ProjectController

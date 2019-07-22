@@ -15,6 +15,7 @@ function addPersonalTodo() {
         }
     })
     .done(data => {
+        retrievePersonal()
         console.log(data);
     })
     .fail(error => {
@@ -25,7 +26,7 @@ function addPersonalTodo() {
 function addProject() {
     let nameItem = $('#nameProject').val()
     $.ajax({
-        url: `${baseUrl}/todos`,
+        url: `${baseUrl}/projects`,
         type: 'POST',
         headers: {
             access_token : localStorage.getItem('access_token')

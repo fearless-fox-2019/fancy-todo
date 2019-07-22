@@ -44,7 +44,7 @@ function signUp() {
 function onSignIn(googleUser) {
     const idToken= googleUser.getAuthResponse().id_token
     $.ajax({
-        url: `http://localhost:3000/users/gsignin`,
+        url: `${baseUrl}/users/gsignin`,
         type: 'post',
         data: {
            idToken

@@ -1,4 +1,4 @@
-const baseUrl = 'http://34.87.76.86'
+const baseUrl = 'http://34.87.76.86:3000'
 let projectId
 
 $(document).ready(function() {
