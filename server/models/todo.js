@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+    const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 
@@ -13,6 +13,7 @@ const todoSchema = new Schema({
     },
     category:{
         type:String,
+        default: 'Todo',
         require : [true, 'Category is required, please fill in this']
     },
     createdAt:{ type: Date, default: Date.now, timestamps: true},
@@ -22,6 +23,7 @@ const todoSchema = new Schema({
         validate : {
             validator() {
                 if (this.dueDate < this.createdAt) {
+                    res.status(400).json('Invalid dueDate, you cannot set dueDate to past time')
                     return false
                 }
             },
@@ -29,15 +31,15 @@ const todoSchema = new Schema({
         },
         timestamps: true
     },
-    statusFinished:{
-        type:Boolean,
-        default:false
-    },
+    // statusFinished:{
+    //     type:Boolean,
+    //     default:false
+    // },
     userId:{
-        type:Schema.Types.ObjectId, ref:'User'
+        type:Schema.Types.ObjectId, ref:'user'
     },
     projectId : {
-        type : Schema.Types.ObjectId, ref : 'Project'
+        type : Schema.Types.ObjectId, ref : 'project'
     }
 })
 const todo = mongoose.model('todo',todoSchema)

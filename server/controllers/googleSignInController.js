@@ -7,7 +7,6 @@ class googleSignInController{
     static loginFromGoogle(req, res, next){
         console.log('login dari google')
         const token = req.body.idToken
-        // console.log(token, 'ini token')
         console.log(token, 'ini token anda')
         client.verifyIdToken({
             idToken: token,
@@ -21,12 +20,18 @@ class googleSignInController{
             .then((found) => {
                 if(found){
                     // console.log('email found')
-                    const tokenJWT = sign({ name ,email, picture })
+                    console.log(found, "ini hasil found");
+                    let foundUser = {
+                        id : found._id,
+                        name : found.name,
+                        email : found.email,
+                        picture
+                    }
+                    const tokenJWT = sign(foundUser)
                     res.status(200).json({
                         token: tokenJWT,
                         email,
-                        name,
-                        picture
+                        name
                     })
                 }else{
                     // console.log('email not found')

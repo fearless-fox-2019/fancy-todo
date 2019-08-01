@@ -2,14 +2,21 @@ const {verify} = require('../helpers/jwt')
 const todo = require('../models/todo')
 
 module.exports = (req, res, next) => {
-    let credential = verify(req.headers["access-token"])
-    todo.findOne({ _id: req.params.id })
+    console.log('masuk ke authorization')
+    let credential = verify(req.headers["token"])
+    console.log(credential)
+    todo.find({ userId: credential.id })
     .then((found) => {
-        if (String(found.userId) == credential.id) {
+        console.log(found)
+        // if (String(found.userId) == credential.id) {
+            console.log('authorization sukses')
             next()
-        }
-        else {
-            res.status(401).json('You do not have access to do this')
-        }
+        // }
+        // else {
+    })
+    .catch(err =>{
+        console.log('gagal authorization')
+        res.status(401).json('Unauthorized, You do not have access to do this')
+        // }
     })
 }

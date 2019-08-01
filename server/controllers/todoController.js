@@ -5,6 +5,7 @@ class todoController{
 
     static createTodo(req, res, next){
         console.log(req.decode.id)
+        console.log('masuk ke todo routes create todo')
         const newTodo = {
             title : req.body.title,
             description : req.body.description,
@@ -12,7 +13,9 @@ class todoController{
             dueDate : req.body.dueDate,
             userId : req.decode.id
         }
-        Todo.create(newTodo)
+        // console.log(userId)
+        console.log(newTodo, "ini todo baru");
+        todo.create(newTodo)
         .then(todo =>{
             res.status(201).json(todo)
         })
@@ -20,9 +23,8 @@ class todoController{
     }
 
     static readOwnTodo(req, res, next){
-        Todo.findAll({
-            where : { userId : req.decode.id }
-        })
+        console.log('masuk ke read all todo')
+        todo.find({ userId : req.decode.id })
         .then(todos => {
             res.status(201).json(todos)
         })
@@ -30,7 +32,7 @@ class todoController{
     }
 
     static singleTodo(req, res, next){
-        Todo.findByPk(req.params.id)
+        todo.findById(req.params.id)
         .then(found => {
             if(!found){
                 res.status(404).json({})
@@ -42,31 +44,50 @@ class todoController{
     }
 
     static deleteTodo(req, res, next){
-        Todo.findByPk(req.params.id)
+        todo.findById(req.params.id)
         .then(todo => {
             if(todo){
-                return Todo.destroy({
-                    where : { id : req.params.id }
-                })
+                todo.deleteOne({ id : req.params.id })
+                res.status(200).json({ id : req.params.id })
             }else{
-                throw({ code : 404})
+                throw({ code : 404, message : 'Todo not Exist'})
             }
-        })
-        .then(deletedData => {
-            res.status(200).json({ id : req.params.id })
         })
         .catch(next)
     }
 
+    static updateStatus(req, res, next){
+        console.log(req.body)
+        todo.findByIdAndUpdate(req.params.id, {$set: { ...req.body }},{new: true})
+        .then(todo =>{
+            res.status(200).json(todo)
+        })
+        .catch(next)
+    }
+
+    // static updateStatusTodo(req, res, next){
+    //     todo.findById(req.params.id)
+    //     .then(todo => {
+    //         if(todo){
+    //             todo.category = req.body.category ||  todo.category
+    //         return todo.save()
+    //         } else {
+    //             throw ({ code : 404})
+    //         }
+    //     })
+    //     .then(updatedData => {
+    //         res.status(200).json(updatedData)
+    //     })
+    //     .catch(next)
+    // }
+
     static updateTodo(req, res, next){
-        Todo.findByPk(req.params.id)
+        todo.findById(req.params.id)
         .then(todo => {
             if(todo){
                 todo.title = req.body.title || todo.title
                 todo.description = req.body.description || todo.description
-                todo.category = req.body.category ||  todo.category
                 todo.dueDate = req.body.dueDate || todo.dueDate
-                todo.statusFinished = req.body.statusFinished || todo.statusFinished
             return todo.save()
             } else {
                 throw ({ code : 404})

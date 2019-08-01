@@ -9,7 +9,7 @@ const userSchema = new Schema({
     },
     email: {
         type: String,
-        required: [true, 'Please input member email'],
+        required: [true, 'Please input user email'],
         validate: [{
             validator: function(input) {
                 let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;

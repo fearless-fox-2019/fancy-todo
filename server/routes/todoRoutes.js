@@ -8,7 +8,7 @@ router.get('/', todoController.readOwnTodo)
 router.get('/:id',authorization, todoController.singleTodo)
 router.post('/', todoController.createTodo)
 router.delete('/:id',authorization, todoController.deleteTodo)
-router.patch('/:id',authorization, todoController.updateTodo)
+router.patch('/:id',authorization, todoController.updateStatus)
 
 
 module.exports = router
