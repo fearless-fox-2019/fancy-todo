@@ -27,6 +27,6 @@ app.get('/', function(req, res) {
 app.use('/', indexRoutes)
 app.use(errorHandler)
 
-app.listen(3000, () =>{
+app.listen(PORT, () =>{
     console.log('Running on Port :', PORT)
 })
