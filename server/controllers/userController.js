@@ -25,7 +25,7 @@ class UserController {
                     res.status(404).json({ message: 'User not found'})
                 } else {
                     if (Helper.comparePassword(req.body.password, foundUser.password)) {
-                        const token = Helper.sign(foundUser._id, foundUser.name)
+                        const token = Helper.generateJWT(foundUser._id, foundUser.name)
 
                         res.status(200).json({accesstoken: token})
                     } else {
