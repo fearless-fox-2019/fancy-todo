@@ -1,5 +1,5 @@
-// const baseUrl='http://104.197.237.157'
-const baseUrl='http://localhost:3000'
+const baseUrl='http://35.224.252.181'
+// const baseUrl='http://localhost:3000'
 
 
 var token = localStorage.getItem('token')
@@ -12,7 +12,7 @@ $('#loginForm').on('submit', function() {
     let password = $('#password').val()
     $.ajax({
         method: 'POST',
-        url: 'http://localhost:3000/users/login',
+        url: `${baseUrl}/users/login`,
         data: {
             email: email,
             password: password
@@ -40,7 +40,7 @@ $('#signForm').on('submit', function() {
     console.log(name_,email_,password_)
     $.ajax({
         method: 'POST',
-        url: 'http://localhost:3000/users/register',
+        url: `${baseUrl}/users/register`,
         // data: $(this).serialize(),
         data: {
             name : name_,
@@ -65,7 +65,7 @@ $('#todoForm').on('submit', function() {
     console.log(todoTitle_,todoDescription_,todoDueDate_)
     $.ajax({
         method: 'POST',
-        url: 'http://localhost:3000/todos/',
+        url: `${baseUrl}/todos/`,
         // data: $(this).serialize(),
         headers:{
             token: localStorage.token
@@ -96,7 +96,7 @@ function onSignIn(googleUser) {
     var idToken = googleUser.getAuthResponse().id_token;
     
     $.ajax({
-        url:"http://localhost:3000/users/googleSignIn",
+        url:`${baseUrl}/users/googleSignIn`,
         method:"POST",
         data:{
             idToken : idToken
@@ -162,8 +162,6 @@ function changeToRegister() {
     $('#archived').hide()
     $('#archivedList').hide()
     $('#archive').hide()
-    // $('#todo').hide()
-    // $('#todo').hide()
 }
 
 function changeToLogin() {
@@ -210,15 +208,13 @@ function fetchMyTodo(){
         console.log(todos)
       if(todos.length<1){
         $('#todoList').append(`
-            <div class="row" >
-              <div class="col s12 m6">
-                <div class="card horizontal" style="width: 290px; background-color: #ef5350">
-                  <div class="card-content black-text" style="text-align:center">
-                    <h6 style="font-weight: bold; margin-left: 60px;">Please Add New Todo</6>
-                  </div>
-                </div>
+          <div class="row" >
+            <div class="col s12 m6">
+              <div class="card-content black-text" style="text-align:center">
+                <h6 style="font-weight: bold; margin-left: 60px;">Please Add New Todo</6>
               </div>
             </div>
+          </div>
         `)
       }else{
         $('#todoList').empty()
@@ -378,7 +374,6 @@ function fetchMyTodo(){
     })
     .done(todo =>{
       console.log('masuk ke done edit todo')
-      // let date = todo.dueDate.substring(0,10)
       // $('#editTodoModal').empty()
       $('#editTodoModal').append(`
           <div class="modal-content">
@@ -561,5 +556,6 @@ $(document).ready(function () {
         $('#todoList').hide()
         $('#onProgressList').hide()
         $('#finishedList').hide()
+        $('#archived').hide()
     }
 })
