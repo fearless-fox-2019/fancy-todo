@@ -4,10 +4,10 @@ const todo = require('../models/todo')
 module.exports = (req, res, next) => {
     console.log('masuk ke authorization')
     let credential = verify(req.headers["token"])
-    console.log(credential)
+    console.log(credential, 'ini credentialsss???????????')
     todo.find({ userId: credential.id })
     .then((found) => {
-        console.log(found)
+        console.log(found, 'ini foundd???????????????????????')
         // if (String(found.userId) == credential.id) {
             console.log('authorization sukses')
             next()

@@ -32,11 +32,13 @@ class todoController{
     }
 
     static singleTodo(req, res, next){
+        console.log('masuk ke findOne todo')
         todo.findById(req.params.id)
         .then(found => {
             if(!found){
                 res.status(404).json({})
             }else{
+                console.log('ketemu')
                 res.status(200).json(found)
             }
         })
@@ -57,6 +59,7 @@ class todoController{
     }
 
     static updateStatus(req, res, next){
+        console.log('masuk ke controller server update status')
         console.log(req.body)
         todo.findByIdAndUpdate(req.params.id, {$set: { ...req.body }},{new: true})
         .then(todo =>{

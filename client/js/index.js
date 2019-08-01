@@ -86,40 +86,6 @@ $('#todoForm').on('submit', function() {
     })
 })
 
-// $('#editForm').on('submit', function() {
-//   console.log('masuk ke ajax todo Edit Function')
-//   event.preventDefault();
-  // let id = todo.id
-  function submitEdit(id){
-    event.preventDefault();
-  // let todoid = id
-  let editTitle_ = $('#editTitle').val()
-  let editDescription_ = $('#editDescription').val()
-  let editDueDate_ = $('#editDuedate').val()
-  console.log(id,'ini IDDDDDDDDDDDD')
-  console.log(editTitle_,editDescription_,editDueDate_)
-  $.ajax({
-      method: 'PATCH',
-      url: `${baseUrl}/todos/${id}`,
-      headers:{
-          token: localStorage.token
-      },
-      data: {
-          title : editTitle_,
-          description: editDescription_,
-          dueDate : editDueDate_
-      }
-  })
-  .done(function(data) {
-     console.log(data)
-     console.log('berhasil edit Todo')
-    //  $('#createTodo').hide()
-     isToken()
-  })
-  .fail(function(err) {
-      console.log(err);
-  })
-}
 
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
@@ -281,7 +247,7 @@ function fetchMyTodo(){
                       <div class="row" >
                         <div class="col s6">
                           <center>
-                          <button type="button" class="btn btn-primary" style="margin-bottom: 10px; background-color: #2F66A9" data-toggle="modal" data-target="#editTodo">Edit</button>
+                          <button type="button" class="btn btn-primary" style="margin-bottom: 10px; background-color: #2F66A9" onclick="editTodo('${todo._id}')">Edit</button>
                           </center>
                         </div>
                         <div class="col s6">
@@ -315,7 +281,7 @@ function fetchMyTodo(){
                       <div class="row" >
                         <div class="col s6">
                           <center>
-                            <button type="button" class="btn btn-primary" style="margin-bottom: 10px; background-color: #2F66A9" data-toggle="modal" data-target="#editTodo">Edit</button>
+                            <button type="button" class="btn btn-primary" style="margin-bottom: 10px; background-color: #2F66A9" onclick="editTodo('${todo._id}')">Edit</button>
                           </center>
                         </div>
                         <div class="col s6">
@@ -349,7 +315,7 @@ function fetchMyTodo(){
                       <div class="row" >
                         <div class="col s6">
                           <center>
-                          <button type="button" class="btn btn-primary" style="margin-bottom: 10px; background-color: #2F66A9" data-toggle="modal" data-target="#editTodo">Edit</button>
+                          <button type="button" class="btn btn-primary" style="margin-bottom: 10px; background-color: #2F66A9" onclick="editTodo('${todo._id}')">Edit</button>
                           </center>
                         </div>
                         <div class="col s6">
@@ -398,6 +364,92 @@ function fetchMyTodo(){
     .fail(err =>{
       console.log('masuk errror fetch mytodo')
       console.log(err);
+    })
+  }
+
+  function editTodo(id){
+    console.log('masuk ke function editTodo untuk update Client')
+    $.ajax({
+      url: `${baseUrl}/todos/${id}`,
+      method: 'GET',
+      headers:{
+        token: localStorage.token
+      }
+    })
+    .done(todo =>{
+      console.log('masuk ke done edit todo')
+      // let date = todo.dueDate.substring(0,10)
+      // $('#editTodoModal').empty()
+      $('#editTodoModal').append(`
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editTodoLabel">Edit Todo</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            </div>
+          <div class="modal-body">
+              <form id="editForm">
+                  <div class="form-group">
+                      <label for="editTitle">Todo Title</label>
+                      <input type="text" class="form-control" required 
+                      id="editTitle" aria-describedby="todoHelp" placeholder="Todo Title"/>
+                  </div>
+                  <div class="form-group">
+                      <label for="editDescription">Description</label>
+                      <input type="text" class="form-control" required id="editDescription" placeholder="Todo Description"/>
+                  </div>
+                  <div class = "form-group">
+                      <label for="dueDate">Due Date</label>
+                      <div class="form-row show-inputbtns">
+                          <input type="date"  required id="editDuedate"/>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary" onclick="submitEdit('${todo._id}')">Submit It</button>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      `)
+    })
+    .fail(err =>{
+      console.log('masuk error get one todo')
+      console.log(err)
+    })
+}
+
+  function submitEdit(id){
+    console.log('masuk ke submit edit function index.js')
+      event.preventDefault();
+    // let todoid = id
+    let editTitle_ = $('#editTitle').val()
+    let editDescription_ = $('#editDescription').val()
+    let editDueDate_ = $('#editDuedate').val()
+    console.log(id,'ini IDDDDDDDDDDDD')
+    console.log(editTitle_,editDescription_,editDueDate_)
+    $.ajax({
+        method: 'PATCH',
+        url: `${baseUrl}/todos/${id}`,
+        headers:{
+            token: localStorage.token
+        },
+        data: {
+            title : editTitle_,
+            description: editDescription_,
+            dueDate : editDueDate_
+        }
+    })
+    .done(function(data) {
+      console.log(data)
+      console.log('berhasil edit Todo')
+      //  $('#createTodo').hide()
+      isToken()
+    })
+    .fail(function(err) {
+        console.log(err);
     })
   }
 

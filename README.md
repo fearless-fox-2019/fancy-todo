@@ -26,3 +26,7 @@
 |/todos|POST|token|title:String(*Mandatory*), description:String(*Mandatory*)|Create/Insert a todo into the list|
 |/todos/:id|DELETE|token|none|Delete a todo from the list base on ID (authorized person, only able to delete your own Todo)|
 |/todos/:id|PATCH|token|title:String, description:String|Update todo partially base on ID (blank field will be filled with old data, only able to update your own Todo)|
+
+
+####Archived Page
+Page for archived Todo
