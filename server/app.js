@@ -6,7 +6,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const morgan   = require('morgan')
-const port = 3000
+const port = process.env.PORT || 3000
 const route = require('./routes')
 const mongoose = require('mongoose')
 
