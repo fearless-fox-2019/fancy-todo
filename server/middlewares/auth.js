@@ -19,7 +19,7 @@ function authorization(req, res, next) {
         const todoId = req.params.id
         Model.Todo.findById(todoId)
         .then(data =>{
-            console.log(req.decoded, 'asd')
+            // console.log(req.decoded, 'asd')
             if(String(data.UserId) == req.decoded.id){
                 next()
             }else{

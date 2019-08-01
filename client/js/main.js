@@ -5,6 +5,7 @@ $(document).ready(function() {
     $('#form-register').hide()
     $('#edittodo').hide()
     $('#createtodo').hide()
+    $('#searchTodo').show()
     $('#content-page').show()
     ambilDataTodo() 
   } else {
@@ -35,6 +36,7 @@ $(document).ready(function() {
     event.preventDefault()
     $('#content-todo').hide()
     $('#content-pick').hide()
+    $('#searchTodo').hide()
     $('#createtodo').show()
   })
   $('#btnFinishedCreate').click(function() {
@@ -51,16 +53,19 @@ $(document).ready(function() {
   $('#btnNew').click(function() {
     event.preventDefault()
     $('#allTodos').empty()
+    // $('#searchTodo').hide()
     statusNew()
   })
   $('#btnProgress').click(function() {
     event.preventDefault()
     $('#allTodos').empty()
+    // $('#searchTodo').hide()
     statusProgress()
   })
   $('#btnFinished').click(function() {
     event.preventDefault()
     $('#allTodos').empty()
+    // $('#searchTodo').hide()
     statusFinished()
   })
   $('#searchTodo').keypress(function(event){
@@ -234,6 +239,7 @@ function ambilDataTodo() {
 }
 // create todo
 function createTodo(){
+  $('#content-pick').show()
   const name = $('#inname').val()
   const description = $('#indescription').val()
   const due_date = $('#induedate').val()

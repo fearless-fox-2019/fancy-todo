@@ -8,6 +8,7 @@ const errHandler = require('./middlewares/error-handlers')
 const routes = require('./routes/index')
 
 // db moongose
+// mongodb+srv://indinabilah:indinabilah@all-project-0rnbo.gcp.mongodb.net/fancyTodo?retryWrites=true&w=majority
 moongose.connect(process.env.MONGODB_URL, {useNewUrlParser:true})
 .then(response => {
     console.log('Connected to fancy-todo')
