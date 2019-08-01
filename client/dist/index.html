@@ -5,35 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-    <meta
-      name="google-signin-client_id"
-      content="434972235901-28ssekn7g3e99e3n454hs9abkhugrrn4.apps.googleusercontent.com"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.4/dist/semantic.min.css"
-    />
+    <meta name="google-signin-client_id" content="434972235901-28ssekn7g3e99e3n454hs9abkhugrrn4.apps.googleusercontent.com">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.4/dist/semantic.min.css">
     <link href="https://fonts.googleapis.com/css?family=Mandali&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/animation.css" />
-    <link rel="stylesheet" href="./css/style.css" />
-    <link rel=icon href=/todo.png>
+    <link rel="stylesheet" href="/animation.0561438f.css">
+    <link rel="stylesheet" href="/style.78032849.css">
+    <link rel="icon" href="/todo.a5fc4cd5.png">
     
     <title>Fancy-Todo</title>
-</head>
+<script src="/animation.0561438f.js"></script><script src="/style.78032849.js"></script></head>
 <body>
-    <style>
-        html, h1, h2, h3, h4, h5, p {
+    <style>html, h1, h2, h3, h4, h5, p {
             font-family: 'Mandali', sans-serif;
         }
         body {
-            background: url('back.jpg');
+            background: url('/back.139ae95d.jpg');
             background-size: auto;
 
-        }
-    </style>
+        }</style>
     <nav>
-        <div class="ui secondary menu container" >
+        <div class="ui secondary menu container">
             <div class="header item" id="view-mytodos" style="background-color: #daf5ae">
             Todo
             </div>
@@ -52,13 +43,7 @@
 
     <!-- Project-List -->
     <div class="ui container animated fadeIn" id="project-list-page">
-        <div
-            class="ui icon right floated button"
-            data-tooltip="create new project"
-            data-inverted=""
-            data-position="left center"
-            id="add-project-button"
-        >
+        <div class="ui icon right floated button" data-tooltip="create new project" data-inverted="" data-position="left center" id="add-project-button">
             <i class="add icon"></i>
         </div>
         <div class="ui tiny modal project">
@@ -67,12 +52,7 @@
             <form class="ui form">
                 <div class="field">
                 <label>Name</label>
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="Name"
-                    id="new-project-name"
-                />
+                <input type="text" name="name" placeholder="Name" id="new-project-name">
                 </div>
             </form>
             </div>
@@ -82,7 +62,7 @@
                 Cancel
             </div>
             <div class="ui green ok button" onclick="addNewProject()">
-                <i class="checkmark icon" ></i>
+                <i class="checkmark icon"></i>
                 Create Project
             </div>
             </div>
@@ -134,22 +114,10 @@
             <a class="item teal" data-tab="third">All</a>
             <div class="right menu">
             <div class="item">
-                <div
-                class="ui left attached icon button"
-                data-tooltip="add new todo"
-                data-inverted=""
-                data-position="left center"
-                id="add-todo-project-button"
-                >
+                <div class="ui left attached icon button" data-tooltip="add new todo" data-inverted="" data-position="left center" id="add-todo-project-button">
                 <i class="add icon"></i>
                 </div>
-                <div
-                class="ui right attached icon button"
-                data-tooltip="view project members"
-                data-inverted=""
-                data-position="right center"
-                id="view-members-button"
-                >
+                <div class="ui right attached icon button" data-tooltip="view project members" data-inverted="" data-position="right center" id="view-members-button">
                 <i class="user icon"></i>
                 </div>
             </div>
@@ -170,11 +138,8 @@
                 </tbody>
                 </table>
             </div>
-            <div class="actions" >
-                <div
-                class="ui primary labeled icon button"
-                id="add-member-button"
-                >
+            <div class="actions">
+                <div class="ui primary labeled icon button" id="add-member-button">
                 <i class="user icon"></i> Add Member
                 </div>
             </div>
@@ -186,7 +151,7 @@
                 <div class="ui form">
                 <div class="field">
                     <label>Email</label>
-                    <input type="email" placeholder="budi@email.com" id="newMember"/>
+                    <input type="email" placeholder="budi@email.com" id="newMember">
                 </div>
                 </div>
             </div>
@@ -227,13 +192,7 @@
             <a class="item teal" data-tab="third">All</a>
             <div class="right menu">
             <div class="item">
-                <div
-                class="ui icon button"
-                data-tooltip="add new todo"
-                data-inverted=""
-                data-position="left center"
-                id="add-todo-button"
-                >
+                <div class="ui icon button" data-tooltip="add new todo" data-inverted="" data-position="left center" id="add-todo-button">
                 <i class="add icon"></i>
                 </div>
             </div>
@@ -241,38 +200,21 @@
             <div class="ui tiny modal todo" id="todo-form">
             <div class="ui icon header">Add New Todo</div>
             <div class="content">
-                <form class="ui form" >
+                <form class="ui form">
                 <div class="field">
                     <label>Name</label>
-                    <input
-                    type="text"
-                    name="title"
-                    placeholder="Name"
-                    id="new-todo-name"
-                    />
+                    <input type="text" name="title" placeholder="Name" id="new-todo-name">
                 </div>
                 <div class="field">
                     <label>Description</label>
-                    <textarea
-                    type="text"
-                    name="description"
-                    id="new-todo-desc"
-                    rows="3"
-                    ></textarea>
+                    <textarea type="text" name="description" id="new-todo-desc" rows="3"></textarea>
                 </div>
                 <div class="field">
                     <label>Due Date</label>
                     <div class="ui calendar" id="date_calendar">
                     <div class="ui input left icon">
                         <i class="calendar icon"></i>
-                        <input
-                        type="text"
-                        placeholder="Date"
-                        name="due-date"
-                        id="new-todo-due-date"
-                        readonly="readonly"
-                        required
-                        />
+                        <input type="text" placeholder="Date" name="due-date" id="new-todo-due-date" readonly="readonly" required="">
                     </div>
                     </div>
                 </div>
@@ -292,38 +234,21 @@
             <div class="ui tiny modal todo" id="edit-form">
               <div class="ui icon header">Edit Todo</div>
               <div class="content">
-                  <form class="ui form" >
+                  <form class="ui form">
                   <div class="field">
                       <label>Name</label>
-                      <input
-                      type="text"
-                      name="title"
-                      placeholder="Name"
-                      id="edit-todo-name"
-                      />
+                      <input type="text" name="title" placeholder="Name" id="edit-todo-name">
                   </div>
                   <div class="field">
                       <label>Description</label>
-                      <textarea
-                      type="text"
-                      name="description"
-                      id="edit-todo-desc"
-                      rows="3"
-                      ></textarea>
+                      <textarea type="text" name="description" id="edit-todo-desc" rows="3"></textarea>
                   </div>
                   <div class="field">
                       <label>Due Date</label>
                       <div class="ui calendar" id="date_calendar_edit">
                       <div class="ui input left icon">
                           <i class="calendar icon"></i>
-                          <input
-                          type="text"
-                          placeholder="Date"
-                          name="due-date"
-                          id="edit-todo-due-date"
-                          readonly="readonly"
-                          required
-                          />
+                          <input type="text" placeholder="Date" name="due-date" id="edit-todo-due-date" readonly="readonly" required="">
                       </div>
                       </div>
                   </div>
@@ -358,10 +283,7 @@
     
 
     <!-- Login and Register Form-->
-    <div
-      class="ui container middle aligned center aligned grid"
-      style="margin-top: 17rem;"
-    >
+    <div class="ui container middle aligned center aligned grid" style="margin-top: 17rem;">
       <div class="six wide column">
         <!-- Login -->
         <div id="sign-in-form">
@@ -375,23 +297,13 @@
               <div class="field">
                 <div class="ui left icon input">
                   <i class="mail icon"></i>
-                  <input
-                    type="text"
-                    name="email"
-                    placeholder="E-mail address"
-                    id="email-login"
-                  />
+                  <input type="text" name="email" placeholder="E-mail address" id="email-login">
                 </div>
               </div>
               <div class="field">
                 <div class="ui left icon input">
                   <i class="lock icon"></i>
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    id="password-login"
-                  />
+                  <input type="password" name="password" placeholder="Password" id="password-login">
                 </div>
               </div>
               <div class="ui fluid large blue submit button" onclick="login()">Login</div>
@@ -399,14 +311,8 @@
 
             <div class="ui error message"></div>
           </form>
-          <br />
-          <div
-            class="g-signin2"
-            data-width="405"
-            data-height="40"
-            data-longtitle="false"
-            data-onsuccess="onSignIn"
-          ></div>
+          <br>
+          <div class="g-signin2" data-width="405" data-height="40" data-longtitle="false" data-onsuccess="onSignIn"></div>
 
           <div class="ui message">
             New to us? <a id="sign-up-show">Sign Up</a>
@@ -424,34 +330,19 @@
               <div class="field">
                 <div class="ui left icon input">
                   <i class="user icon"></i>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Name"
-                    id="name-register"
-                  />
+                  <input type="text" name="name" placeholder="Name" id="name-register">
                 </div>
               </div>
               <div class="field">
                 <div class="ui left icon input">
                   <i class="mail icon"></i>
-                  <input
-                    type="text"
-                    name="email"
-                    placeholder="E-mail address"
-                    id="email-register"
-                  />
+                  <input type="text" name="email" placeholder="E-mail address" id="email-register">
                 </div>
               </div>
               <div class="field">
                 <div class="ui left icon input">
                   <i class="lock icon"></i>
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    id="password-register"
-                  />
+                  <input type="password" name="password" placeholder="Password" id="password-register">
                 </div>
               </div>
               <div class="ui fluid large blue submit button" onclick="register()">Sign Up</div>
@@ -466,17 +357,13 @@
       </div>
     </div>
 
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.js"
-    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-    crossorigin="anonymous"
-    ></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://apis.google.com/js/platform.js" async="" defer=""></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.4/dist/semantic.min.js"></script>
     
-    <script src="./js/main.js"></script> 
-    <script src="./js/project.js"></script>
-    <script src="./js/todo.js"></script>
+    <script src="/main.fb6bbcaf.js"></script> 
+    <script src="/project.11e9b9e2.js"></script>
+    <script src="/todo.52169671.js"></script>
   </body>
 </html>

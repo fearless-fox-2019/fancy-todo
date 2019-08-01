@@ -12,12 +12,12 @@ if (localStorage.getItem('accesstoken')) {
     $('#project-page').hide()
 }
 
-$(document).ready(function () {
+$(document).ready(() => {
     if (localStorage.getItem('accesstoken')) {
         fetchMyTodos()
         fetchMyProjects()
     }
-
+    
     $('#view-project-list').on('click', () => {
         $('#project-list-page').show()
         $('#mytodos').hide()

@@ -52,19 +52,32 @@ class TodoController {
     }
 
     static updateTodo(req, res) {
-        Todo.updateOne(
+        Todo
+            .updateOne(
                 { _id: ObjectId(req.params.id)}, 
                 { $set: req.body }
             )
             .then(result => {
                 if (result.n && result.ok) {
-                    res.status(200).json({ message: 'Todo updated' });
+                    res
+                        .status(200)
+                        .json({
+                            message: 'Todo updated'
+                        });
                 } else {
-                    res.status(404).json({ message: 'Todo not found' })
+                    res
+                        .status(404)
+                        .json({
+                            message: 'Todo not found'
+                        })
                 }
             })
             .catch(err => {
-                res.status(500).json({ message: err.message });
+                res
+                    .status(500)
+                    .json({
+                        message: err.message
+                    });
             })
     }
 }

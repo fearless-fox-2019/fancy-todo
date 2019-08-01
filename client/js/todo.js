@@ -27,7 +27,7 @@ function fetchMyTodos() {
                     <div class="four wide column">
                     <div class="ui link card animated flipInX">
                     <div class="content">
-                    <i class="right floated check large green icon" onclick="updateTodo('${todo._id}', ${!todo.status})"></i>
+                    <i class="right floated check large green icon" onclick="updateStatus('${todo._id}', ${!todo.status})"></i>
                     <div class="header">${todo.name}</div>
                         <div class="description">
                             <p>${todo.description}</p>
@@ -54,7 +54,7 @@ function fetchMyTodos() {
                     <div class="four wide column">
                     <div class="ui link card animated flipInX">
                     <div class="content">
-                    <i class="right floated check large grey icon" onclick="updateTodo('${todo._id}', ${!todo.status})"></i>
+                    <i class="right floated check large grey icon" onclick="updateStatus('${todo._id}', ${!todo.status})"></i>
                     <div class="header">${todo.name}</div>
                         <div class="description">
                             <p>${todo.description}</p>
@@ -81,7 +81,7 @@ function fetchMyTodos() {
                 <div class="four wide column">
                     <div class="ui link card animated flipInX">
                     <div class="content">
-                    <i class="right floated check large ${todo.status ? "green" : "grey"} icon" onclick="updateTodo('${todo._id}', ${!todo.status})"></i>
+                    <i class="right floated check large ${todo.status ? "green" : "grey"} icon" onclick="updateStatus('${todo._id}', ${!todo.status})"></i>
                     <div class="header">${todo.name}</div>
                         <div class="description">
                             <p>${todo.description}</p>
@@ -142,8 +142,37 @@ function addTodo() {
         })
 }
 
-function updateTodo(id, status) {
+function updateTodo(id) {
+
+    const name = $('#edit-todo-name').val()
+    const description = $('#edit-todo-desc').val() || null
+    const due_date = $('#edit-todo-due-date').val() || null
+    
     event.preventDefault()
+
+    $
+        .ajax({
+            url: `http://localhost:3000/todos/${id}`,
+            method: 'PATCH',
+            headers: {
+                accesstoken: localStorage.getItem('accesstoken')
+            },
+            data : {
+                name, description, due_date
+            }
+        })
+        .done(response => {
+            fetchMyTodos()
+            fetchMyProjects()
+
+        })
+        .fail((jqXHR, textstatus) => {
+            swal(jqXHR.responseJSON.message)
+        })
+}
+
+function updateStatus(id, status){
+    event.preventDefault();
 
     $
         .ajax({
@@ -157,8 +186,8 @@ function updateTodo(id, status) {
             }
         })
         .done(response => {
-            fetchMyTodos()
-            fetchMyProjects()
+            fetchMyTodos();
+            fetchMyProjects();
 
         })
         .fail((jqXHR, textstatus) => {
@@ -167,6 +196,7 @@ function updateTodo(id, status) {
 }
 
 function editTodo(id) {
+    console.log('masuk edit')
     $
         .ajax({
             url: `http://localhost:3000/todos/${id}`,
@@ -176,13 +206,14 @@ function editTodo(id) {
             }
         })
         .done(response => {
-            $('#todo-form').modal('show')
+            localStorage.setItem('idTodo', id)
+            $('#edit-form').modal('show')
             console.log(response)
             const today = new Date
 
-            $('#new-todo-name').val(response.name)
-            $('#new-todo-desc').val(response.description)
-            $('#date_calendar').calendar({
+            $('#edit-todo-name').val(response.name)
+            $('#edit-todo-desc').val(response.description)
+            $('#date_calendar_edit').calendar({
                 type: 'date',
                 minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
             })
