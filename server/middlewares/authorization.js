@@ -8,7 +8,7 @@ function authorization(req,res,next) {
                 if(todo.userId == req.decoded._id) {
                     next()
                 } else {
-                    throw {status:401, message:'Unauthorized'}
+                    throw {status:403, message:'Unauthorized'}
                 }
             } else {
                 throw {status:404, message: 'Todo not found'}

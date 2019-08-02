@@ -1,4 +1,4 @@
-const baseUrl = `http://localhost:3000/api`
+const baseUrl = `http://34.87.120.4/api`
 
 $(document).ready(function() {
     homePage()

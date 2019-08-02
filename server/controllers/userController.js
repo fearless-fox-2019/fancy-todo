@@ -108,9 +108,11 @@ class UserController {
         .then((userFound) => {
             if(userFound) {
                 // console.log(userFound)
-                let tokenJWT = createToken({username: userFound.username, email: userFound.email,_id: userFound._id}, process.env.JWT_SECRET)
-                res.status(200).json(tokenJWT)
-                next()
+                // let tokenJWT = createToken({username: userFound.username, email: userFound.email,_id: userFound._id}, process.env.JWT_SECRET)
+                // res.status(200).json(tokenJWT)
+                // next()
+
+                return  userFound
             } else {
                 return User.create({
                     email: payload.email,

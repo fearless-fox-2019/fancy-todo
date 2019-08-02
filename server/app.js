@@ -14,6 +14,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
 app.use(cors())
 mongoose.connect('mongodb://localhost/fancyTODO', {useNewUrlParser: true});
+// mongodb+srv://instrom:<password>@hacktiv8tommysutjipto-6heb7.gcp.mongodb.net/test?retryWrites=true&w=majority   // test nama database
 
 const userRoutes = require('./routes/usersRoutes')
 const todoRoutes = require('./routes/todoRoutes')
