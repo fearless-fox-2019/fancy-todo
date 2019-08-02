@@ -40,7 +40,7 @@ let userSchema = new Schema({
         type : String,
         required : [true, 'Password required']
     }
-})
+}, {timestamps: true})
 
 userSchema.pre('save',function(next){
     this.password = hash(this.password)

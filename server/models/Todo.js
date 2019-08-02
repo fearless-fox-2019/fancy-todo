@@ -22,7 +22,7 @@ let TodoSchema = new Schema({
         type: Schema.Types.ObjectId, 
         ref: "Users"
     }
-})
+}, {timestamps: true})
 
 let Todo = mongoose.model('Todos',TodoSchema)
 
