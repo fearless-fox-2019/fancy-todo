@@ -27,7 +27,7 @@ function getInterest(){
     })
     
 }
-var baseUrl = "http://localhost:3000/api"
+var baseUrl = "http://35.240.255.112/api"
 function filter() {
     $(".filter").on('input keypress', function () {
         var value = $(this).val().toLowerCase();
@@ -334,7 +334,7 @@ function login() {
     var password = $("#passwordLogin").val()
     $.ajax({
         method: "POST",
-        url: "http://localhost:3000/api/users/signin",
+        url: "http://35.240.255.112/api/users/signin",
         data: {
             username: username,
             password: password
@@ -359,7 +359,7 @@ function register() {
     var email = $("#emailRegister").val()
     $.ajax({
         method: "POST",
-        url: "http://localhost:3000/api/users/signup",
+        url: "http://35.240.255.112/api/users/signup",
         data: {
             username: username,
             email: email,
@@ -441,7 +441,7 @@ function getUpdate(id) {
     $(".todo").empty()
     $.ajax({
         method: "GET",
-        url: `http://localhost:3000/api/todos/${id}`,
+        url: `http://35.240.255.112/api/todos/${id}`,
         headers: {
             token: localStorage.getItem("token")
         }
@@ -560,7 +560,7 @@ function getUpdate(id) {
 function getDelete(id) {
     $.ajax({
         method: "DELETE",
-        url: `http://localhost:3000/api/todos/${id}`,
+        url: `http://35.240.255.112/api/todos/${id}`,
         headers: {
             token: localStorage.getItem("token")
         }
@@ -583,7 +583,7 @@ function getTodo() {
     $(".todo").empty()
     $.ajax({
         method: "GET",
-        url: "http://localhost:3000/api/todos",
+        url: "http://35.240.255.112/api/todos",
         headers: {
             token: localStorage.getItem("token")
         }
