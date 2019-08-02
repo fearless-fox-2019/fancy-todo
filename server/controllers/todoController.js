@@ -15,6 +15,8 @@ class todoController {
 
     static create (req, res, next){
         // console.log('ini body', req.body)
+        let {name, description, dueDate, UserId} = req.body
+        let input = {name, description, dueDate, UserId}
         Todo.create(req.body)
             .then((todo)=>{
                 res.send(todo)

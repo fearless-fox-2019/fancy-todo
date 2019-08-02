@@ -7,6 +7,6 @@ router.use(auth)
 router.get('/', todoController.getAllTodo)
 router.post('/create', todoController.create)
 router.post('/delete', authorization, todoController.delete)
-router.post('/update', todoController.update)
+router.post('/update', authorization, todoController.update)
 
 module.exports = router
