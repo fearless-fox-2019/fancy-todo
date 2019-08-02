@@ -1,6 +1,6 @@
 # fancy-todo ❤️
 
-[![standard-readme compliant](https://img.shields.io/badge/Link%20deploy-KANBAN-brightgreen.svg?style=flat-square)](https://fancytodo.indinabilah.me)
+[![standard-readme compliant](https://img.shields.io/badge/Link%20deploy-KANBAN-brightgreen.svg?style=flat-square)](http://fancytodo.indinabilah.me/)
 
 
 Getting Startted
