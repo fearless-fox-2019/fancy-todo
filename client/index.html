@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>My Todo List</title>
+        <meta name="google-signin-client_id" content="38893530788-p9mbaml2k7bq02jifa52f6juei0i3st6.apps.googleusercontent.com">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="style/style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <!-- navbar  -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+            <a class="navbar-brand" style="color:white">My Todo List</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/" style="color:white" id="homenav">Home</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <button class ="btn btn-primary navbar-btn navbar-right" style ="margin-left:10px" id="button-signin">Sign In</button>
+            <button class ="btn btn-danger navbar-btn navbar-right" style ="margin-left:10px" id="button-register">Register</button>
+            <button class ="btn btn-primary navbar-btn navbar-right" style ="margin-left:10px" id="button-backTodo">Back to Todo</button>
+            <button class ="btn btn-primary navbar-btn navbar-right" style ="margin-left:10px" id="button-project">Project With Other User</button>
+            <button class ="btn btn-danger navbar-btn navbar-right" style ="margin-left:10px" id="button-logout">Logout</button>
+        </nav>
+
+        <!-- form register -->
+        <form method="POST" id="form-register" class="form-group" style="padding: 20px">
+            <label for="i-reg-name">Name</label>
+            <input type="text" id="i-reg-name" class="form-control">
+            <label for="i-reg-email">Email</label>
+            <input type="text" id="i-reg-email" class="form-control">
+            <label for="i-reg-password">Password</label>
+            <input type="password" id="i-reg-password" class="form-control"><br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <br><br><label style="margin-left:50px">Or</label>
+            <div style="margin-top: 5px;">
+                <label>Register with google</label>
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>                                
+            </div>
+        </form>
+
+         <!-- form sigin -->
+         <form method="POST" id="form-signin" class="form-group" style="padding: 20px">
+            <label for="i-sigin-email">Email</label>
+            <input type="text" id="i-sigin-email" class="form-control">
+            <label for="i-sigin-password">Password</label>
+            <input type="password" id="i-sigin-password" class="form-control"><br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <br><br><label style="margin-left:50px">Or</label>
+            <div style="margin-top: 5px;">
+                <label>Sign In with google</label>
+                <div class="g-signin2" data-onsuccess="onSignIn" id="google-signin"></div>                                
+            </div>
+        </form>
+        
+        <!-- form todo -->
+        <form method="POST" id="form-todo" style="padding: 20px" class="form-group">
+                <h2>Add New Todo</h2>
+                <label for="i-todo-name">Name</label>
+                <input type="text" id="i-todo-name" class="form-control">
+                <label for="i-todo-description">Description</label>
+                <textarea rows="4" cols="50" id="i-todo-description" form="form-todo" class="form-control"></textarea>
+                <label for="i-todo-dueDate">Due Date</label>
+                <input type="date" id="i-todo-dueDate" class="form-control"><br>
+                <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <!-- Fetch Data Wheather -->
+        <div class="container" id="fetchDataWeather"></div>
+        
+        <!-- fetch data todo -->
+        <div class="container" id="fetchDataTodo"></div>
+
+        <!-- fetch data users -->
+        <div class="container" id="fetchDataUsers"></div>
+        
+        <!-- jquery -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <!-- swal -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+        <script src="sweetalert2.all.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+        <!-- google signin script -->
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <!-- bootstrap -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <!-- script -->
+        <script src="js/index.js"></script>
+    </body>
+</html>
