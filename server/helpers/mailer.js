@@ -7,7 +7,7 @@ module.exports = (obj) => {
         service: 'gmail',
         auth: {
             user: `fancytodooomailer@gmail.com`,
-            pass: process.env.PASSWORD_FANCYTODO
+            pass: process.env.NODE_MAILER_PASSWORD
         }
     })
 
