@@ -1,5 +1,7 @@
 # fancy-todo
 
+link deploy = http://fancytodo.zahriahfriska.xyz
+
 ## Getting Started
  * npm install
  * `nodemon app.js` or `npm run dev` for running in server port

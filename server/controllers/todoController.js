@@ -16,6 +16,9 @@ class TodoController{
     }
 
     static listTodoAuthorize(req, res, next){
+        console.log("masuk ke controllers listTodo");
+        console.log(req.decoded.id);
+        
         Todo.find({UserId : req.decoded.id }).sort({status : -1, due_date : 1})
         .then(todos => {
             todos.name = { name : req.decoded.name}

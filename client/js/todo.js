@@ -1,4 +1,4 @@
-const baseUrl = `http://localhost:3000`
+const baseUrl = `http://35.197.154.197`
 
 function checkLogin(){
     if(localStorage.token){
@@ -6,10 +6,6 @@ function checkLogin(){
     } else {
 
     }
-}
-
-function navbar(){
-
 }
 
 function landingPage(){
@@ -86,6 +82,7 @@ function login(){
 }
 
 function getTodosUser(){
+    console.log('localStorage.token on getTodosUser',localStorage.token);
     $.ajax({
         method : 'GET',
         url : `${baseUrl}/todos/listTodo`,
@@ -93,6 +90,7 @@ function getTodosUser(){
     })
     .done(function(data){
         console.log(data, "<<<<<<<<<<<<<<<<<<<<<<<<<");
+        console.log('SAMPE SINI');
         
         $('#userProfile').empty()
         $('#userProfile').append(
