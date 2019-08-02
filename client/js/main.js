@@ -92,7 +92,7 @@ function login() {
     console.log(email, password, '-------')
     $.ajax({
       method: "POST",
-      url: `http://localhost:3000/users/login`,
+      url: `http://35.187.244.182/users/login`,
       data:{
         email: email,
         password: password
@@ -118,7 +118,7 @@ function register() {
     const passwordRegister = $('#regpassword').val()
     $.ajax({
         method: "POST",
-        url: `http://localhost:3000/users`,
+        url: `http://35.187.244.182/users`,
         data: {
             username: usernameRegister,
             email: emailRegister,
@@ -168,7 +168,7 @@ function onSignIn(googleUser) {
   // console.log(id_token)
   $.ajax({
     method: "POST",
-    url: `http://localhost:3000/users/login/google`,
+    url: `http://35.187.244.182/users/login/google`,
     data: {id_token: id_token}
   })
   .done(function(response) {
@@ -189,7 +189,7 @@ function onSignIn(googleUser) {
 function ambilDataTodo() {
   $.ajax({
     method: "GET",
-    url: "http://localhost:3000/todos/user",
+    url: "http://35.187.244.182/todos/user",
     headers: {token: localStorage.token} //kriim headers dari klien hohoho
   })
   .done(function(response) {
@@ -247,7 +247,7 @@ function createTodo(){
   console.log(name, description, due_date, 'data')
   $.ajax({
     method: "POST",
-    url: "http://localhost:3000/todos",
+    url: "http://35.187.244.182/todos",
     headers: {
       token: localStorage.token
     },
@@ -280,7 +280,7 @@ function editTodo(index) {
   }
   $.ajax({
     method: "PATCH",
-    url: `http://localhost:3000/todos/${index}`,
+    url: `http://35.187.244.182/todos/${index}`,
     headers: {
       token: localStorage.token
     },
@@ -299,7 +299,7 @@ function editTodo(index) {
 function editTodoForm(id) {
   $.ajax({
     method: "GET",
-    url: `http://localhost:3000/todos/id/${id}`,
+    url: `http://35.187.244.182/todos/id/${id}`,
     headers: {
       token: localStorage.token
     }
@@ -333,7 +333,7 @@ function editTodoForm(id) {
 function deleteTodo(index) {
   $.ajax({
     method: "DELETE",
-    url: `http://localhost:3000/todos/${index}`,
+    url: `http://35.187.244.182/todos/${index}`,
     headers: {
       token: localStorage.token
     }
@@ -351,7 +351,7 @@ function deleteTodo(index) {
 function statusNew() {
   $.ajax({
     method: "GET",
-    url: `http://localhost:3000/todos/status/new`,
+    url: `http://35.187.244.182/todos/status/new`,
     headers: {token: localStorage.token} //kriim headers dari klien hohoho
   })
   .done(function(response) {
@@ -399,7 +399,7 @@ function statusNew() {
 function statusProgress() {
   $.ajax({
     method: "GET",
-    url: `http://localhost:3000/todos/status/Progress`,
+    url: `http://35.187.244.182/todos/status/Progress`,
     headers: {token: localStorage.token} //kriim headers dari klien hohoho
   })
   .done(function(response) {
@@ -447,7 +447,7 @@ function statusProgress() {
 function statusFinished() {
   $.ajax({
     method: "GET",
-    url: `http://localhost:3000/todos/status/Finished`,
+    url: `http://35.187.244.182/todos/status/Finished`,
     headers: {token: localStorage.token} //kriim headers dari klien hohoho
   })
   .done(function(response) {
@@ -497,7 +497,7 @@ function statusFinished() {
 function searchTodos(value) {
   $.ajax({
     method: "GET",
-    url: `http://localhost:3000/todos/title/${value}`,
+    url: `http://35.187.244.182/todos/title/${value}`,
     headers: {token: localStorage.token}
   })
   .done(response => {
