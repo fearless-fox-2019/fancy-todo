@@ -12,10 +12,12 @@ const mongoose = require('mongoose');
 // Encode From Url or Body EJS
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
-mongoose.connect(process.env.DB_MONGOOSE, {useNewUrlParser: true});
+mongoose.connect(process.env.DB_MONGOOSE, {useNewUrlParser: true, useCreateIndex: true}, function(err) {
+  if (err) console.log('Mongoose Error');
+});
 
 app.use(cors())
-app.use(morgan())
+app.use(morgan('tiny'))
 
 // Routes Main
 const routesIndex = require('./routes/routes.js');

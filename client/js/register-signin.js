@@ -30,7 +30,7 @@ function onSuccess(googleUser) {
   gapi.auth2.getAuthInstance().signOut()
   const profile = googleUser.getBasicProfile();
   const id_token = googleUser.getAuthResponse().id_token;
-  $.post('http://localhost:3000/users/signin-google', {
+  $.post('http://34.87.60.115/users/signin-google', {
     token : id_token
   })
   .done((token) => {
@@ -78,7 +78,7 @@ function onSignIn() {
     return acc
   }, {})
 
-  $.post(`http://localhost:3000/users/signin`, data)
+  $.post(`http://34.87.60.115/users/signin`, data)
   .done((token) => {
     localStorage.setItem('token', token)
     $('#start').hide()
@@ -106,7 +106,7 @@ function onRegister() {
     }
     return acc
   }, {})
-  $.post(`http://localhost:3000/users/register`, data)
+  $.post(`http://34.87.60.115/users/register`, data)
   .done((token) => {
     localStorage.setItem('token', token)
     $('#start').hide()

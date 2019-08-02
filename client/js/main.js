@@ -9,7 +9,7 @@ $(document).ready(function() {
 
 function getInfo() {
   $('#user-profile-info').empty()
-  $.ajax(`http://localhost:3000/users/dashboard`, {
+  $.ajax(`http://34.87.60.115/users/dashboard`, {
     method : 'GET',
     headers : {
       token : localStorage.getItem('token')
@@ -38,7 +38,7 @@ function getTasks() {
   $('#pending-task').hide()
   $('#all-task').empty()
   $.ajax({
-    url :'http://localhost:3000/todos/all',
+    url :'http://34.87.60.115/todos/all',
     method : 'GET',
     headers : {
       token : localStorage.getItem('token')
@@ -86,7 +86,7 @@ function createTask() {
     }
     return acc
   }, {})
-  $.ajax(`http://localhost:3000/todos/create`, {
+  $.ajax(`http://34.87.60.115/todos/create`, {
     method : 'POST',
     data : data,
     headers :  {
@@ -111,7 +111,7 @@ function createTask() {
 
 function completeTask(input) {
   $.ajax({
-    url : `http://localhost:3000/todos/complete`,
+    url : `http://34.87.60.115/todos/complete`,
     method : 'PATCH',
     headers : {
       token : localStorage.getItem('token'),
@@ -143,7 +143,7 @@ function uncompleteTask() {
 
 function deleteTask(input) {
   $.ajax({
-    url : `http://localhost:3000/todos/delete`,
+    url : `http://34.87.60.115/todos/delete`,
     method : 'DELETE',
     headers : {
       token : localStorage.getItem('token'),
@@ -179,7 +179,7 @@ function getPending() {
   $('#pending-task').show()
   $('#pending-task').empty()
   $.ajax({
-    url :'http://localhost:3000/todos/pending',
+    url :'http://34.87.60.115/todos/pending',
     method : 'GET',
     headers : {
       token : localStorage.getItem('token')
@@ -223,7 +223,7 @@ function getComplete() {
   $('#completed-task').empty()
   $('#search-bar').hide()
   $.ajax({
-    url :'http://localhost:3000/todos/completed',
+    url :'http://34.87.60.115/todos/completed',
     method : 'GET',
     headers : {
       token : localStorage.getItem('token')

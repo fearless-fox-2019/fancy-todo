@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="google-signin-client_id" content="704750363286-ec339084bbcmufd6glr342n7976illqf.apps.googleusercontent.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/main.c52e0fe2.css">
+  <title>Todo's</title>
+<script src="/main.c52e0fe2.js"></script></head>
+<body>
+
+  <!-- Login / Register Page Start-->
+  <div id="start">
+    <div class="row" style="margin-bottom: 0">
+      <div class="col s6">
+        <!-- Login Form -->
+        <div class="container">
+          <!-- Tabs -->
+          <div class="row">
+            <div class="col s12">
+              <ul class="tabs">
+                <li class="tab col s6 pop"><a class="active" href="#signin-form">Sign In</a></li>
+                <li class="tab col s6 pop"><a href="#register-form">Register</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Sign In -->
+          <div id="signin-form">
+            <h2>Login</h2>
+  
+            <form action="">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input name="email" id="email" type="email" class="validate">
+                  <label for="email">Email</label>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="input-field col s12">
+                    <input name="password" id="password" type="password" class="validate">
+                    <label for="password">Password</label>
+                  </div>
+              </div>
+              
+              <div class="center-align">
+                <a class="btn waves-effect waves-light" name="action" onclick="onSignIn()">Submit</a>
+                <div id="my-signin2" style="margin-left : 7.5vw; margin-top : 50px;"></div>
+              </div>
+            </form>
+          </div>
+          <!-- Register -->
+          <div id="register-form">
+            <h2>Register</h2>
+  
+            <form>
+              <div class="row">
+                <div class="input-field col s6">
+                  <input name="fullname" id="reg-fullname" type="text" class="validate">
+                  <label for="reg-fullname">Full Name</label>
+                </div>
+                <div class="input-field col s6">
+                  <input name="username" id="reg-username" type="text" class="validate">
+                  <label for="reg-username">Username</label>    
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input name="email" id="reg-email" type="email" class="validate">
+                  <label for="reg-email">Email</label>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="input-field col s12">
+                    <input name="password" id="reg-password" type="password" class="validate">
+                    <label for="reg-password">Password</label>
+                  </div>
+              </div>
+              <div class="center-align">
+                <a class="btn waves-effect waves-light" type="submit" onclick="onRegister()">Register
+                </a>
+              </div>
+  
+            </form>
+          </div>
+
+        </div>
+      </div>
+      
+      <div class="col s6 todo-bg"></div>
+    </div>
+  </div>
+  <!-- Login / Register Page End -->
+  <div id="dashboard">
+    <!-- Navbar goes here -->
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo">ToDo</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <a class="waves-effect waves-light btn blue white" onclick="onSignOut()">Sign Out</a>
+        </ul>
+      </div>
+    </nav>
+          
+
+    <!-- Page Layout here -->
+    <div class="row">
+
+      <div class="col s3 profile">
+        <!-- Grey navigation panel -->
+        <div class="row">
+          <div class="info-profile center-align">
+            <img src="/default.769ef1e1.jpg" alt="" id="user-ava">
+          </div>
+          <div class="text-center" id="user-profile-info">
+          </div>
+          <div class="container center-align">
+            <a class="waves-effect waves-light btn" id="create-todo" onclick="renderForm()">Create To Do's</a>
+          </div>
+
+          <div class="container collection">
+            <a id="get-all-task" href="" class="collection-item" onclick="getTasks()">All Todo</a>
+            <a id="get-pending-task" href="" class="collection-item" onclick="getPending()">To Do's</a>
+            <a id="get-completed-task" href="" class="collection-item" onclick="getComplete()">Completed</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col s9 offset-s3">
+        <div class="row" id="search-bar">
+          <h2>
+            Search Task :
+          </h2>
+          <form>
+            <div class="input-field col s8" style="display: inline !important">
+              <input id="search-val" type="text" class="validate" style="margin-top: 20px;">
+              <label for="search-val">Search Task</label>
+              <a id="search-val" class="waves-effect waves-light btn" style="margin-top: 20px;" onclick="searchTask()">Find Task</a>
+            </div>
+          </form>
+        </div>
+        <!-- Teal page content  -->
+        <div class="wrapper row" id="all-task">
+        </div>
+
+        <div class="wrapper row" id="completed-task" style="display: none">
+        </div>
+        
+        <div class="wrapper row" id="pending-task" style="display: none">
+        </div>
+
+        <div class="wrapper" id="create-task" style="display: none">
+          <h3>Create Todo</h3>
+          <div class="row">
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s6">
+                  <input name="name" id="task-name" type="text" class="validate">
+                  <label for="task-name">Task Name</label>
+                </div>
+                <div class="input-field col s6">
+                  <input name="date" id="due-date" type="date" class="validate">
+                  <label for="due-date">Due Date</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <textarea name="description" id="description" class="materialize-textarea"></textarea>
+                  <label for="description">Decription</label>
+                </div>
+              </div>
+              <a class="waves-effect waves-light btn" onclick="createTask()">Create Task</a>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="/register-signin.a43e51e5.js"></script>
+  <script src="/main.fb6bbcaf.js"></script>
+  <script src="/search.a3177960.js"></script>
+  <script src="/signout.235d82bb.js"></script>
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async="" defer=""></script>
+</body>
+
+
+</html>

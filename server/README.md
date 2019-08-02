@@ -6,14 +6,20 @@
 
 baseUrl = http:localhost:3000/
 
-#### User Routes
+## User Routes
+#### User SignUp
 | Routes| Method | Request Body | Response Data | Description |
 |----------------------|--------|-----------------------------|-----------------------------------|--|---------------------------------------------------------------|
-| `/users/register`| POST | `{ fullname, username, email, password }` | `{ access_token }`|Register a new user|
-| `/users/login` | POST | `{ email, password }`| `{ token }`|Log in and get an email verification!|
-| `/users/signin-google` | POST | `{ token(google) }` | `{ ntoken }` | |Sign in with Google|
-| `/users/dashboard` | GET | | `${ fullname, username, email, (if any) picture}` | Upon Log in, will carry basic information about User |
+| `/users/signup`| POST | `{ fullname, username, email, password }` | `{ access_token }`|Register a new user|
 
+#### Return
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMzJlNzQ1YzY1MWFmM2IwZDJiYmEwMiIsImVtYWlsIjoiYmFnYXNwdXRyby5pcnNoYWRpQGdtYWlsLmNvbSIsImlhdCI6MTU2Mzc1NjI5M30.PUD3zcTRrdU_PfgHcYKG0IuB6A4IIcWg2Q7PBOuOjrk",
+    "loggedUser": {
+        "username": "irshadi",
+        "fullname": "Irshadi Bagasputro"
+    }
+}
 #### User Validation
 Fullname : <br>
 <ul>
